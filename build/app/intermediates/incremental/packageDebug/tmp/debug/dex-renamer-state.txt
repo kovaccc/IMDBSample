@@ -1,0 +1,4 @@
+#Mon Aug 15 08:24:41 CEST 2022
+base.0=/Users/matej/FlutterProjects/IMDBSample/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
