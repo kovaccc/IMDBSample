@@ -29,7 +29,7 @@ class MoviesPagesLocalDataSource {
       dbPopularMoviesPage.movies = HiveList(_movieDao.movieBox);
       dbPopularMoviesPage.totalPages = popularMoviesResponse.totalPages;
       dbPopularMoviesPage.totalResults = popularMoviesResponse.totalResults;
-      _addMovies(dbPopularMoviesPage, popularMoviesResponse.results)
+      _addMovies(dbPopularMoviesPage, popularMoviesResponse.results);
       await _moviesPageDao.updatePopularMoviePage(dbPopularMoviesPage);
     }
   }

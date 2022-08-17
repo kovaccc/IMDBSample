@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../../data/local/dao/auth_dao.dart';
 import '../../main.dart';
 import '../../ui/presentation/pages/splash_page.dart';
 import '../../util/error_handler.dart';
 
 class BaseRemoteDataSource {
-  const BaseRemoteDataSource();
+  final AuthDao _authDao;
+
+  const BaseRemoteDataSource(this._authDao);
 
   Future<T> apiRequest<T>(
       {required apiCall, ErrorResolver? errorResolver}) async {
@@ -16,6 +19,7 @@ class BaseRemoteDataSource {
         if (error is DioError) {
           if (error.response?.statusCode != null &&
               error.response?.statusCode == 7) {
+            await _authDao.insertJwtToken("");
             WidgetsBinding.instance.addPostFrameCallback((_) {
               navigator.currentState?.pushNamedAndRemoveUntil(
                   SplashPage.id, (Route<dynamic> route) => false);

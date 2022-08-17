@@ -1,13 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-
-import '../../../config/constants.dart';
-import '../../../data/local/dao/genre_dao.dart';
-import '../../../data/local/dao/movie_dao.dart';
-import '../../../data/models/domain/genre.dart';
-import '../../../data/models/persistence/db_genre.dart';
-import '../../../data/models/persistence/db_movie.dart';
-import '../../../di/injection.dart';
+import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -16,6 +7,42 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return BlocListener<SplashBloc, SplashState>(
+      // listenWhen: (previous, current) {
+      //   return previous is SplashInitial || current is SplashInitial;
+      // },
+      listener: (context, state) {
+        if (state is SplashLoginSuccess) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              Routes.bottomNavigationView, (route) => false);
+        } else {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil(Routes.intro, (route) => false);
+        }
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          top: true,
+          bottom: false,
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                KiKPaddings(context).extraLargeVerticalSizedBox(),
+                Image.asset(
+                  KiKIcons.imgSplashLogo,
+                  width: KiKPaddings(context).screenWidth * 0.3,
+                ),
+                const Spacer(),
+                Image.asset(
+                  KiKIcons.imgSplashContext,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
