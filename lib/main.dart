@@ -16,7 +16,7 @@ import 'generated/l10n.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  configureDependencies(Env.development);
+  await configureDependencies(Env.development);
   // await Hive.openBox(Constants.boxAuth);
   // await Hive.openBox<DBGenre>(Constants.boxGenre);
   // await Hive.openBox<DBMovie>(Constants.boxMovie);
@@ -32,8 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
+      DeviceOrientation.portraitUp
     ]);
     return MaterialApp(
       localizationsDelegates: const [

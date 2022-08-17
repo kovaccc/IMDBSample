@@ -7,13 +7,13 @@ part 'db_popular_movies_page.g.dart';
 @HiveType(typeId: Constants.popularMoviesTypeAdapterId)
 class DBPopularMoviesPage extends HiveObject {
   @HiveField(0)
-  final int page;
+  int page;
   @HiveField(1)
-  final HiveList movies;
+  HiveList movies;
   @HiveField(2)
-  final int totalPages;
+  int totalPages;
   @HiveField(3)
-  final int totalResults;
+  int totalResults;
 
   DBPopularMoviesPage({
     required this.page,

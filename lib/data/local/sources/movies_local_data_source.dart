@@ -34,17 +34,13 @@ class MoviesLocalDataSource {
             voteAverage: movie.voteAverage,
             voteCount: movie.voteCount,
             isFavourite: false);
-        dbMovie.genres.addAll(_genreDao
-            .getGenres()
-            .where((element) => movie.genreIds.contains(element.id)));
+        _addMovieGenres(dbMovie, movie.genreIds);
         await _movieDao.insertMovie(dbMovie);
       } else {
         dbMovie.adult = movie.adult;
         dbMovie.backdropPath = movie.backdropPath;
         dbMovie.genres = HiveList(_genreDao.genreBox);
-        dbMovie.genres.addAll(_genreDao
-            .getGenres()
-            .where((element) => movie.genreIds.contains(element.id)));
+        _addMovieGenres(dbMovie, movie.genreIds);
         dbMovie.originalLanguage = movie.originalLanguage;
         dbMovie.originalTitle = movie.originalTitle;
         dbMovie.overview = movie.overview;
@@ -58,6 +54,12 @@ class MoviesLocalDataSource {
         await _movieDao.updateMovie(dbMovie);
       }
     }
+  }
+
+  void _addMovieGenres(DBMovie dbMovie, List<int> genreIds) {
+    dbMovie.genres.addAll(_genreDao
+        .getGenres()
+        .where((element) => genreIds.contains(element.id)));
   }
 
   Future<void> toggleFavourite(Movie movie) async {

@@ -16,25 +16,6 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    GenreDao genreDao = getIt<GenreDao>();
-    MovieDao movieDao = getIt<MovieDao>();
-
-    var genreList = [
-      Genre(id: 5, name: "matej1"),
-      Genre(id: 53, name: "matej2"),
-      Genre(id: 12, name: "matej3"),
-      Genre(id: 4, name: "matej3"),
-    ];
-
-    for (var element in genreList) {
-      genreDao.insertGenre(element.asDatabase());
-    }
-
-    genreDao.getGenres().forEach((element) {
-      print(element.id);
-    });
-
     return Container();
   }
 }

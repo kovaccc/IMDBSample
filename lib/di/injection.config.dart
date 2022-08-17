@@ -67,8 +67,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.singleton<_i14.ApiClient>(_i14.ApiClient.create(get<_i8.FlavorConfig>()));
   gh.singleton<_i15.GenresRemoteDataSource>(
       _i15.GenresRemoteDataSource(get<_i14.ApiClient>()));
-  gh.singleton<_i16.MoviesPagesLocalDataSource>(
-      _i16.MoviesPagesLocalDataSource(get<_i13.PopularMoviesPageDao>()));
+  gh.singleton<_i16.MoviesPagesLocalDataSource>(_i16.MoviesPagesLocalDataSource(
+      get<_i13.PopularMoviesPageDao>(), get<_i11.MovieDao>()));
   gh.singleton<_i17.MoviesRemoteDataSource>(
       _i17.MoviesRemoteDataSource(get<_i14.ApiClient>()));
   gh.singleton<_i18.IMoviesRepository>(_i18.MoviesRepository(
