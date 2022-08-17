@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../common/resources/routes.dart';
+import '../../blocs/splash_bloc.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -8,9 +12,6 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SplashBloc, SplashState>(
-      // listenWhen: (previous, current) {
-      //   return previous is SplashInitial || current is SplashInitial;
-      // },
       listener: (context, state) {
         if (state is SplashLoginSuccess) {
           Navigator.of(context).pushNamedAndRemoveUntil(

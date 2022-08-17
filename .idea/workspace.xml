@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1a9babe-0f20-4858-a942-104038f25231" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/data/local/sources/auth_local_data_source.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/repositories/auth_repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/repositories/genres_repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/blocs/splash_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/blocs/splash_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ui/blocs/splash_state.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/pub/bin/build_runner/build_runner.dart-2.17.6.snapshot" beforeDir="false" />
@@ -12,7 +18,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/common/base/base_remote_data_source.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/base/base_remote_data_source.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common/resources/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/resources/routes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/local/sources/movies_pages_local_data_source.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/local/sources/movies_pages_local_data_source.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/remote/api_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/remote/api_client.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/remote/sources/genres_remote_data_source.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/remote/sources/genres_remote_data_source.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/remote/sources/movies_remote_data_source.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/remote/sources/movies_remote_data_source.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/repositories/movies_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repositories/movies_repository.dart" afterDir="false" />
