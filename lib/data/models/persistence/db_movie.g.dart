@@ -19,7 +19,7 @@ class DBMovieAdapter extends TypeAdapter<DBMovie> {
     return DBMovie(
       adult: fields[0] as bool,
       backdropPath: fields[1] as String,
-      genres: (fields[2] as List).cast<Genre>(),
+      genres: (fields[2] as HiveList).castHiveList(),
       id: fields[3] as int,
       originalLanguage: fields[4] as String,
       originalTitle: fields[5] as String,
@@ -31,13 +31,14 @@ class DBMovieAdapter extends TypeAdapter<DBMovie> {
       video: fields[11] as bool,
       voteAverage: fields[12] as double,
       voteCount: fields[13] as int,
+      isFavourite: fields[14] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, DBMovie obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.adult)
       ..writeByte(1)
@@ -65,7 +66,9 @@ class DBMovieAdapter extends TypeAdapter<DBMovie> {
       ..writeByte(12)
       ..write(obj.voteAverage)
       ..writeByte(13)
-      ..write(obj.voteCount);
+      ..write(obj.voteCount)
+      ..writeByte(14)
+      ..write(obj.isFavourite);
   }
 
   @override

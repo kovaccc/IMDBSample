@@ -7,7 +7,7 @@ import '../../../config/constants.dart';
 class AuthDao {
   AuthDao();
 
-  Future<void> saveJwtToken(String token) async {
+  Future<void> insertJwtToken(String token) async {
     await Hive.box(Constants.boxAuth).put(Constants.keyJwtToken, token);
   }
 

@@ -8,8 +8,7 @@ class BaseRemoteDataSource {
   const BaseRemoteDataSource();
 
   Future<T> apiRequest<T>(
-      {required apiCall,
-        ErrorResolver? errorResolver}) async {
+      {required apiCall, ErrorResolver? errorResolver}) async {
     try {
       return await apiCall;
     } catch (error) {

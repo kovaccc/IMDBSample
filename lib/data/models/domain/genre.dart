@@ -1,17 +1,12 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:imdb_sample/common/base/domain_data.dart';
+import 'package:imdb_sample/data/models/persistence/db_genre.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../../config/constants.dart';
 
 part 'genre.g.dart';
 
-@HiveType(typeId: Constants.genreTypeAdapterId)
 @JsonSerializable()
-class Genre extends HiveObject {
-  @HiveField(0)
+class Genre implements DomainData<DBGenre> {
   final int id;
-
-  @HiveField(1)
   final String name;
 
   Genre({
@@ -22,6 +17,9 @@ class Genre extends HiveObject {
   factory Genre.fromJson(Map<String, dynamic> json) => _$GenreFromJson(json);
 
   Map<String, dynamic> toJson() => _$GenreToJson(this);
-}
 
-// person.save();
+  @override
+  DBGenre asDatabase() {
+    return DBGenre(id: id, name: name);
+  }
+}

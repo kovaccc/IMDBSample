@@ -1,42 +1,40 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:imdb_sample/common/base/persistable.dart';
-import 'package:imdb_sample/data/models/domain/genre.dart';
-import 'package:imdb_sample/data/models/domain/movie.dart';
-
 import '../../../config/constants.dart';
 
 part 'db_movie.g.dart';
 
 @HiveType(typeId: Constants.movieTypeAdapterId)
-class DBMovie implements Persistable<Movie> {
+class DBMovie extends HiveObject {
   @HiveField(0)
-  final bool adult;
+  bool adult;
   @HiveField(1)
-  final String backdropPath;
+  String backdropPath;
   @HiveField(2)
-  List<Genre> genres;
+  HiveList genres;
   @HiveField(3)
   final int id;
   @HiveField(4)
-  final String originalLanguage;
+  String originalLanguage;
   @HiveField(5)
-  final String originalTitle;
+  String originalTitle;
   @HiveField(6)
-  final String overview;
+  String overview;
   @HiveField(7)
-  final double popularity;
+  double popularity;
   @HiveField(8)
-  final String posterPath;
+  String posterPath;
   @HiveField(9)
-  final String releaseDate;
+  String releaseDate;
   @HiveField(10)
-  final String title;
+  String title;
   @HiveField(11)
-  final bool video;
+  bool video;
   @HiveField(12)
-  final double voteAverage;
+  double voteAverage;
   @HiveField(13)
-  final int voteCount;
+  int voteCount;
+  @HiveField(14)
+  bool isFavourite;
 
   DBMovie({
     required this.adult,
@@ -53,24 +51,6 @@ class DBMovie implements Persistable<Movie> {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    required this.isFavourite,
   });
-
-  @override
-  Movie asDomain() {
-    return Movie(
-        adult: adult,
-        backdropPath: backdropPath,
-        genres: genres.toList(),
-        id: id,
-        originalLanguage: originalLanguage,
-        originalTitle: originalTitle,
-        overview: overview,
-        popularity: popularity,
-        posterPath: posterPath,
-        releaseDate: releaseDate,
-        title: title,
-        video: video,
-        voteAverage: voteAverage,
-        voteCount: voteCount);
-  }
 }

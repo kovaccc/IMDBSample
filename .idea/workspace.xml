@@ -5,25 +5,81 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1a9babe-0f20-4858-a942-104038f25231" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/common/base/domain_data.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/base/persistable.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/local/dao/auth_dao.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/domain/movie.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/domain/popular_movies.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_movie.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_movie.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_popular_movies.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/local/dao/genre_dao.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/local/dao/movie_dao.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/local/dao/popular_movies_page_dao.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/local/sources/genres_local_data_source.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/local/sources/movies_local_data_source.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/local/sources/movies_pages_local_data_source.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_genre.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_genre.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_popular_movies_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/build/fcd1995bc647fb959e82ea360c6c2c9a/asset_graph.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/build/fcd1995bc647fb959e82ea360c6c2c9a/asset_graph.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/build/generated/imdb_sample/lib/data/remote/api_client.retrofit.g.part" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/build/generated/imdb_sample/lib/data/remote/api_client.retrofit.g.part" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/.filecache" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/.filecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/app.dill" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/app.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/debug_android_application.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/debug_android_application.stamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/flutter_assets.d" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/flutter_assets.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/gen_dart_plugin_registrant.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/gen_dart_plugin_registrant.stamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/kernel_snapshot.d" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/kernel_snapshot.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/kernel_snapshot.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/outputs.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/1cf53064f380ea6be03f3c344d0a42fc/outputs.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/4f2a58af27abc49ecf55570043bbf938.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/4f2a58af27abc49ecf55570043bbf938.cache.dill.track.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/6cd7c671378f27e4e84798c150794f77/gen_dart_plugin_registrant.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/build/6cd7c671378f27e4e84798c150794f77/gen_dart_plugin_registrant.stamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/assets/debug/mergeDebugAssets/flutter_assets/AssetManifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/assets/debug/mergeDebugAssets/flutter_assets/AssetManifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/assets/debug/mergeDebugAssets/flutter_assets/NOTICES.Z" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/assets/debug/mergeDebugAssets/flutter_assets/NOTICES.Z" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/assets/debug/mergeDebugAssets/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/assets/debug/mergeDebugAssets/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/AssetManifest.json.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/AssetManifest.json.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/NOTICES.Z.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/NOTICES.Z.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/kernel_blob.bin.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/kernel_blob.bin.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/desugar_graph/debug/out/currentProject/dirs_bucket_2/graph.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/desugar_graph/debug/out/currentProject/dirs_bucket_2/graph.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex_archive_input_jar_hashes/debug/out" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex_archive_input_jar_hashes/debug/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/external_libs_dex/debug/mergeExtDexDebug/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/external_libs_dex/debug/mergeExtDexDebug/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/AssetManifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/AssetManifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/NOTICES.Z" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/NOTICES.Z" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/3aLS+hm75ZGQTcM7FEluVPpvCzI=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/3aLS+hm75ZGQTcM7FEluVPpvCzI=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/aMcLvC2pjFtS8a6qvp+kYCb04b0=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/aMcLvC2pjFtS8a6qvp+kYCb04b0=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/lX+XacqU2znbFQuAHA41_ZHvg4w=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/lX+XacqU2znbFQuAHA41_ZHvg4w=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/w5dadoYu0AGM92GPT+i6HatuIBc=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/w5dadoYu0AGM92GPT+i6HatuIBc=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/zip-cache/javaResources0" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/zip-cache/javaResources0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/javac/debug/classes/io/flutter/plugins/GeneratedPluginRegistrant.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/javac/debug/classes/io/flutter/plugins/GeneratedPluginRegistrant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/merged_java_res/debug/base.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/merged_java_res/debug/base.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/project_dex_archive/debug/out/bbd3a8b31871442ed558a1f45c15d889588cc29528b7a722039321bb669cecb7_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/project_dex_archive/debug/out/bbd3a8b31871442ed558a1f45c15d889588cc29528b7a722039321bb669cecb7_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/project_dex_archive/debug/out/bbd3a8b31871442ed558a1f45c15d889588cc29528b7a722039321bb669cecb7_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/project_dex_archive/debug/out/bbd3a8b31871442ed558a1f45c15d889588cc29528b7a722039321bb669cecb7_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/project_dex_archive/debug/out/io/flutter/plugins/GeneratedPluginRegistrant.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/project_dex_archive/debug/out/io/flutter/plugins/GeneratedPluginRegistrant.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app.apk.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app.apk.sha1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common/base/base_remote_data_source.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/base/base_remote_data_source.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/config/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/local/dao/auth_dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/local/dao/auth_dao.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/models/domain/genre.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/domain/genre.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/models/domain/genre.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/domain/genre.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/remote/api_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/remote/api_client.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/remote/api_client.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/remote/api_client.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/domain/movie.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/domain/movie.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/domain/popular_movies.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/domain/popular_movies.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/persistence/db_movie.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_movie.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/persistence/db_movie.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_movie.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/persistence/db_popular_movies.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/persistence/db_popular_movies.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_popular_movies_page.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/repositories/movies_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repositories/movies_repository.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/di/database_module.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/di/database_module.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/di/injection.config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/di/injection.config.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/presentation/pages/splash_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/presentation/pages/splash_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
