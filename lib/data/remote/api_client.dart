@@ -35,7 +35,7 @@ abstract class ApiClient {
   @GET("/3/movie/popular")
   Future<PopularMoviesResponse> getSimplePopularMovies([
     @Query("api_key") String apiKey = Constants.apiKey,
-    @Query("language") String language = Constants.language,
+    @Query("language") String language = Constants.languageUS,
   ]);
 
   @GET("/3/genre/movie/list")

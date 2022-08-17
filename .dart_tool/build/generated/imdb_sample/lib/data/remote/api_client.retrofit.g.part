@@ -13,7 +13,7 @@ class _ApiClient implements ApiClient {
 
   @override
   Future<PopularMoviesResponse> getSimplePopularMovies(
-      [apiKey = Constants.apiKey, language = Constants.language]) async {
+      [apiKey = Constants.apiKey, language = Constants.languageUS]) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'api_key': apiKey,

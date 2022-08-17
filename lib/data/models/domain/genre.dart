@@ -1,10 +1,17 @@
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../config/constants.dart';
 
 part 'genre.g.dart';
 
+@HiveType(typeId: Constants.genreTypeAdapterId)
 @JsonSerializable()
-class Genre {
+class Genre extends HiveObject {
+  @HiveField(0)
   final int id;
+
+  @HiveField(1)
   final String name;
 
   Genre({
@@ -16,3 +23,5 @@ class Genre {
 
   Map<String, dynamic> toJson() => _$GenreToJson(this);
 }
+
+// person.save();

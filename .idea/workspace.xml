@@ -5,39 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1a9babe-0f20-4858-a942-104038f25231" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dart_tool/build/entrypoint/.packageLocations" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.dart_tool/build/entrypoint/build.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.dart_tool/build/entrypoint/build.dart.dill" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.dart_tool/build/fcd1995bc647fb959e82ea360c6c2c9a/asset_graph.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.dart_tool/build/generated/imdb_sample/lib/data/models/responses/popular_movies_response.json_serializable.g.part" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.dart_tool/build/generated/imdb_sample/lib/data/remote/api_client.retrofit.g.part" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.dart_tool/build_resolvers/sdk.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.dart_tool/build_resolvers/sdk.sum.deps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.dart_tool/pub/bin/build_runner/build_runner.dart-2.17.6.snapshot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/responses/movie_response.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/responses/popular_movies_response.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/responses/popular_movies_response.freezed.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/models/responses/popular_movies_response.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/remote/api_client.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/di/injection.config.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/IMDBSample.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/IMDBSample.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/common/base/domain_data.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/common/base/persistable.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/local/dao/auth_dao.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/domain/movie.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/domain/popular_movies.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_movie.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_movie.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/data/models/persistence/db_popular_movies.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/build/fcd1995bc647fb959e82ea360c6c2c9a/asset_graph.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/build/fcd1995bc647fb959e82ea360c6c2c9a/asset_graph.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/build/generated/imdb_sample/lib/data/remote/api_client.retrofit.g.part" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/build/generated/imdb_sample/lib/data/remote/api_client.retrofit.g.part" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/remote/ApiClient.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/remote/api_client.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/di/injection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/di/injection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/config/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/domain/genre.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/domain/genre.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/models/domain/genre.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/models/domain/genre.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/remote/api_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/remote/api_client.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/remote/api_client.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/remote/api_client.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/di/database_module.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/di/database_module.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/di/injection.config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/di/injection.config.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/Flutter-Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/Flutter-Debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/Flutter-Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/Flutter-Release.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +39,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="2DNZhspVM4EjGnXavDf97ytTbk8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
