@@ -14,12 +14,21 @@ class MovieDao {
     await movieBox.put(movie.id, movie);
   }
 
+  Future<void> deleteMoviesByPage(int page) async {
+    await Future.forEach<DBMovie>(getMoviesByPage(page), (movie) async {
+      await movie.delete();
+    });
+  }
+
   Future<void> updateMovie(DBMovie movie) async {
     await movie.save();
   }
 
-  List<DBMovie> getMovies() {
-    return movieBox.values.toList();
+  List<DBMovie> getMoviesByPage(int page) {
+    return movieBox.values
+        .toList()
+        .where((movie) => movie.page == page)
+        .toList();
   }
 
   DBMovie? getMovie(int id) {

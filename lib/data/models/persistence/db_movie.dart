@@ -1,10 +1,13 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:imdb_sample/common/base/persistable.dart';
+import 'package:imdb_sample/data/models/domain/movie.dart';
 import '../../../config/constants.dart';
+import 'db_genre.dart';
 
 part 'db_movie.g.dart';
 
 @HiveType(typeId: Constants.movieTypeAdapterId)
-class DBMovie extends HiveObject {
+class DBMovie extends HiveObject implements Persistable<Movie> {
   @HiveField(0)
   bool adult;
   @HiveField(1)
@@ -35,6 +38,8 @@ class DBMovie extends HiveObject {
   int voteCount;
   @HiveField(14)
   bool isFavourite;
+  @HiveField(15)
+  int page;
 
   DBMovie({
     required this.adult,
@@ -52,5 +57,18 @@ class DBMovie extends HiveObject {
     required this.voteAverage,
     required this.voteCount,
     required this.isFavourite,
+    required this.page,
   });
+
+  @override
+  Movie asDomain() {
+    return Movie(
+        backdropPath: backdropPath,
+        genres: genres.map((genre) => (genre as DBGenre).asDomain()).toList(),
+        id: id,
+        overview: overview,
+        posterPath: posterPath,
+        title: title,
+        voteAverage: voteAverage);
+  }
 }
