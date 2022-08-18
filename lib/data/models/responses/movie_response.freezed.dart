@@ -20,36 +20,36 @@ MovieResponse _$MovieResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MovieResponse {
-  bool get adult =>
+  bool? get adult =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'backdrop_path')
   String? get backdropPath =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'genre_ids')
   List<int> get genreIds => throw _privateConstructorUsedError;
-  int get id =>
+  int? get id =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'original_language')
-  String get originalLanguage =>
+  String? get originalLanguage =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'original_title')
-  String get originalTitle => throw _privateConstructorUsedError;
-  String get overview => throw _privateConstructorUsedError;
-  double get popularity =>
+  String? get originalTitle => throw _privateConstructorUsedError;
+  String? get overview => throw _privateConstructorUsedError;
+  double? get popularity =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'poster_path')
   String? get posterPath =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'release_date')
-  String get releaseDate => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  bool get video =>
+  String? get releaseDate => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  bool? get video =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'vote_average')
-  double get voteAverage =>
+  double? get voteAverage =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'vote_count')
-  int get voteCount => throw _privateConstructorUsedError;
+  int? get voteCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,20 +63,20 @@ abstract class $MovieResponseCopyWith<$Res> {
           MovieResponse value, $Res Function(MovieResponse) then) =
       _$MovieResponseCopyWithImpl<$Res>;
   $Res call(
-      {bool adult,
+      {bool? adult,
       @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
-      int id,
-      @JsonKey(name: 'original_language') String originalLanguage,
-      @JsonKey(name: 'original_title') String originalTitle,
-      String overview,
-      double popularity,
+      int? id,
+      @JsonKey(name: 'original_language') String? originalLanguage,
+      @JsonKey(name: 'original_title') String? originalTitle,
+      String? overview,
+      double? popularity,
       @JsonKey(name: 'poster_path') String? posterPath,
-      @JsonKey(name: 'release_date') String releaseDate,
-      String title,
-      bool video,
-      @JsonKey(name: 'vote_average') double voteAverage,
-      @JsonKey(name: 'vote_count') int voteCount});
+      @JsonKey(name: 'release_date') String? releaseDate,
+      String? title,
+      bool? video,
+      @JsonKey(name: 'vote_average') double? voteAverage,
+      @JsonKey(name: 'vote_count') int? voteCount});
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class _$MovieResponseCopyWithImpl<$Res>
       adult: adult == freezed
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       backdropPath: backdropPath == freezed
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
@@ -121,23 +121,23 @@ class _$MovieResponseCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       originalLanguage: originalLanguage == freezed
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       originalTitle: originalTitle == freezed
           ? _value.originalTitle
           : originalTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       overview: overview == freezed
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       popularity: popularity == freezed
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       posterPath: posterPath == freezed
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
@@ -145,23 +145,23 @@ class _$MovieResponseCopyWithImpl<$Res>
       releaseDate: releaseDate == freezed
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       video: video == freezed
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       voteAverage: voteAverage == freezed
           ? _value.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       voteCount: voteCount == freezed
           ? _value.voteCount
           : voteCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -174,20 +174,20 @@ abstract class _$$_MovieResponseCopyWith<$Res>
       __$$_MovieResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool adult,
+      {bool? adult,
       @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
-      int id,
-      @JsonKey(name: 'original_language') String originalLanguage,
-      @JsonKey(name: 'original_title') String originalTitle,
-      String overview,
-      double popularity,
+      int? id,
+      @JsonKey(name: 'original_language') String? originalLanguage,
+      @JsonKey(name: 'original_title') String? originalTitle,
+      String? overview,
+      double? popularity,
       @JsonKey(name: 'poster_path') String? posterPath,
-      @JsonKey(name: 'release_date') String releaseDate,
-      String title,
-      bool video,
-      @JsonKey(name: 'vote_average') double voteAverage,
-      @JsonKey(name: 'vote_count') int voteCount});
+      @JsonKey(name: 'release_date') String? releaseDate,
+      String? title,
+      bool? video,
+      @JsonKey(name: 'vote_average') double? voteAverage,
+      @JsonKey(name: 'vote_count') int? voteCount});
 }
 
 /// @nodoc
@@ -222,7 +222,7 @@ class __$$_MovieResponseCopyWithImpl<$Res>
       adult: adult == freezed
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       backdropPath: backdropPath == freezed
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
@@ -234,23 +234,23 @@ class __$$_MovieResponseCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       originalLanguage: originalLanguage == freezed
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       originalTitle: originalTitle == freezed
           ? _value.originalTitle
           : originalTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       overview: overview == freezed
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       popularity: popularity == freezed
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       posterPath: posterPath == freezed
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
@@ -258,23 +258,23 @@ class __$$_MovieResponseCopyWithImpl<$Res>
       releaseDate: releaseDate == freezed
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       video: video == freezed
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       voteAverage: voteAverage == freezed
           ? _value.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       voteCount: voteCount == freezed
           ? _value.voteCount
           : voteCount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -303,7 +303,7 @@ class _$_MovieResponse implements _MovieResponse {
       _$$_MovieResponseFromJson(json);
 
   @override
-  final bool adult;
+  final bool? adult;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'backdrop_path')
@@ -319,19 +319,19 @@ class _$_MovieResponse implements _MovieResponse {
   }
 
   @override
-  final int id;
+  final int? id;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'original_language')
-  final String originalLanguage;
+  final String? originalLanguage;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'original_title')
-  final String originalTitle;
+  final String? originalTitle;
   @override
-  final String overview;
+  final String? overview;
   @override
-  final double popularity;
+  final double? popularity;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'poster_path')
@@ -339,19 +339,19 @@ class _$_MovieResponse implements _MovieResponse {
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'release_date')
-  final String releaseDate;
+  final String? releaseDate;
   @override
-  final String title;
+  final String? title;
   @override
-  final bool video;
+  final bool? video;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'vote_average')
-  final double voteAverage;
+  final double? voteAverage;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'vote_count')
-  final int voteCount;
+  final int? voteCount;
 
   @override
   String toString() {
@@ -420,34 +420,34 @@ class _$_MovieResponse implements _MovieResponse {
 
 abstract class _MovieResponse implements MovieResponse {
   factory _MovieResponse(
-      {required final bool adult,
+      {required final bool? adult,
       @JsonKey(name: 'backdrop_path')
           required final String? backdropPath,
       @JsonKey(name: 'genre_ids')
           required final List<int> genreIds,
-      required final int id,
+      required final int? id,
       @JsonKey(name: 'original_language')
-          required final String originalLanguage,
+          required final String? originalLanguage,
       @JsonKey(name: 'original_title')
-          required final String originalTitle,
-      required final String overview,
-      required final double popularity,
+          required final String? originalTitle,
+      required final String? overview,
+      required final double? popularity,
       @JsonKey(name: 'poster_path')
           required final String? posterPath,
       @JsonKey(name: 'release_date')
-          required final String releaseDate,
-      required final String title,
-      required final bool video,
+          required final String? releaseDate,
+      required final String? title,
+      required final bool? video,
       @JsonKey(name: 'vote_average')
-          required final double voteAverage,
+          required final double? voteAverage,
       @JsonKey(name: 'vote_count')
-          required final int voteCount}) = _$_MovieResponse;
+          required final int? voteCount}) = _$_MovieResponse;
 
   factory _MovieResponse.fromJson(Map<String, dynamic> json) =
       _$_MovieResponse.fromJson;
 
   @override
-  bool get adult;
+  bool? get adult;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'backdrop_path')
   String? get backdropPath;
@@ -455,33 +455,33 @@ abstract class _MovieResponse implements MovieResponse {
   @JsonKey(name: 'genre_ids')
   List<int> get genreIds;
   @override
-  int get id;
+  int? get id;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'original_language')
-  String get originalLanguage;
+  String? get originalLanguage;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'original_title')
-  String get originalTitle;
+  String? get originalTitle;
   @override
-  String get overview;
+  String? get overview;
   @override
-  double get popularity;
+  double? get popularity;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'poster_path')
   String? get posterPath;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'release_date')
-  String get releaseDate;
+  String? get releaseDate;
   @override
-  String get title;
+  String? get title;
   @override
-  bool get video;
+  bool? get video;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'vote_average')
-  double get voteAverage;
+  double? get voteAverage;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'vote_count')
-  int get voteCount;
+  int? get voteCount;
   @override
   @JsonKey(ignore: true)
   _$$_MovieResponseCopyWith<_$_MovieResponse> get copyWith =>

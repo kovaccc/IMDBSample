@@ -21,14 +21,14 @@ PopularMoviesResponse _$PopularMoviesResponseFromJson(
 
 /// @nodoc
 mixin _$PopularMoviesResponse {
-  int get page => throw _privateConstructorUsedError;
+  int? get page => throw _privateConstructorUsedError;
   List<MovieResponse> get results =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'total_pages')
-  int get totalPages =>
+  int? get totalPages =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'total_results')
-  int get totalResults => throw _privateConstructorUsedError;
+  int? get totalResults => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,10 +42,10 @@ abstract class $PopularMoviesResponseCopyWith<$Res> {
           $Res Function(PopularMoviesResponse) then) =
       _$PopularMoviesResponseCopyWithImpl<$Res>;
   $Res call(
-      {int page,
+      {int? page,
       List<MovieResponse> results,
-      @JsonKey(name: 'total_pages') int totalPages,
-      @JsonKey(name: 'total_results') int totalResults});
+      @JsonKey(name: 'total_pages') int? totalPages,
+      @JsonKey(name: 'total_results') int? totalResults});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$PopularMoviesResponseCopyWithImpl<$Res>
       page: page == freezed
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       results: results == freezed
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
@@ -76,11 +76,11 @@ class _$PopularMoviesResponseCopyWithImpl<$Res>
       totalPages: totalPages == freezed
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       totalResults: totalResults == freezed
           ? _value.totalResults
           : totalResults // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -93,10 +93,10 @@ abstract class _$$_PopularMoviesResponseCopyWith<$Res>
       __$$_PopularMoviesResponseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int page,
+      {int? page,
       List<MovieResponse> results,
-      @JsonKey(name: 'total_pages') int totalPages,
-      @JsonKey(name: 'total_results') int totalResults});
+      @JsonKey(name: 'total_pages') int? totalPages,
+      @JsonKey(name: 'total_results') int? totalResults});
 }
 
 /// @nodoc
@@ -122,7 +122,7 @@ class __$$_PopularMoviesResponseCopyWithImpl<$Res>
       page: page == freezed
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       results: results == freezed
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
@@ -130,11 +130,11 @@ class __$$_PopularMoviesResponseCopyWithImpl<$Res>
       totalPages: totalPages == freezed
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       totalResults: totalResults == freezed
           ? _value.totalResults
           : totalResults // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -153,7 +153,7 @@ class _$_PopularMoviesResponse implements _PopularMoviesResponse {
       _$$_PopularMoviesResponseFromJson(json);
 
   @override
-  final int page;
+  final int? page;
   final List<MovieResponse> _results;
   @override
   List<MovieResponse> get results {
@@ -164,11 +164,11 @@ class _$_PopularMoviesResponse implements _PopularMoviesResponse {
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'total_pages')
-  final int totalPages;
+  final int? totalPages;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'total_results')
-  final int totalResults;
+  final int? totalResults;
 
   @override
   String toString() {
@@ -213,25 +213,25 @@ class _$_PopularMoviesResponse implements _PopularMoviesResponse {
 
 abstract class _PopularMoviesResponse implements PopularMoviesResponse {
   factory _PopularMoviesResponse(
-          {required final int page,
+          {required final int? page,
           required final List<MovieResponse> results,
-          @JsonKey(name: 'total_pages') required final int totalPages,
-          @JsonKey(name: 'total_results') required final int totalResults}) =
+          @JsonKey(name: 'total_pages') required final int? totalPages,
+          @JsonKey(name: 'total_results') required final int? totalResults}) =
       _$_PopularMoviesResponse;
 
   factory _PopularMoviesResponse.fromJson(Map<String, dynamic> json) =
       _$_PopularMoviesResponse.fromJson;
 
   @override
-  int get page;
+  int? get page;
   @override
   List<MovieResponse> get results;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'total_pages')
-  int get totalPages;
+  int? get totalPages;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'total_results')
-  int get totalResults;
+  int? get totalResults;
   @override
   @JsonKey(ignore: true)
   _$$_PopularMoviesResponseCopyWith<_$_PopularMoviesResponse> get copyWith =>

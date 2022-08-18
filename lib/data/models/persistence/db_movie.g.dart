@@ -23,16 +23,16 @@ class DBMovieAdapter extends TypeAdapter<DBMovie> {
       id: fields[3] as int,
       originalLanguage: fields[4] as String,
       originalTitle: fields[5] as String,
-      overview: fields[6] as String,
-      popularity: fields[7] as double,
+      overview: fields[6] as String?,
+      popularity: fields[7] as double?,
       posterPath: fields[8] as String?,
       releaseDate: fields[9] as String,
       title: fields[10] as String,
-      video: fields[11] as bool,
-      voteAverage: fields[12] as double,
-      voteCount: fields[13] as int,
+      video: fields[11] as bool?,
+      voteAverage: fields[12] as double?,
+      voteCount: fields[13] as int?,
       isFavourite: fields[14] as bool,
-      page: fields[15] as int,
+      page: fields[15] as int?,
     );
   }
 

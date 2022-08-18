@@ -23,14 +23,16 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
       final popularMovies =
           await moviesRepository.fetchSimplePopularMoviesPage(state.currentPage + 1);
       emit(PopularMoviesLoaded(popularMovies, state.currentPage + 1, false, event.currentPageKey + popularMovies.length));
-    } catch (error) {
-      print(error.toString());
+    } catch (error, stacktrace) {
       if (error is Exception) {
+        print(stacktrace.toString());
         bool isLastPage = false;
         if (error is PageNumberError) {
           isLastPage = true;
         }
       }
+      final persistMovies = moviesRepository.getPersistPopularMoviesPage(state.currentPage + 1);
+      emit(PopularMoviesLoaded(persistMovies, state.currentPage + 1, false, event.currentPageKey + persistMovies.length));
     }
   }
 }

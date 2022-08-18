@@ -4,10 +4,10 @@ class Movie {
   final String? backdropPath;
   final List<Genre> genres;
   final int id;
-  final String overview;
+  final String? overview;
   final String? posterPath;
   final String title;
-  final double voteAverage;
+  final double? voteAverage;
 
   Movie({
     required this.backdropPath,

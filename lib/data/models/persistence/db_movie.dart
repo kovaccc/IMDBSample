@@ -21,9 +21,9 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
   @HiveField(5)
   String originalTitle;
   @HiveField(6)
-  String overview;
+  String? overview;
   @HiveField(7)
-  double popularity;
+  double? popularity;
   @HiveField(8)
   String? posterPath;
   @HiveField(9)
@@ -31,15 +31,15 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
   @HiveField(10)
   String title;
   @HiveField(11)
-  bool video;
+  bool? video;
   @HiveField(12)
-  double voteAverage;
+  double? voteAverage;
   @HiveField(13)
-  int voteCount;
+  int? voteCount;
   @HiveField(14)
   bool isFavourite;
   @HiveField(15)
-  int page;
+  int? page;
 
   DBMovie({
     required this.adult,

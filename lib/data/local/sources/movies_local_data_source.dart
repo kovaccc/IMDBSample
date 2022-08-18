@@ -16,20 +16,20 @@ class MoviesLocalDataSource {
 
   Future<void> saveMovies(PopularMoviesResponse popularMoviesResponse) async {
     final page = popularMoviesResponse.page;
-    await _movieDao.deleteMoviesByPage(page);
+    await _movieDao.deleteMoviesByPage(page ?? 0);
     for (var movie in popularMoviesResponse.results) {
       final dbMovie = DBMovie(
-          adult: movie.adult,
+          adult: movie.adult ?? false,
           backdropPath: movie.backdropPath,
           genres: HiveList(_genreDao.genreBox),
-          id: movie.id,
-          originalLanguage: movie.originalLanguage,
-          originalTitle: movie.originalTitle,
+          id: movie.id ?? -1,
+          originalLanguage: movie.originalLanguage ?? "",
+          originalTitle: movie.originalTitle ?? "",
           overview: movie.overview,
           popularity: movie.popularity,
           posterPath: movie.posterPath,
-          releaseDate: movie.releaseDate,
-          title: movie.title,
+          releaseDate: movie.releaseDate ?? "",
+          title: movie.title ?? "",
           video: movie.video,
           voteAverage: movie.voteAverage,
           voteCount: movie.voteCount,
