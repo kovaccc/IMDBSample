@@ -66,7 +66,7 @@ class MoviesLocalDataSource {
     final dbMovie = _movieDao.getMovie(movie.id);
     if (dbMovie != null) {
       dbMovie.isFavourite = !dbMovie.isFavourite;
-      _movieDao.updateMovie(dbMovie);
+      await _movieDao.updateMovie(dbMovie);
     }
   }
 
