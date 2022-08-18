@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:imdb_sample/common/resources/text_styles.dart';
 import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
 import 'package:imdb_sample/ui/presentation/pages/bottom_navigation/popular_movies_page.dart';
-import '../../../../common/resources/icons.dart';
+import 'package:imdb_sample/ui/resources/icons.dart';
+import 'package:imdb_sample/ui/resources/text_styles.dart';
 import '../../../../data/repositories/movies_repository.dart';
 import '../../../../di/injection.dart';
 import '../../../../generated/l10n.dart';

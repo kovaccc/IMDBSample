@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:imdb_sample/common/resources/colors.dart';
-import 'package:imdb_sample/common/resources/paddings.dart';
+import 'package:imdb_sample/ui/resources/colors.dart';
+import 'package:imdb_sample/ui/resources/paddings.dart';
 
 class LoadingOverlay {
   OverlayEntry? _overlay;

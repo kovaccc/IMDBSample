@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:imdb_sample/common/resources/colors.dart';
-import 'package:imdb_sample/common/resources/text_styles.dart';
+import 'package:imdb_sample/ui/resources/colors.dart';
+import 'package:imdb_sample/ui/resources/text_styles.dart';
 
 import '../../../generated/l10n.dart';
 

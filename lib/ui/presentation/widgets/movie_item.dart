@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:imdb_sample/common/resources/colors.dart';
-import '../../../common/resources/icons.dart';
-import '../../../common/resources/paddings.dart';
-import '../../../common/resources/text_styles.dart';
+import 'package:imdb_sample/ui/resources/colors.dart';
+import 'package:imdb_sample/ui/resources/icons.dart';
+import 'package:imdb_sample/ui/resources/paddings.dart';
+import 'package:imdb_sample/ui/resources/text_styles.dart';
 import '../../../data/models/domain/movie.dart';
 import '../../../generated/l10n.dart';
 
