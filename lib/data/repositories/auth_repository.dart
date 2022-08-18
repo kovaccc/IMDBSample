@@ -5,6 +5,8 @@ import '../local/sources/auth_local_data_source.dart';
 abstract class IAuthRepository {
   Future<void> login();
 
+  Future<void> logout();
+
   bool isUserLoggedIn();
 }
 
@@ -22,5 +24,10 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<void> login() async {
     await _authLocalDataSource.saveJwtToken(Constants.bearerToken);
+  }
+
+  @override
+  Future<void> logout() async {
+    await _authLocalDataSource.deleteJwtToken();
   }
 }

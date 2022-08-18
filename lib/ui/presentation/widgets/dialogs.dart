@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:imdb_sample/common/resources/colors.dart';
+import 'package:imdb_sample/common/resources/text_styles.dart';
+
+import '../../../generated/l10n.dart';
 
 class ErrorMessageDialog extends StatelessWidget {
   final String title;
@@ -11,17 +15,19 @@ class ErrorMessageDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(title, style: KiKTextStyles.heading4GrayBold),
+      backgroundColor: ImdbColors.primaryBlack,
+      title: Text(title, style: ImdbTextStyles.heading1SfWhiteBold),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            Text(message, style: KiKTextStyles.paragraph1GrayBold),
+            Text(message, style: ImdbTextStyles.paragraph2SfWhite),
           ],
         ),
       ),
       actions: <Widget>[
         TextButton(
-          child: Text(S.of(context).ok, style: KiKTextStyles.paragraph1RedBold),
+          child:
+              Text(S.of(context).ok, style: ImdbTextStyles.paragraph2SfWhite),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ],

@@ -1,5 +1,5 @@
 class IMDBIcons {
   IMDBIcons._();
 
-  static const imdbLogo = 'assets/images/img-logo.png';
+  static const imdbLogo = 'assets/images/img-logo.svg';
 }

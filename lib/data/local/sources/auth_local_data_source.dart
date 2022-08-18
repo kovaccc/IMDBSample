@@ -11,6 +11,10 @@ class AuthLocalDataSource {
     await _authDao.insertJwtToken(jwtToken);
   }
 
+  Future<void> deleteJwtToken() async {
+    await _authDao.deleteJwtToken();
+  }
+
   String? getJwtToken() {
     return _authDao.getJwtToken();
   }

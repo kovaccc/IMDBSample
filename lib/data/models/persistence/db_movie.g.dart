@@ -32,13 +32,14 @@ class DBMovieAdapter extends TypeAdapter<DBMovie> {
       voteAverage: fields[12] as double,
       voteCount: fields[13] as int,
       isFavourite: fields[14] as bool,
+      page: fields[15] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, DBMovie obj) {
     writer
-      ..writeByte(15)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.adult)
       ..writeByte(1)
@@ -68,7 +69,9 @@ class DBMovieAdapter extends TypeAdapter<DBMovie> {
       ..writeByte(13)
       ..write(obj.voteCount)
       ..writeByte(14)
-      ..write(obj.isFavourite);
+      ..write(obj.isFavourite)
+      ..writeByte(15)
+      ..write(obj.page);
   }
 
   @override

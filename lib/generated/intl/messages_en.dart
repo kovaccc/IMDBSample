@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
         "invalid_api_key_error": MessageLookupByLibrary.simpleMessage(
             "Invalid API key: You must be granted a valid key."),
+        "login": MessageLookupByLibrary.simpleMessage("login"),
+        "logout": MessageLookupByLibrary.simpleMessage("logout"),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "popular": MessageLookupByLibrary.simpleMessage("Popular"),

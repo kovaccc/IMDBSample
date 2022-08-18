@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:imdb_sample/common/resources/text_styles.dart';
 
+import '../../../../common/resources/icons.dart';
+import '../../../../common/resources/paddings.dart';
+import '../../../../generated/l10n.dart';
 
 class BottomNavigationPage extends StatefulWidget {
   static const id = "/bottom_navigation_page";
@@ -13,8 +18,23 @@ class BottomNavigationPage extends StatefulWidget {
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      child: Text("bottom navigation page"),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+          child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset(
+                IMDBIcons.imdbLogo,
+              ),
+              Text(S.of(context).logout,
+                  style: ImdbTextStyles.heading1SfWhiteBold),
+            ],
+          )
+        ],
+      )),
     );
     // return Scaffold(
     //   body: Center(

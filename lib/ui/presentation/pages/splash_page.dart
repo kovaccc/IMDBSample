@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:imdb_sample/common/resources/icons.dart';
 import 'package:imdb_sample/ui/presentation/pages/bottom_navigation/bottom_navigation_page.dart';
 import '../../../common/resources/paddings.dart';
-import '../../blocs/splash_bloc.dart';
+import '../../blocs/splash/splash_bloc.dart';
 import 'login_page.dart';
 
 class SplashPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class SplashPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        body: Image.asset(
+        body: SvgPicture.asset(
           IMDBIcons.imdbLogo,
           height: ImdbPaddings(context).screenWidth / 5,
           width: ImdbPaddings(context).screenWidth / 5,

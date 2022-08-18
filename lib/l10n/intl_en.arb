@@ -6,5 +6,7 @@
   "movies": "Movies",
   "favourites": "Favourites",
   "popular": "Popular",
-  "ok": "OK"
+  "ok": "OK",
+  "login": "login",
+  "logout": "logout"
 }

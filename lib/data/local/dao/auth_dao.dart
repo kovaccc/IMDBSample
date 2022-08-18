@@ -5,13 +5,19 @@ import '../../../config/constants.dart';
 
 @singleton
 class AuthDao {
-  AuthDao();
+  final Box authBox;
+
+  AuthDao(@Named(Constants.boxAuth) this.authBox);
 
   Future<void> insertJwtToken(String token) async {
-    await Hive.box(Constants.boxAuth).put(Constants.keyJwtToken, token);
+    await authBox.put(Constants.keyJwtToken, token);
+  }
+
+  Future<void> deleteJwtToken() async {
+    await authBox.delete(Constants.keyJwtToken);
   }
 
   String? getJwtToken() {
-    return Hive.box(Constants.boxAuth).get(Constants.keyJwtToken);
+    return authBox.get(Constants.keyJwtToken);
   }
 }
