@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_sample/data/repositories/auth_repository.dart';
 import 'package:imdb_sample/data/repositories/genres_repository.dart';
-import 'package:imdb_sample/data/repositories/movies_repository.dart';
 
 part 'splash_event.dart';
 
@@ -13,12 +12,8 @@ part 'splash_state.dart';
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final AuthRepository authRepository;
   final GenresRepository genresRepository;
-  final MoviesRepository moviesRepository;
 
-  SplashBloc(
-      {required this.authRepository,
-      required this.genresRepository,
-      required this.moviesRepository})
+  SplashBloc({required this.authRepository, required this.genresRepository})
       : super(SplashInitial()) {
     on<SplashLoginChecking>(_onSplashLoginChecking);
   }

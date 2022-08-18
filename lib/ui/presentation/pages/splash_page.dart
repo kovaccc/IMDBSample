@@ -24,11 +24,12 @@ class SplashPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-          body: Image.asset(
-        IMDBIcons.imdbLogo,
-        height: ImdbPaddings(context).screenWidth / 5,
-        width: ImdbPaddings(context).screenWidth / 5,
-      )),
+        body: Image.asset(
+          IMDBIcons.imdbLogo,
+          height: ImdbPaddings(context).screenWidth / 5,
+          width: ImdbPaddings(context).screenWidth / 5,
+        ),
+      ),
     );
   }
 }
