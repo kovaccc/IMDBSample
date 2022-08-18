@@ -1,8 +1,7 @@
 import 'dart:async';
-
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_sample/data/repositories/auth_repository.dart';
 import 'package:imdb_sample/data/repositories/genres_repository.dart';
 import 'package:imdb_sample/data/repositories/movies_repository.dart';
@@ -26,10 +25,14 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   void _onSplashLoginChecking(
       SplashLoginChecking event, Emitter<SplashState> emit) async {
-    emit(SplashLoading());
     await Future.delayed(const Duration(milliseconds: 3000));
     final isUserLoggedIn = authRepository.isUserLoggedIn();
     if (isUserLoggedIn) {
+      try {
+        await genresRepository.refreshGenres();
+      } catch (error) {
+        if (error is Exception) {}
+      }
       emit(const SplashLoginSuccess());
     } else {
       emit(const SplashLoginFailure());

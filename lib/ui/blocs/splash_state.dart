@@ -10,11 +10,6 @@ abstract class SplashState extends Equatable {
 
 class SplashInitial extends SplashState {}
 
-class SplashLoading extends SplashState {
-  @override
-  List<Object> get props => [];
-}
-
 class SplashLoginFailure extends SplashState {
   const SplashLoginFailure();
 

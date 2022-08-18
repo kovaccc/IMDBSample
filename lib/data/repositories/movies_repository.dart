@@ -18,6 +18,5 @@ class MoviesRepository implements IMoviesRepository {
     final popularMoviesResponse =
         await _moviesRemoteDataSource.getSimplePopularMovies(page);
     await _moviesLocalDataSource.saveMovies(popularMoviesResponse);
-    await _moviesPagesLocalDataSource.saveMoviePage(popularMoviesResponse);
   }
 }

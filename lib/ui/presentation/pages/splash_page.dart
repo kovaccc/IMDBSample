@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../common/resources/routes.dart';
+import 'package:imdb_sample/common/resources/icons.dart';
+import 'package:imdb_sample/ui/presentation/pages/bottom_navigation/bottom_navigation_page.dart';
+import '../../../common/resources/paddings.dart';
 import '../../blocs/splash_bloc.dart';
+import 'login_page.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  static const String id = "/splash_page";
 
-  static String id = "/splash_page";
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,35 +17,18 @@ class SplashPage extends StatelessWidget {
       listener: (context, state) {
         if (state is SplashLoginSuccess) {
           Navigator.of(context).pushNamedAndRemoveUntil(
-              Routes.bottomNavigationView, (route) => false);
+              BottomNavigationPage.id, (route) => false);
         } else {
           Navigator.of(context)
-              .pushNamedAndRemoveUntil(Routes.intro, (route) => false);
+              .pushNamedAndRemoveUntil(LoginPage.id, (route) => false);
         }
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          top: true,
-          bottom: false,
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                KiKPaddings(context).extraLargeVerticalSizedBox(),
-                Image.asset(
-                  KiKIcons.imgSplashLogo,
-                  width: KiKPaddings(context).screenWidth * 0.3,
-                ),
-                const Spacer(),
-                Image.asset(
-                  KiKIcons.imgSplashContext,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+          body: Image.asset(
+        IMDBIcons.imdbLogo,
+        height: ImdbPaddings(context).screenWidth / 5,
+        width: ImdbPaddings(context).screenWidth / 5,
+      )),
     );
   }
 }

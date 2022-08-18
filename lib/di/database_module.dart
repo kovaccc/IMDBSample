@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 import '../config/constants.dart';
 import '../data/models/persistence/db_genre.dart';
 import '../data/models/persistence/db_movie.dart';
-import '../data/models/persistence/db_popular_movies_page.dart';
 
 @module
 abstract class DatabaseModule {
@@ -22,14 +21,6 @@ abstract class DatabaseModule {
   Future<Box<DBMovie>> get movieBox {
     Hive.registerAdapter(DBMovieAdapter());
     return Hive.openBox<DBMovie>(Constants.boxMovie);
-  }
-
-  @Named(Constants.boxPopularMoviesPage)
-  @preResolve
-  @singleton
-  Future<Box<DBPopularMoviesPage>> get popularMoviesBox {
-    Hive.registerAdapter((DBPopularMoviesPageAdapter()));
-    return Hive.openBox<DBPopularMoviesPage>(Constants.boxPopularMoviesPage);
   }
 
   @Named(Constants.boxAuth)
