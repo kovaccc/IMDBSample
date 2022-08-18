@@ -23,7 +23,7 @@ mixin _$MovieResponse {
   bool get adult =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath =>
+  String? get backdropPath =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'genre_ids')
   List<int> get genreIds => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ mixin _$MovieResponse {
   double get popularity =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'poster_path')
-  String get posterPath =>
+  String? get posterPath =>
       throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'release_date')
   String get releaseDate => throw _privateConstructorUsedError;
@@ -64,14 +64,14 @@ abstract class $MovieResponseCopyWith<$Res> {
       _$MovieResponseCopyWithImpl<$Res>;
   $Res call(
       {bool adult,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
       int id,
       @JsonKey(name: 'original_language') String originalLanguage,
       @JsonKey(name: 'original_title') String originalTitle,
       String overview,
       double popularity,
-      @JsonKey(name: 'poster_path') String posterPath,
+      @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'release_date') String releaseDate,
       String title,
       bool video,
@@ -113,7 +113,7 @@ class _$MovieResponseCopyWithImpl<$Res>
       backdropPath: backdropPath == freezed
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genreIds: genreIds == freezed
           ? _value.genreIds
           : genreIds // ignore: cast_nullable_to_non_nullable
@@ -141,7 +141,7 @@ class _$MovieResponseCopyWithImpl<$Res>
       posterPath: posterPath == freezed
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       releaseDate: releaseDate == freezed
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -175,14 +175,14 @@ abstract class _$$_MovieResponseCopyWith<$Res>
   @override
   $Res call(
       {bool adult,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'genre_ids') List<int> genreIds,
       int id,
       @JsonKey(name: 'original_language') String originalLanguage,
       @JsonKey(name: 'original_title') String originalTitle,
       String overview,
       double popularity,
-      @JsonKey(name: 'poster_path') String posterPath,
+      @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'release_date') String releaseDate,
       String title,
       bool video,
@@ -226,7 +226,7 @@ class __$$_MovieResponseCopyWithImpl<$Res>
       backdropPath: backdropPath == freezed
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genreIds: genreIds == freezed
           ? _value._genreIds
           : genreIds // ignore: cast_nullable_to_non_nullable
@@ -254,7 +254,7 @@ class __$$_MovieResponseCopyWithImpl<$Res>
       posterPath: posterPath == freezed
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       releaseDate: releaseDate == freezed
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -307,7 +307,7 @@ class _$_MovieResponse implements _MovieResponse {
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
 // ignore: invalid_annotation_target
   final List<int> _genreIds;
 // ignore: invalid_annotation_target
@@ -335,7 +335,7 @@ class _$_MovieResponse implements _MovieResponse {
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'poster_path')
-  final String posterPath;
+  final String? posterPath;
 // ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'release_date')
@@ -422,7 +422,7 @@ abstract class _MovieResponse implements MovieResponse {
   factory _MovieResponse(
       {required final bool adult,
       @JsonKey(name: 'backdrop_path')
-          required final String backdropPath,
+          required final String? backdropPath,
       @JsonKey(name: 'genre_ids')
           required final List<int> genreIds,
       required final int id,
@@ -433,7 +433,7 @@ abstract class _MovieResponse implements MovieResponse {
       required final String overview,
       required final double popularity,
       @JsonKey(name: 'poster_path')
-          required final String posterPath,
+          required final String? posterPath,
       @JsonKey(name: 'release_date')
           required final String releaseDate,
       required final String title,
@@ -450,7 +450,7 @@ abstract class _MovieResponse implements MovieResponse {
   bool get adult;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath;
+  String? get backdropPath;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'genre_ids')
   List<int> get genreIds;
@@ -468,7 +468,7 @@ abstract class _MovieResponse implements MovieResponse {
   double get popularity;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'poster_path')
-  String get posterPath;
+  String? get posterPath;
   @override // ignore: invalid_annotation_target
   @JsonKey(name: 'release_date')
   String get releaseDate;

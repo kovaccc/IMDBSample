@@ -5,14 +5,15 @@ import 'package:imdb_sample/common/resources/colors.dart';
 import '../../../common/resources/icons.dart';
 import '../../../common/resources/paddings.dart';
 import '../../../common/resources/text_styles.dart';
+import '../../../data/models/domain/movie.dart';
 import '../../../generated/l10n.dart';
 
 class MovieItem extends StatelessWidget {
-  // final Movie movie;
+  final Movie movie;
 
   const MovieItem({
     Key? key,
-    // required this.movie,
+    required this.movie,
   }) : super(key: key);
 
   @override
@@ -40,9 +41,11 @@ class MovieItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "TITLE",
-                        style: ImdbTextStyles.heading1SfWhiteBold,
+                      Expanded(
+                        child: Text(
+                          movie.title,
+                          style: ImdbTextStyles.heading1SfWhiteBold,
+                        ),
                       ),
                       SvgPicture.asset(
                         IMDBIcons.favouriteFalse,

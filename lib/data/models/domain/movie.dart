@@ -1,11 +1,11 @@
 import 'genre.dart';
 
 class Movie {
-  final String backdropPath;
+  final String? backdropPath;
   final List<Genre> genres;
   final int id;
   final String overview;
-  final String posterPath;
+  final String? posterPath;
   final String title;
   final double voteAverage;
 

@@ -2,8 +2,11 @@ import 'package:imdb_sample/data/local/sources/movies_local_data_source.dart';
 import 'package:imdb_sample/data/remote/sources/movies_remote_data_source.dart';
 import 'package:injectable/injectable.dart';
 
+import '../models/domain/movie.dart';
+
 abstract class IMoviesRepository {
-  Future<void> fetchSimplePopularMoviesPage(int page);
+  Future<List<Movie>> fetchSimplePopularMoviesPage(int page);
+  List<Movie> getPersistPopularMoviesPage(int page);
 }
 
 @Singleton(as: IMoviesRepository)
@@ -14,9 +17,15 @@ class MoviesRepository implements IMoviesRepository {
   MoviesRepository(this._moviesRemoteDataSource, this._moviesLocalDataSource);
 
   @override
-  Future<void> fetchSimplePopularMoviesPage(int page) async {
+  Future<List<Movie>> fetchSimplePopularMoviesPage(int page) async {
     final popularMoviesResponse =
         await _moviesRemoteDataSource.getSimplePopularMovies(page);
     await _moviesLocalDataSource.saveMovies(popularMoviesResponse);
+    return _moviesLocalDataSource.getMoviesForPage(page);
+  }
+
+  @override
+  List<Movie> getPersistPopularMoviesPage(int page) {
+    return _moviesLocalDataSource.getMoviesForPage(page);
   }
 }

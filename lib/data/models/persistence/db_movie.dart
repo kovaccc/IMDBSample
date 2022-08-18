@@ -11,7 +11,7 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
   @HiveField(0)
   bool adult;
   @HiveField(1)
-  String backdropPath;
+  String? backdropPath;
   @HiveField(2)
   HiveList genres;
   @HiveField(3)
@@ -25,7 +25,7 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
   @HiveField(7)
   double popularity;
   @HiveField(8)
-  String posterPath;
+  String? posterPath;
   @HiveField(9)
   String releaseDate;
   @HiveField(10)

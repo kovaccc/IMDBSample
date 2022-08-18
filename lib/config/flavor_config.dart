@@ -13,17 +13,17 @@ abstract class FlavorConfig {
 @Singleton(as: FlavorConfig, env: [Env.stage])
 class StageFlavorConfig implements FlavorConfig {
   @override
-  String getBaseUrl() => 'https://gw01.staging01.kikapp.io/';
+  String getBaseUrl() => 'https://api.themoviedb.org/';
 }
 
 @Singleton(as: FlavorConfig, env: [Env.development])
 class DevFlavorConfig implements FlavorConfig {
   @override
-  String getBaseUrl() => 'https://gw01.staging01.kikapp.io/';
+  String getBaseUrl() => 'https://api.themoviedb.org/';
 }
 
 @Singleton(as: FlavorConfig, env: [Env.production])
 class ProdFlavorConfig implements FlavorConfig {
   @override
-  String getBaseUrl() => 'https://gw01.internal-api.nld.kikapp.io/';
+  String getBaseUrl() => 'https://api.themoviedb.org/';
 }

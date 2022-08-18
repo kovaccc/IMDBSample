@@ -18,14 +18,18 @@ class Routes {
       return BlocProvider<SplashBloc>(
           create: (context) => SplashBloc(
                 authRepository: getIt<IAuthRepository>() as AuthRepository,
-                genresRepository: getIt<IGenresRepository>() as GenresRepository,
+                genresRepository:
+                    getIt<IGenresRepository>() as GenresRepository,
               )..add(const SplashLoginChecking()),
           child: const SplashPage());
     },
     LoginPage.id: (BuildContext context) {
       return BlocProvider<LoginBloc>(
-          create: (context) =>
-              LoginBloc(authRepository: getIt<IAuthRepository>() as AuthRepository),
+          create: (context) => LoginBloc(
+                authRepository: getIt<IAuthRepository>() as AuthRepository,
+                genresRepository:
+                    getIt<IGenresRepository>() as GenresRepository,
+              ),
           child: LoginPage());
     },
     BottomNavigationPage.id: (BuildContext context) {

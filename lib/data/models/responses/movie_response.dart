@@ -10,7 +10,7 @@ class MovieResponse with _$MovieResponse {
   factory MovieResponse({
     required bool adult,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'backdrop_path') required String backdropPath,
+    @JsonKey(name: 'backdrop_path') required String? backdropPath,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'genre_ids') required List<int> genreIds,
     required int id,
@@ -21,7 +21,7 @@ class MovieResponse with _$MovieResponse {
     required String overview,
     required double popularity,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'poster_path') required String posterPath,
+    @JsonKey(name: 'poster_path') required String? posterPath,
     // ignore: invalid_annotation_target
     @JsonKey(name: 'release_date') required String releaseDate,
     required String title,
