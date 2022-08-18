@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:imdb_sample/common/resources/text_styles.dart';
-
+import 'package:imdb_sample/ui/presentation/pages/bottom_navigation/popular_movies_page.dart';
 import '../../../../common/resources/icons.dart';
-import '../../../../common/resources/paddings.dart';
 import '../../../../generated/l10n.dart';
 
 class BottomNavigationPage extends StatefulWidget {
@@ -19,23 +18,23 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-          child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SvgPicture.asset(
-                IMDBIcons.imdbLogo,
+              Text(
+                S.of(context).logout,
+                style: ImdbTextStyles.heading1SfWhiteBold,
               ),
-              Text(S.of(context).logout,
-                  style: ImdbTextStyles.heading1SfWhiteBold),
             ],
-          )
-        ],
-      )),
-    );
+          ),
+          leading: SvgPicture.asset(IMDBIcons.imdbLogo),
+          leadingWidth: 100,
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+        ),
+        resizeToAvoidBottomInset: false,
+        body: PopularMoviesPage());
     // return Scaffold(
     //   body: Center(
     //     child: _widgetOptions.elementAt(_selectedIndex),

@@ -8,5 +8,11 @@
   "popular": "Popular",
   "ok": "OK",
   "login": "login",
-  "logout": "logout"
+  "logout": "logout",
+  "evaluation": "{voteAverage}/10 IMDb",
+  "@evaluation": {
+    "placeholders": {
+      "voteAverage": {}
+    }
+  }
 }

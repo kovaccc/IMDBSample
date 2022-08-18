@@ -20,8 +20,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(voteAverage) => "${voteAverage}/10 IMDb";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "evaluation": m0,
         "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
         "invalid_api_key_error": MessageLookupByLibrary.simpleMessage(
             "Invalid API key: You must be granted a valid key."),

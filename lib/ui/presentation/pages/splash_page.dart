@@ -25,10 +25,12 @@ class SplashPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        body: SvgPicture.asset(
-          IMDBIcons.imdbLogo,
-          height: ImdbPaddings(context).screenWidth / 5,
-          width: ImdbPaddings(context).screenWidth / 5,
+        body: Center(
+          child: SvgPicture.asset(
+            IMDBIcons.imdbLogo,
+            height: ImdbPaddings(context).screenWidth / 5,
+            width: ImdbPaddings(context).screenWidth / 5,
+          ),
         ),
       ),
     );

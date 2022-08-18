@@ -139,6 +139,16 @@ class S {
       args: [],
     );
   }
+
+  /// `{voteAverage}/10 IMDb`
+  String evaluation(Object voteAverage) {
+    return Intl.message(
+      '$voteAverage/10 IMDb',
+      name: 'evaluation',
+      desc: '',
+      args: [voteAverage],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

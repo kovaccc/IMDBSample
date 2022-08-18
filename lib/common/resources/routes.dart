@@ -17,15 +17,15 @@ class Routes {
     SplashPage.id: (BuildContext context) {
       return BlocProvider<SplashBloc>(
           create: (context) => SplashBloc(
-                authRepository: getIt<AuthRepository>(),
-                genresRepository: getIt<GenresRepository>(),
+                authRepository: getIt<IAuthRepository>() as AuthRepository,
+                genresRepository: getIt<IGenresRepository>() as GenresRepository,
               )..add(const SplashLoginChecking()),
           child: const SplashPage());
     },
     LoginPage.id: (BuildContext context) {
       return BlocProvider<LoginBloc>(
           create: (context) =>
-              LoginBloc(authRepository: getIt<AuthRepository>()),
+              LoginBloc(authRepository: getIt<IAuthRepository>() as AuthRepository),
           child: LoginPage());
     },
     BottomNavigationPage.id: (BuildContext context) {

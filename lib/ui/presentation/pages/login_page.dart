@@ -36,26 +36,29 @@ class LoginPage extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-          child: SizedBox(
-            height: ImdbPaddings(context).screenHeight * 0.07,
-            child: TextButton(
-              onPressed: () {
-                loginBloc.add(const LoginStarted());
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.transparent),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    side: const BorderSide(
-                        color: ImdbColors.primaryOrange, width: 2),
-                    borderRadius: BorderRadius.circular(20),
+          child: Center(
+            child: SizedBox(
+              height: ImdbPaddings(context).screenHeight * 0.1,
+              width: ImdbPaddings(context).screenHeight * 0.2,
+              child: TextButton(
+                onPressed: () {
+                  loginBloc.add(const LoginStarted());
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      side: const BorderSide(
+                          color: ImdbColors.primaryOrange, width: 2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
-              ),
-              child: Text(
-                S.of(context).login,
-                style: ImdbTextStyles.heading1SfWhiteBold,
-                textAlign: TextAlign.center,
+                child: Text(
+                  S.of(context).login,
+                  style: ImdbTextStyles.heading1SfWhiteBold,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
           ),
