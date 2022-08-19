@@ -19,7 +19,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginBloc = BlocProvider.of<LoginBloc>(context);
-
     return BlocListener<LoginBloc, LoginState>(
       listenWhen: (previous, current) {
         return previous is LoginLoading || current is LoginLoading;
@@ -34,7 +33,6 @@ class LoginPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Center(
             child: SizedBox(
@@ -45,7 +43,8 @@ class LoginPage extends StatelessWidget {
                   loginBloc.add(const LoginStarted());
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.transparent),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       side: const BorderSide(

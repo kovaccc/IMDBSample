@@ -33,7 +33,7 @@ class ImdbTextStyles {
     color: ImdbColors.primaryWhite,
   );
 
-  static TextStyle paragraph2SfWhite = const TextStyle(
+  static const TextStyle paragraph2SfWhite = TextStyle(
     fontFamily: ImdbFonts.sfProDisplay,
     fontSize: 12,
     fontWeight: FontWeight.w400,

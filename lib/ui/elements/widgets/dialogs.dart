@@ -16,7 +16,8 @@ class ErrorMessageDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: ImdbColors.primaryBlack,
-      title: Text(title, style: ImdbTextStyles.heading1SfWhiteBold),
+      elevation: 5,
+      title: Text(title, style: ImdbTextStyles.heading2SfWhiteBold),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[

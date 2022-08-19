@@ -30,19 +30,19 @@ class ImdbPaddings {
 
   SizedBox smallVerticalSizedBox() => SizedBox(height: screenHeight * 0.02);
 
-  SizedBox mediumVerticalSizedBox() => SizedBox(height: screenHeight * 0.07);
+  SizedBox mediumVerticalSizedBox() => SizedBox(height: screenHeight * 0.05);
 
-  SizedBox largeVerticalSizedBox() => SizedBox(height: screenHeight * 0.12);
+  SizedBox largeVerticalSizedBox() => SizedBox(height: screenHeight * 0.07);
 
   SizedBox extraLargeVerticalSizedBox() =>
-      SizedBox(height: screenHeight * 0.25);
+      SizedBox(height: screenHeight * 0.1);
 
   SizedBox extraSmallHorizontalSizedBox() =>
-      SizedBox(width: screenHeight * 0.03);
+      SizedBox(width: screenHeight * 0.01);
 
-  SizedBox smallHorizontalSizedBox() => SizedBox(width: screenHeight * 0.04);
+  SizedBox smallHorizontalSizedBox() => SizedBox(width: screenHeight * 0.02);
 
-  SizedBox mediumHorizontalSizedBox() => SizedBox(width: screenHeight * 0.09);
+  SizedBox mediumHorizontalSizedBox() => SizedBox(width: screenHeight * 0.05);
 
-  SizedBox largeHorizontalSizedBox() => SizedBox(width: screenHeight * 0.3);
+  SizedBox largeHorizontalSizedBox() => SizedBox(width: screenHeight * 0.07);
 }
