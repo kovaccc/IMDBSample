@@ -6,7 +6,8 @@ import '../models/domain/movie.dart';
 
 abstract class IMoviesRepository {
   Future<List<Movie>> fetchSimplePopularMoviesPage(int page);
-  List<Movie> getPersistPopularMoviesPage(int page);
+
+  List<Movie> getPersistPopularMoviesByPage(int page);
 }
 
 @Singleton(as: IMoviesRepository)
@@ -25,7 +26,7 @@ class MoviesRepository implements IMoviesRepository {
   }
 
   @override
-  List<Movie> getPersistPopularMoviesPage(int page) {
+  List<Movie> getPersistPopularMoviesByPage(int page) {
     return _moviesLocalDataSource.getMoviesForPage(page);
   }
 }

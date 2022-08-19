@@ -46,7 +46,8 @@ class MyApp extends StatelessWidget {
       home: BlocProvider<SplashBloc>(
           create: (context) => SplashBloc(
                 authRepository: getIt<IAuthRepository>() as AuthRepository,
-                genresRepository: getIt<IGenresRepository>() as GenresRepository,
+                genresRepository:
+                    getIt<IGenresRepository>() as GenresRepository,
               )..add(const SplashLoginChecking()),
           child: const SplashPage()),
     );

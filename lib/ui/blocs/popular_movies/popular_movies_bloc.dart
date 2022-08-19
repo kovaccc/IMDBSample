@@ -31,7 +31,7 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
           isLastPage = true;
         }
       }
-      final persistMovies = moviesRepository.getPersistPopularMoviesPage(state.currentPage + 1);
+      final persistMovies = moviesRepository.getPersistPopularMoviesByPage(state.currentPage + 1);
       emit(PopularMoviesLoaded(persistMovies, state.currentPage + 1, false, event.currentPageKey + persistMovies.length));
     }
   }
