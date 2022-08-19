@@ -149,6 +149,16 @@ class S {
       args: [voteAverage],
     );
   }
+
+  /// `page must be less than or equal to 500`
+  String get page_must_be_less_than {
+    return Intl.message(
+      'page must be less than or equal to 500',
+      name: 'page_must_be_less_than',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

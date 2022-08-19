@@ -14,5 +14,6 @@
     "placeholders": {
       "voteAverage": {}
     }
-  }
+  },
+  "page_must_be_less_than": "page must be less than or equal to 500"
 }

@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("logout"),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
+        "page_must_be_less_than": MessageLookupByLibrary.simpleMessage(
+            "page must be less than or equal to 500"),
         "popular": MessageLookupByLibrary.simpleMessage("Popular"),
         "server_error": MessageLookupByLibrary.simpleMessage(
             "Something is wrong with the server, please contact system administrator!"),

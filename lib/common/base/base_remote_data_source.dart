@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:imdb_sample/ui/presentation/pages/login_page.dart';
 import '../../data/local/dao/auth_dao.dart';
 import '../../main.dart';
-import '../../ui/presentation/pages/splash_page.dart';
 import '../../util/error_handler.dart';
 
 class BaseRemoteDataSource {
@@ -18,11 +18,11 @@ class BaseRemoteDataSource {
       try {
         if (error is DioError) {
           if (error.response?.statusCode != null &&
-              error.response?.statusCode == 7) {
-            await _authDao.insertJwtToken("");
+              error.response?.statusCode == 401) {
+            await _authDao.deleteJwtToken();
             WidgetsBinding.instance.addPostFrameCallback((_) {
               navigator.currentState?.pushNamedAndRemoveUntil(
-                  SplashPage.id, (Route<dynamic> route) => false);
+                  LoginPage.id, (Route<dynamic> route) => false);
             });
           } else {
             switch (error.type) {

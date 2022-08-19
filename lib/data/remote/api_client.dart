@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:dio_logging_interceptor/dio_logging_interceptor.dart';
 import 'package:imdb_sample/config/constants.dart';
+import 'package:imdb_sample/data/local/dao/auth_dao.dart';
 import 'package:imdb_sample/data/models/responses/genres_response.dart';
 import 'package:imdb_sample/data/models/responses/popular_movies_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../config/flavor_config.dart';
+import '../../di/injection.dart';
 
 part 'api_client.g.dart';
 
@@ -23,20 +25,31 @@ abstract class ApiClient {
         receiveTimeout: 30000,
         sendTimeout: 30000));
 
-    // TODO find better way for flavours and test this
     if (flavorConfig is! ProdFlavorConfig) {
       dio.interceptors
           .add(DioLoggingInterceptor(level: Level.body, compact: false));
     }
 
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (requestBuilder, handler) {
+          final authDao = getIt<AuthDao>();
+          final token = authDao.getJwtToken();
+          if (token != null && token != "") {
+            requestBuilder.headers["Authorization"] = "Bearer $token";
+          }
+          return handler.next(requestBuilder);
+        },
+      ),
+    );
+
     return ApiClient(dio);
   }
 
   @GET("/3/movie/popular")
-  Future<PopularMoviesResponse> getSimplePopularMovies(
-      {@Query("api_key") String apiKey = Constants.apiKey,
-      @Query("language") String language = Constants.languageUS,
-      @Query("page") required int page});
+  Future<PopularMoviesResponse> getSimplePopularMovies(@Query("page") int page,
+      [@Query("api_key") String apiKey = Constants.apiKey,
+      @Query("language") String language = Constants.languageUS]);
 
   @GET("/3/genre/movie/list")
   Future<GenresResponse> getGenres([

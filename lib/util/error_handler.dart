@@ -16,6 +16,8 @@ class ErrorHandler {
       return S.current.server_error;
     } else if (error is InvalidApiKeyError) {
       return S.current.invalid_api_key_error;
+    } else if (error is PageNumberError) {
+      return S.current.page_must_be_less_than;
     } else {
       return S.current.unknown_error;
     }
@@ -35,7 +37,7 @@ class DefaultErrorResolver implements ErrorResolver {
     if (statusCode != null) {
       if (statusCode >= 500 && statusCode <= 599) {
         return ServerError(statusMessage);
-      } else if (statusCode == 7) {
+      } else if (statusCode == 401) {
         return const InvalidApiKeyError();
       }
     }

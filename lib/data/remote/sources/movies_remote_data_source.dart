@@ -15,7 +15,7 @@ class MoviesRemoteDataSource extends BaseRemoteDataSource {
 
   Future<PopularMoviesResponse> getSimplePopularMovies(int page) async {
     return await apiRequest(
-        apiCall: _apiClient.getSimplePopularMovies(page: page),
+        apiCall: _apiClient.getSimplePopularMovies(page),
         errorResolver: PopularMoviesErrorResolver());
   }
 }

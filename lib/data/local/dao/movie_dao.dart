@@ -1,7 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/data/models/persistence/db_movie.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../config/constants.dart';
 
 @singleton
