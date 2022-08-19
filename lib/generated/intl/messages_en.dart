@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "evaluation": m0,
         "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
         "invalid_api_key_error": MessageLookupByLibrary.simpleMessage(
@@ -31,12 +32,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("login"),
         "logout": MessageLookupByLibrary.simpleMessage("logout"),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
+        "network_connection_not_available":
+            MessageLookupByLibrary.simpleMessage(
+                "Network connection not available"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "page_must_be_less_than": MessageLookupByLibrary.simpleMessage(
             "page must be less than or equal to 500"),
         "popular": MessageLookupByLibrary.simpleMessage("Popular"),
         "server_error": MessageLookupByLibrary.simpleMessage(
             "Something is wrong with the server, please contact system administrator!"),
-        "unknown_error": MessageLookupByLibrary.simpleMessage("Unknown error")
+        "unknown_error": MessageLookupByLibrary.simpleMessage("Unknown error"),
+        "update_favourite_failure":
+            MessageLookupByLibrary.simpleMessage("Update favourite failure")
       };
 }

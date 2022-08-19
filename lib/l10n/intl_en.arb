@@ -15,5 +15,8 @@
       "voteAverage": {}
     }
   },
-  "page_must_be_less_than": "page must be less than or equal to 500"
+  "page_must_be_less_than": "page must be less than or equal to 500",
+  "error": "Error",
+  "network_connection_not_available": "Network connection not available",
+  "update_favourite_failure": "Update favourite failure"
 }

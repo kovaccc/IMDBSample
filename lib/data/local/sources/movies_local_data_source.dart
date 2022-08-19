@@ -6,6 +6,7 @@ import 'package:imdb_sample/data/models/domain/movie.dart';
 import 'package:imdb_sample/data/models/persistence/db_movie.dart';
 import 'package:imdb_sample/data/models/responses/popular_movies_response.dart';
 import 'package:injectable/injectable.dart';
+import 'package:collection/collection.dart';
 
 @singleton
 class MoviesLocalDataSource {
@@ -16,8 +17,11 @@ class MoviesLocalDataSource {
 
   Future<void> saveMovies(PopularMoviesResponse popularMoviesResponse) async {
     final page = popularMoviesResponse.page;
+    final dbMovies = getMoviesForPage(page ?? 0);
     await _movieDao.deleteMoviesByPage(page ?? 0);
     for (var movie in popularMoviesResponse.results) {
+      final existingMovie =
+          dbMovies.firstWhereOrNull((element) => element.id == movie.id);
       final dbMovie = DBMovie(
           adult: movie.adult ?? false,
           backdropPath: movie.backdropPath,
@@ -33,7 +37,7 @@ class MoviesLocalDataSource {
           video: movie.video,
           voteAverage: movie.voteAverage,
           voteCount: movie.voteCount,
-          isFavourite: false,
+          isFavourite: existingMovie?.isFavourite ?? false,
           page: page);
       _addMovieGenres(dbMovie, movie.genreIds);
       await _movieDao.insertMovie(dbMovie);
@@ -46,12 +50,13 @@ class MoviesLocalDataSource {
         .where((element) => genreIds.contains(element.id)));
   }
 
-  Future<void> toggleFavourite(Movie movie) async {
+  Future<Movie?> toggleFavourite(Movie movie) async {
     final dbMovie = _movieDao.getMovie(movie.id);
     if (dbMovie != null) {
       dbMovie.isFavourite = !dbMovie.isFavourite;
       await _movieDao.updateMovie(dbMovie);
     }
+    return dbMovie?.asDomain();
   }
 
   List<Movie> getMoviesForPage(int page) {

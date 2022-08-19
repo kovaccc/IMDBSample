@@ -9,10 +9,10 @@ abstract class PopularMoviesEvent extends Equatable {
 }
 
 class PopularMoviesFetchStarted extends PopularMoviesEvent {
-  final int currentPageKey;
+  final int pageKey;
 
-  const PopularMoviesFetchStarted(this.currentPageKey);
+  const PopularMoviesFetchStarted(this.pageKey);
 
   @override
-  List<Object> get props => [currentPageKey];
+  List<Object> get props => [pageKey];
 }

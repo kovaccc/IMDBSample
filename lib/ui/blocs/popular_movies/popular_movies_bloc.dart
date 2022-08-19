@@ -13,26 +13,30 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
   final MoviesRepository moviesRepository;
 
   PopularMoviesBloc({required this.moviesRepository})
-      : super(const PopularMoviesInitial(0)) {
+      : super(const PopularMoviesInitial(<Movie>[], 0, false)) {
     on<PopularMoviesFetchStarted>(_onPopularMoviesFetchStarted);
   }
 
   void _onPopularMoviesFetchStarted(
       PopularMoviesFetchStarted event, Emitter<PopularMoviesState> emit) async {
+    final nextPageKey = event.pageKey + 1;
     try {
       final popularMovies =
-          await moviesRepository.fetchSimplePopularMoviesPage(state.currentPage + 1);
-      emit(PopularMoviesLoaded(popularMovies, state.currentPage + 1, false, event.currentPageKey + popularMovies.length));
-    } catch (error, stacktrace) {
+          await moviesRepository.fetchSimplePopularMoviesPage(nextPageKey);
+      // try to get PageNumberError to know if above is last page since
+      // total_pages and total_results from fetched data is not correct
+      await moviesRepository.getRemoteMoviesByPage(nextPageKey + 1);
+      emit(PopularMoviesLoaded(popularMovies, nextPageKey, false));
+    } catch (error) {
+      bool isLastPage = false;
       if (error is Exception) {
-        print(stacktrace.toString());
-        bool isLastPage = false;
         if (error is PageNumberError) {
           isLastPage = true;
         }
+        final persistMovies =
+            moviesRepository.getPersistPopularMoviesByPage(nextPageKey);
+        emit(PopularMoviesError(persistMovies, nextPageKey, isLastPage, error));
       }
-      final persistMovies = moviesRepository.getPersistPopularMoviesByPage(state.currentPage + 1);
-      emit(PopularMoviesLoaded(persistMovies, state.currentPage + 1, false, event.currentPageKey + persistMovies.length));
     }
   }
 }

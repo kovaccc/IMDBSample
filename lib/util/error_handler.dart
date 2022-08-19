@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 import '../generated/l10n.dart';
@@ -18,6 +20,8 @@ class ErrorHandler {
       return S.current.invalid_api_key_error;
     } else if (error is PageNumberError) {
       return S.current.page_must_be_less_than;
+    } else if (error is SocketException) {
+      return S.current.network_connection_not_available;
     } else {
       return S.current.unknown_error;
     }

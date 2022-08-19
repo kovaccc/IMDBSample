@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:imdb_sample/ui/elements/pages/login_page.dart';
@@ -35,7 +37,13 @@ class BaseRemoteDataSource {
               case DioErrorType.receiveTimeout:
                 throw ReceiveTimeoutError(error.message);
               case DioErrorType.other:
-                throw Exception(error.message);
+                {
+                  if (error.error is SocketException) {
+                    throw SocketException(error.message);
+                  } else {
+                    throw Exception(error.message);
+                  }
+                }
               case DioErrorType.response:
                 throw ErrorHandler.resolveNetworkError(
                     response: error.response!,

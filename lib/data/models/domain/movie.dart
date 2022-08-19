@@ -8,6 +8,7 @@ class Movie {
   final String? posterPath;
   final String title;
   final double? voteAverage;
+  final bool isFavourite;
 
   Movie({
     required this.backdropPath,
@@ -17,5 +18,6 @@ class Movie {
     required this.posterPath,
     required this.title,
     required this.voteAverage,
+    required this.isFavourite,
   });
 }

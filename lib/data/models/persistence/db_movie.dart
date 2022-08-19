@@ -69,6 +69,7 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
         overview: overview,
         posterPath: posterPath,
         title: title,
-        voteAverage: voteAverage);
+        voteAverage: voteAverage,
+        isFavourite: isFavourite);
   }
 }

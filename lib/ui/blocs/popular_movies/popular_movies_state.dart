@@ -2,35 +2,41 @@ part of 'popular_movies_bloc.dart';
 
 @immutable
 abstract class PopularMoviesState extends Equatable {
+  final List<Movie> movies;
   final int currentPage;
+  final bool isLastPage;
 
-  const PopularMoviesState(this.currentPage);
+  const PopularMoviesState(this.movies, this.currentPage, this.isLastPage);
+
+  @override
+  List<Object> get props => [movies, currentPage, isLastPage];
 }
 
 class PopularMoviesInitial extends PopularMoviesState {
-
-  const PopularMoviesInitial(int currentPage) : super(currentPage);
+  const PopularMoviesInitial(
+      List<Movie> movies, int currentPage, bool isLastPage)
+      : super(movies, currentPage, isLastPage);
 
   @override
-  List<Object> get props => [currentPage];
+  List<Object> get props => [movies, currentPage, isLastPage];
 }
 
 class PopularMoviesLoaded extends PopularMoviesState {
-  final List<Movie> movies;
-  final bool isLastPage;
-  final int pageKey;
-
-  const PopularMoviesLoaded(this.movies, int currentPage, this.isLastPage, this.pageKey): super(currentPage);
+  const PopularMoviesLoaded(
+      List<Movie> movies, int currentPage, bool isLastPage)
+      : super(movies, currentPage, isLastPage);
 
   @override
-  List<Object> get props => [movies, currentPage, isLastPage, pageKey];
+  List<Object> get props => [movies, currentPage, isLastPage];
 }
 
 class PopularMoviesError extends PopularMoviesState {
   final Exception error;
 
-  const PopularMoviesError(int currentPage, this.error): super(currentPage);
+  const PopularMoviesError(
+      List<Movie> movies, int currentPage, bool isLastPage, this.error)
+      : super(movies, currentPage, isLastPage);
 
   @override
-  List<Object> get props => [error];
+  List<Object> get props => [movies, currentPage, isLastPage, error];
 }

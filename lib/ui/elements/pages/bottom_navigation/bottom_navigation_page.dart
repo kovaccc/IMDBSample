@@ -32,8 +32,10 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             ),
           ],
         ),
-        leading: SvgPicture.asset(IMDBIcons.imdbLogo),
-        leadingWidth: 100,
+        leading: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SvgPicture.asset(IMDBIcons.imdbLogo),
+        ),
         elevation: 0.0,
         backgroundColor: Colors.transparent,
       ),

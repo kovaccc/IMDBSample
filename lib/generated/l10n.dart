@@ -159,6 +159,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Network connection not available`
+  String get network_connection_not_available {
+    return Intl.message(
+      'Network connection not available',
+      name: 'network_connection_not_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update favourite failure`
+  String get update_favourite_failure {
+    return Intl.message(
+      'Update favourite failure',
+      name: 'update_favourite_failure',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
