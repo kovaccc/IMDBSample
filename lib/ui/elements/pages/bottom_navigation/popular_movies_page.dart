@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_sample/data/models/domain/movie.dart';
 import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
-import 'package:imdb_sample/ui/presentation/widgets/movie_item.dart';
+import 'package:imdb_sample/ui/elements/widgets/movie_item.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../widgets/loading_overlay.dart';
 
 class PopularMoviesPage extends StatefulWidget {
   static const String id = "/popular_movies_page";

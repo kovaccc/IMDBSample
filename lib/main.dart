@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/ui/blocs/splash/splash_bloc.dart';
-import 'package:imdb_sample/ui/presentation/pages/splash_page.dart';
+import 'package:imdb_sample/ui/elements/pages/splash_page.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/routes.dart';
 import 'config/flavor_config.dart';

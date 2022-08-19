@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
-import 'package:imdb_sample/ui/presentation/pages/bottom_navigation/popular_movies_page.dart';
+import 'package:imdb_sample/ui/elements/pages/bottom_navigation/popular_movies_page.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import '../../../../data/repositories/movies_repository.dart';

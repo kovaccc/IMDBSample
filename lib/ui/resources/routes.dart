@@ -4,11 +4,11 @@ import 'package:imdb_sample/data/repositories/auth_repository.dart';
 import 'package:imdb_sample/data/repositories/genres_repository.dart';
 import 'package:imdb_sample/ui/blocs/login/login_bloc.dart';
 import 'package:imdb_sample/ui/blocs/splash/splash_bloc.dart';
-import 'package:imdb_sample/ui/presentation/pages/bottom_navigation/bottom_navigation_page.dart';
-import 'package:imdb_sample/ui/presentation/pages/login_page.dart';
+import 'package:imdb_sample/ui/elements/pages/bottom_navigation/bottom_navigation_page.dart';
+import 'package:imdb_sample/ui/elements/pages/login_page.dart';
 
 import '../../di/injection.dart';
-import '../../ui/presentation/pages/splash_page.dart';
+import '../../ui/elements/pages/splash_page.dart';
 
 class Routes {
   Routes._();
