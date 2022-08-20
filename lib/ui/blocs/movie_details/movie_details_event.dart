@@ -16,10 +16,3 @@ class MovieDetailsFavouriteUpdated extends MovieDetailsEvent {
   @override
   List<Object?> get props => [movie];
 }
-
-class MovieDetailsShowingStarted extends MovieDetailsEvent {
-  const MovieDetailsShowingStarted(Movie movie) : super(movie);
-
-  @override
-  List<Object?> get props => [movie];
-}

@@ -86,14 +86,12 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
         ),
         BlocListener<MovieDetailsBloc, MovieDetailsState>(
           listener: (context, state) {
-            if (state is MovieDetailsLoaded) {
-              if (state.updateError) {
-                showErrorDialog(
-                  context,
-                  S.of(context).error,
-                  S.of(context).update_favourite_failure,
-                );
-              }
+            if (state is MovieDetailsUpdateError) {
+              showErrorDialog(
+                context,
+                S.of(context).error,
+                S.of(context).update_favourite_failure,
+              );
             }
           },
         ),

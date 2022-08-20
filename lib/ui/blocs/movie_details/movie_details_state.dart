@@ -15,11 +15,19 @@ class MovieDetailsInitial extends MovieDetailsState {
   List<Object> get props => [];
 }
 
-class MovieDetailsLoaded extends MovieDetailsState {
+class MovieDetailsUpdateSuccess extends MovieDetailsState {
   final Movie movie;
-  final bool updateError;
 
-  const MovieDetailsLoaded(this.movie, this.updateError);
+  const MovieDetailsUpdateSuccess(this.movie);
+
+  @override
+  List<Object> get props => [movie];
+}
+
+class MovieDetailsUpdateError extends MovieDetailsState {
+  final Movie movie;
+
+  const MovieDetailsUpdateError(this.movie);
 
   @override
   List<Object> get props => [movie];

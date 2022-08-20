@@ -17,7 +17,6 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   MovieDetailsBloc({required this.moviesRepository})
       : super(const MovieDetailsInitial()) {
     on<MovieDetailsFavouriteUpdated>(_onMovieDetailsFavouriteUpdated);
-    on<MovieDetailsShowingStarted>(_onMovieDetailsShowingStarted);
   }
 
   ValueListenable<Box<DBMovie>> getMovieListenable(int id) {
@@ -28,14 +27,9 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
       Emitter<MovieDetailsState> emit) async {
     final updatedMovie = await moviesRepository.toggleFavourite(event.movie);
     if (updatedMovie != null) {
-      emit(MovieDetailsLoaded(updatedMovie, false));
+      emit(MovieDetailsUpdateSuccess(updatedMovie));
     } else {
-      emit(MovieDetailsLoaded(event.movie, true));
+      emit(MovieDetailsUpdateError(event.movie));
     }
-  }
-
-  void _onMovieDetailsShowingStarted(
-      MovieDetailsShowingStarted event, Emitter<MovieDetailsState> emit) {
-    emit(MovieDetailsLoaded(event.movie, false));
   }
 }
