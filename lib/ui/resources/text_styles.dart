@@ -40,6 +40,20 @@ class ImdbTextStyles {
     color: ImdbColors.primaryWhite,
   );
 
+  static const TextStyle paragraph2SfWhiteBold = TextStyle(
+    fontFamily: ImdbFonts.sfProDisplay,
+    fontSize: 10,
+    fontWeight: FontWeight.w600,
+    color: ImdbColors.primaryWhite,
+  );
+
+  static const TextStyle paragraph2SfOrangeBold = TextStyle(
+    fontFamily: ImdbFonts.sfProDisplay,
+    fontSize: 10,
+    fontWeight: FontWeight.w600,
+    color: ImdbColors.primaryWhite,
+  );
+
   static const TextStyle paragraph3SfWhite = TextStyle(
     fontFamily: ImdbFonts.sfProDisplay,
     fontSize: 9,

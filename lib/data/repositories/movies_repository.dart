@@ -18,6 +18,8 @@ abstract class IMoviesRepository {
   Future<Movie?> toggleFavourite(Movie movie);
 
   ValueListenable<Box<DBMovie>> getMovieListenable(int id);
+
+  ValueListenable<Box<DBMovie>> getPopularMoviesListenable();
 }
 
 @Singleton(as: IMoviesRepository)
@@ -53,5 +55,10 @@ class MoviesRepository implements IMoviesRepository {
   @override
   ValueListenable<Box<DBMovie>> getMovieListenable(int id) {
     return _moviesLocalDataSource.getMovieListenable(id);
+  }
+
+  @override
+  ValueListenable<Box<DBMovie>> getPopularMoviesListenable() {
+    return _moviesLocalDataSource.getPopularMoviesListenable();
   }
 }

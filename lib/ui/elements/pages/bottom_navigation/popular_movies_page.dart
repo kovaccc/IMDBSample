@@ -126,7 +126,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
                             onTap: () {
                               Navigator.of(context).pushNamed(
                                   MovieDetailsPage.id,
-                                  arguments: movie);
+                                  arguments: movie.id);
                             },
                             child: MovieItem(
                               movie: movie,

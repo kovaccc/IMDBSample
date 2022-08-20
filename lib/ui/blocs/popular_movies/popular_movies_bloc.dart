@@ -1,9 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/data/models/domain/movie.dart';
 import 'package:imdb_sample/data/repositories/movies_repository.dart';
 import 'package:imdb_sample/util/error_handler.dart';
+
+import '../../../data/models/persistence/db_movie.dart';
 
 part 'popular_movies_event.dart';
 
@@ -15,6 +19,10 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
   PopularMoviesBloc({required this.moviesRepository})
       : super(const PopularMoviesInitial(<Movie>[], 0, false)) {
     on<PopularMoviesFetchStarted>(_onPopularMoviesFetchStarted);
+  }
+
+  ValueListenable<Box<DBMovie>> getPopularMoviesListenable() {
+    return moviesRepository.getPopularMoviesListenable();
   }
 
   void _onPopularMoviesFetchStarted(

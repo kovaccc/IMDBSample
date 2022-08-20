@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:imdb_sample/ui/blocs/movie_details/movie_details_bloc.dart';
-import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
+import 'package:imdb_sample/ui/elements/pages/bottom_navigation/favourite_movies_page.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/popular_movies_page.dart';
+import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
-import '../../../../data/repositories/movies_repository.dart';
-import '../../../../di/injection.dart';
 import '../../../../generated/l10n.dart';
 
 class BottomNavigationPage extends StatefulWidget {
@@ -20,6 +17,13 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _pages = <Widget>[
+    PopularMoviesPage(),
+    FavouriteMoviesPage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,20 +45,37 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         backgroundColor: Colors.transparent,
       ),
       resizeToAvoidBottomInset: false,
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => PopularMoviesBloc(
-                moviesRepository:
-                    getIt<IMoviesRepository>() as MoviesRepository),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _pages,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(IMDBIcons.bottomNavMovies),
+            label: S.of(context).movies,
+            backgroundColor: ImdbColors.primaryBlack,
           ),
-          BlocProvider(
-            create: (context) => MovieDetailsBloc(
-                moviesRepository:
-                    getIt<IMoviesRepository>() as MoviesRepository),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(IMDBIcons.bottomNavFavourites),
+            activeIcon: ,
+            label: S.of(context).favourites,
+            backgroundColor: ImdbColors.primaryBlack,
           ),
         ],
-        child: const PopularMoviesPage(),
+        backgroundColor: ImdbColors.primaryBlack,
+        currentIndex: _selectedIndex,
+        selectedItemColor: ImdbColors.primaryOrange,
+
+        selectedIconTheme: const IconThemeData(color: ImdbColors.primaryOrange),
+        unselectedItemColor: Colors.white,
+        unselectedLabelStyle: ImdbTextStyles.paragraph2SfWhiteBold,
+        selectedLabelStyle: ImdbTextStyles.paragraph2SfOrangeBold,
+        onTap: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
     );
     // return Scaffold(

@@ -38,4 +38,8 @@ class MovieDao {
   ValueListenable<Box<DBMovie>> getMovieListenable(int id) {
     return movieBox.listenable(keys: [id]);
   }
+
+  ValueListenable<Box<DBMovie>> getPopularMoviesListenable() {
+    return movieBox.listenable();
+  }
 }
