@@ -42,7 +42,10 @@ class MyApp extends StatelessWidget {
       title: 'IMDBSample',
       debugShowCheckedModeBanner: false,
       locale: const Locale("en"),
-      routes: Routes.routes,
+      // routes: Routes.routes,
+      onGenerateRoute: (settings) {
+        return Routes.onGenerateRoute(settings);
+      },
       home: BlocProvider<SplashBloc>(
           create: (context) => SplashBloc(
                 authRepository: getIt<IAuthRepository>() as AuthRepository,

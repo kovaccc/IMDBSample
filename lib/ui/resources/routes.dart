@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_sample/data/repositories/auth_repository.dart';
 import 'package:imdb_sample/data/repositories/genres_repository.dart';
@@ -57,4 +58,30 @@ class Routes {
           child: const MovieDetailsPage());
     },
   };
+
+  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+    if (settings.name == MovieDetailsPage.id) {
+      return PageRouteBuilder(
+        settings: settings,
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            BlocProvider<MovieDetailsBloc>(
+                create: (context) => MovieDetailsBloc(
+                      moviesRepository:
+                          getIt<IMoviesRepository>() as MoviesRepository,
+                    ),
+                child: const MovieDetailsPage()),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position: animation.drive(
+                Tween(begin: const Offset(3.0, 2.0), end: Offset.zero)
+                    .chain(CurveTween(curve: Curves.bounceInOut))),
+            child: child,
+          );
+        },
+      );
+    } else {
+      return MaterialPageRoute(
+          builder: (context) => Routes.routes[settings.name]!(context));
+    }
+  }
 }
