@@ -6,6 +6,7 @@ import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import '../../../../generated/l10n.dart';
+import '../../widgets/bottom_bar_item.dart';
 
 class BottomNavigationPage extends StatefulWidget {
   static const id = "/bottom_navigation_page";
@@ -49,56 +50,41 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         index: _selectedIndex,
         children: _pages,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(IMDBIcons.bottomNavMovies),
-            label: S.of(context).movies,
-            backgroundColor: ImdbColors.primaryBlack,
+      bottomNavigationBar: BottomAppBar(
+        color: ImdbColors.primaryBlack,
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: BottomBarItem(
+                  isSelected: _selectedIndex == 0 ? true : false,
+                  label: S.of(context).movies,
+                  leadingIconPath: IMDBIcons.bottomNavMovies,
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 0;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                child: BottomBarItem(
+                  isSelected: _selectedIndex == 1 ? true : false,
+                  label: S.of(context).favourites,
+                  leadingIconPath: IMDBIcons.bottomNavFavourites,
+                  onPressed: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                  },
+                ),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(IMDBIcons.bottomNavFavourites),
-            activeIcon: ,
-            label: S.of(context).favourites,
-            backgroundColor: ImdbColors.primaryBlack,
-          ),
-        ],
-        backgroundColor: ImdbColors.primaryBlack,
-        currentIndex: _selectedIndex,
-        selectedItemColor: ImdbColors.primaryOrange,
-
-        selectedIconTheme: const IconThemeData(color: ImdbColors.primaryOrange),
-        unselectedItemColor: Colors.white,
-        unselectedLabelStyle: ImdbTextStyles.paragraph2SfWhiteBold,
-        selectedLabelStyle: ImdbTextStyles.paragraph2SfOrangeBold,
-        onTap: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
+        ),
       ),
     );
-    // return Scaffold(
-    //   body: Center(
-    //     child: _widgetOptions.elementAt(_selectedIndex),
-    //   ),
-    //   bottomNavigationBar: BottomNavigationBar(
-    //     items: <BottomNavigationBarItem>[
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.home),
-    //         label: S.of(context).movies,
-    //         backgroundColor: Colors.red,
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.business),
-    //         label: 'Business',
-    //         backgroundColor: Colors.green,
-    //       ),
-    //     ],
-    //     currentIndex: _selectedIndex,
-    //     selectedItemColor: Colors.amber[800],
-    //     onTap: _onItemTapped,
-    //   ),
-    // );
   }
 }
