@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/common/base/persistable.dart';
 import 'package:imdb_sample/data/local/dao/genre_dao.dart';
@@ -61,5 +62,9 @@ class MoviesLocalDataSource {
 
   List<Movie> getMoviesForPage(int page) {
     return _movieDao.getMoviesByPage(page).asDomain();
+  }
+
+  ValueListenable<Box<DBMovie>> getMovieListenable(int id) {
+    return _movieDao.getMovieListenable(id);
   }
 }

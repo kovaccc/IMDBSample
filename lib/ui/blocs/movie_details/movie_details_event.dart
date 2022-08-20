@@ -2,13 +2,23 @@ part of 'movie_details_bloc.dart';
 
 @immutable
 abstract class MovieDetailsEvent extends Equatable {
-  const MovieDetailsEvent();
+  final Movie movie;
+
+  const MovieDetailsEvent(this.movie);
+
+  @override
+  List<Object?> get props => [movie];
 }
 
 class MovieDetailsFavouriteUpdated extends MovieDetailsEvent {
-  final Movie movie;
+  const MovieDetailsFavouriteUpdated(Movie movie) : super(movie);
 
-  const MovieDetailsFavouriteUpdated(this.movie);
+  @override
+  List<Object?> get props => [movie];
+}
+
+class MovieDetailsShowingStarted extends MovieDetailsEvent {
+  const MovieDetailsShowingStarted(Movie movie) : super(movie);
 
   @override
   List<Object?> get props => [movie];

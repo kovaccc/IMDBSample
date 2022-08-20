@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/data/models/persistence/db_movie.dart';
 import 'package:injectable/injectable.dart';
@@ -32,5 +33,9 @@ class MovieDao {
 
   DBMovie? getMovie(int id) {
     return movieBox.get(id);
+  }
+
+  ValueListenable<Box<DBMovie>> getMovieListenable(int id) {
+    return movieBox.listenable(keys: [id]);
   }
 }

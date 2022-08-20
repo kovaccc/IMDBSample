@@ -1,0 +1,95 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:imdb_sample/data/models/domain/movie.dart';
+import 'package:imdb_sample/ui/blocs/movie_details/movie_details_bloc.dart';
+import 'package:imdb_sample/ui/elements/widgets/movie_information_item.dart';
+import 'package:imdb_sample/ui/resources/text_styles.dart';
+
+import '../../../config/constants.dart';
+import '../../../generated/l10n.dart';
+import '../../resources/colors.dart';
+import '../../resources/icons.dart';
+import '../../resources/paddings.dart';
+
+class MovieDetailsPage extends StatelessWidget {
+  static const String id = "/movie_details_page";
+
+  const MovieDetailsPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final movie = ModalRoute.of(context)!.settings.arguments as Movie;
+    BlocProvider.of<MovieDetailsBloc>(context)
+        .add(MovieDetailsShowingStarted(movie));
+    return Scaffold(
+      body: SafeArea(
+        child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
+          builder: (context, state) {
+            if (state is MovieDetailsLoaded) {
+              final movie = state.movie;
+              return Column(
+                children: [
+                  Stack(
+                    children: [
+                      CachedNetworkImage(
+                        placeholderFadeInDuration: const Duration(seconds: 2),
+                        fit: BoxFit.fitWidth,
+                        height: ImdbPaddings(context).screenHeight * 0.40,
+                        width: double.infinity,
+                        imageUrl:
+                            "${Constants.movieImageBaseUrl}${movie.posterPath}",
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(
+                                color: ImdbColors.primaryOrange),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SvgPicture.asset(
+                            alignment: Alignment.topLeft,
+                            IMDBIcons.backArrow,
+                            height: 16,
+                            width: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  ImdbPaddings(context).mediumVerticalSizedBox(),
+                  Padding(
+                    padding: ImdbPaddings.horizontal16Padding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MovieInformationItem(
+                          movie: movie,
+                          titleTextStyle: ImdbTextStyles.heading1SfWhiteBold,
+                          genreTextStyle: ImdbTextStyles.paragraph2SfWhite,
+                        ),
+                        ImdbPaddings(context).mediumVerticalSizedBox(),
+                        Text(S.of(context).description,
+                            style: ImdbTextStyles.heading2SfWhiteBold),
+                        ImdbPaddings(context).extraSmallVerticalSizedBox(),
+                        Text(movie.overview ?? "",
+                            style: ImdbTextStyles.paragraph1SfWhiteLight)
+                      ],
+                    ),
+                  )
+                ],
+              );
+            } else {
+              return const SizedBox();
+            }
+          },
+        ),
+      ),
+    );
+  }
+}

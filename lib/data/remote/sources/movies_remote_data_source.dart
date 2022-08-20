@@ -9,9 +9,8 @@ import '../../../common/base/base_remote_data_source.dart';
 @singleton
 class MoviesRemoteDataSource extends BaseRemoteDataSource {
   final ApiClient _apiClient;
-  final AuthDao _authDao;
 
-  MoviesRemoteDataSource(this._apiClient, this._authDao) : super(_authDao);
+  MoviesRemoteDataSource(this._apiClient, AuthDao authDao) : super(authDao);
 
   Future<PopularMoviesResponse> getSimplePopularMovies(int page) async {
     return await apiRequest(

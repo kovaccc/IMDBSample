@@ -1,9 +1,12 @@
+import 'package:flutter/foundation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/data/local/sources/movies_local_data_source.dart';
 import 'package:imdb_sample/data/models/responses/popular_movies_response.dart';
 import 'package:imdb_sample/data/remote/sources/movies_remote_data_source.dart';
 import 'package:injectable/injectable.dart';
 
 import '../models/domain/movie.dart';
+import '../models/persistence/db_movie.dart';
 
 abstract class IMoviesRepository {
   Future<List<Movie>> fetchSimplePopularMoviesPage(int page);
@@ -13,6 +16,8 @@ abstract class IMoviesRepository {
   Future<PopularMoviesResponse> getRemoteMoviesByPage(int page);
 
   Future<Movie?> toggleFavourite(Movie movie);
+
+  ValueListenable<Box<DBMovie>> getMovieListenable(int id);
 }
 
 @Singleton(as: IMoviesRepository)
@@ -43,5 +48,10 @@ class MoviesRepository implements IMoviesRepository {
   @override
   Future<Movie?> toggleFavourite(Movie movie) async {
     return await _moviesLocalDataSource.toggleFavourite(movie);
+  }
+
+  @override
+  ValueListenable<Box<DBMovie>> getMovieListenable(int id) {
+    return _moviesLocalDataSource.getMovieListenable(id);
   }
 }

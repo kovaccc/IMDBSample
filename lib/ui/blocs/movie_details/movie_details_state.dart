@@ -8,20 +8,19 @@ abstract class MovieDetailsState extends Equatable {
   List<Object> get props => [];
 }
 
-class MovieDetailsInitial extends MovieDetailsState {}
-
-class MovieDetailsLoaded extends MovieDetailsState {
-  final Movie movie;
-
-  const MovieDetailsLoaded(this.movie);
-
-  @override
-  List<Object> get props => [movie];
-}
-
-class MovieDetailsUpdateError extends MovieDetailsState {
-  const MovieDetailsUpdateError();
+class MovieDetailsInitial extends MovieDetailsState {
+  const MovieDetailsInitial();
 
   @override
   List<Object> get props => [];
+}
+
+class MovieDetailsLoaded extends MovieDetailsState {
+  final Movie movie;
+  final bool updateError;
+
+  const MovieDetailsLoaded(this.movie, this.updateError);
+
+  @override
+  List<Object> get props => [movie];
 }

@@ -8,9 +8,8 @@ import '../../../common/base/base_remote_data_source.dart';
 @singleton
 class GenresRemoteDataSource extends BaseRemoteDataSource {
   final ApiClient _apiClient;
-  final AuthDao _authDao;
 
-  GenresRemoteDataSource(this._apiClient, this._authDao) : super(_authDao);
+  GenresRemoteDataSource(this._apiClient, AuthDao authDao) : super(authDao);
 
   Future<GenresResponse> getGenres() async {
     return await apiRequest(apiCall: _apiClient.getGenres());

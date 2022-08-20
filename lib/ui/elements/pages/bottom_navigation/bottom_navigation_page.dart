@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:imdb_sample/ui/blocs/movie_details/movie_details_bloc.dart';
 import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/popular_movies_page.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
@@ -40,9 +41,19 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         backgroundColor: Colors.transparent,
       ),
       resizeToAvoidBottomInset: false,
-      body: BlocProvider(
-        create: (context) => PopularMoviesBloc(
-            moviesRepository: getIt<IMoviesRepository>() as MoviesRepository),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => PopularMoviesBloc(
+                moviesRepository:
+                    getIt<IMoviesRepository>() as MoviesRepository),
+          ),
+          BlocProvider(
+            create: (context) => MovieDetailsBloc(
+                moviesRepository:
+                    getIt<IMoviesRepository>() as MoviesRepository),
+          ),
+        ],
         child: const PopularMoviesPage(),
       ),
     );
