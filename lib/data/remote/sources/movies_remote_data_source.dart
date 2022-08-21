@@ -12,9 +12,9 @@ class MoviesRemoteDataSource extends BaseRemoteDataSource {
 
   MoviesRemoteDataSource(this._apiClient, AuthDao authDao) : super(authDao);
 
-  Future<PopularMoviesResponse> getSimplePopularMovies(int page) async {
+  Future<PopularMoviesResponse> getPopularMovies(int page) async {
     return await apiRequest(
-        apiCall: _apiClient.getSimplePopularMovies(page),
+        apiCall: _apiClient.getPopularMovies(page),
         errorResolver: PopularMoviesErrorResolver());
   }
 }

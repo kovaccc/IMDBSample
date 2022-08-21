@@ -9,7 +9,7 @@ import '../models/domain/movie.dart';
 import '../models/persistence/db_movie.dart';
 
 abstract class IMoviesRepository {
-  Future<List<Movie>> fetchSimplePopularMoviesPage(int page);
+  Future<List<Movie>> fetchPopularMoviesPage(int page);
 
   List<Movie> getPersistPopularMoviesByPage(int page);
 
@@ -30,9 +30,9 @@ class MoviesRepository implements IMoviesRepository {
   MoviesRepository(this._moviesRemoteDataSource, this._moviesLocalDataSource);
 
   @override
-  Future<List<Movie>> fetchSimplePopularMoviesPage(int page) async {
+  Future<List<Movie>> fetchPopularMoviesPage(int page) async {
     final popularMoviesResponse =
-        await _moviesRemoteDataSource.getSimplePopularMovies(page);
+        await _moviesRemoteDataSource.getPopularMovies(page);
     await _moviesLocalDataSource.saveMovies(popularMoviesResponse);
     return _moviesLocalDataSource.getMoviesForPage(page);
   }
@@ -44,7 +44,7 @@ class MoviesRepository implements IMoviesRepository {
 
   @override
   Future<PopularMoviesResponse> getRemoteMoviesByPage(int page) async {
-    return await _moviesRemoteDataSource.getSimplePopularMovies(page);
+    return await _moviesRemoteDataSource.getPopularMovies(page);
   }
 
   @override

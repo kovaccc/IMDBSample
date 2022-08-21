@@ -56,7 +56,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           ),
           leading: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: SvgPicture.asset(IMDBIcons.imdbLogo),
+            child: SvgPicture.asset(ImdbIcons.imdbLogo),
           ),
           elevation: 0.0,
           backgroundColor: Colors.transparent,
@@ -77,7 +77,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                   child: BottomBarItem(
                     isSelected: _selectedIndex == 0 ? true : false,
                     label: S.of(context).movies,
-                    leadingIconPath: IMDBIcons.bottomNavMovies,
+                    leadingIconPath: ImdbIcons.bottomNavMovies,
                     onPressed: () {
                       setState(() {
                         _selectedIndex = 0;
@@ -89,7 +89,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                   child: BottomBarItem(
                     isSelected: _selectedIndex == 1 ? true : false,
                     label: S.of(context).favourites,
-                    leadingIconPath: IMDBIcons.bottomNavFavourites,
+                    leadingIconPath: ImdbIcons.bottomNavFavourites,
                     onPressed: () {
                       setState(() {
                         _selectedIndex = 1;

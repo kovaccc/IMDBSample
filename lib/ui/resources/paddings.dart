@@ -34,8 +34,7 @@ class ImdbPaddings {
 
   SizedBox largeVerticalSizedBox() => SizedBox(height: screenHeight * 0.07);
 
-  SizedBox extraLargeVerticalSizedBox() =>
-      SizedBox(height: screenHeight * 0.1);
+  SizedBox extraLargeVerticalSizedBox() => SizedBox(height: screenHeight * 0.1);
 
   SizedBox extraSmallHorizontalSizedBox() =>
       SizedBox(width: screenHeight * 0.01);

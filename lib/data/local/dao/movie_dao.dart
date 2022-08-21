@@ -39,7 +39,7 @@ class MovieDao {
     return movieBox.listenable(keys: [id]);
   }
 
-  ValueListenable<Box<DBMovie>> getPopularMoviesListenable() {
+  ValueListenable<Box<DBMovie>> getMoviesListenable() {
     return movieBox.listenable();
   }
 }

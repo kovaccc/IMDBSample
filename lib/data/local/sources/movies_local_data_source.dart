@@ -69,6 +69,6 @@ class MoviesLocalDataSource {
   }
 
   ValueListenable<Box<DBMovie>> getPopularMoviesListenable() {
-    return _movieDao.getPopularMoviesListenable();
+    return _movieDao.getMoviesListenable();
   }
 }

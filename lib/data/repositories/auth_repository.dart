@@ -1,4 +1,3 @@
-import 'package:imdb_sample/config/constants.dart';
 import 'package:imdb_sample/config/secrets.dart';
 import 'package:injectable/injectable.dart';
 import '../local/sources/auth_local_data_source.dart';

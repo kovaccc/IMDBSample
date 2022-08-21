@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_sample/data/repositories/auth_repository.dart';
@@ -40,15 +39,15 @@ class Routes {
     },
     BottomNavigationPage.id: (BuildContext context) {
       return MultiBlocProvider(providers: [
-        BlocProvider(
+        BlocProvider<PopularMoviesBloc>(
           create: (context) => PopularMoviesBloc(
               moviesRepository: getIt<IMoviesRepository>() as MoviesRepository),
         ),
-        BlocProvider(
+        BlocProvider<MovieDetailsBloc>(
           create: (context) => MovieDetailsBloc(
               moviesRepository: getIt<IMoviesRepository>() as MoviesRepository),
         ),
-        BlocProvider(
+        BlocProvider<MainBloc>(
           create: (context) => MainBloc(
               authRepository: getIt<IAuthRepository>() as AuthRepository),
         ),
@@ -69,12 +68,7 @@ class Routes {
       return PageRouteBuilder(
         settings: settings,
         pageBuilder: (context, animation, secondaryAnimation) =>
-            BlocProvider<MovieDetailsBloc>(
-                create: (context) => MovieDetailsBloc(
-                      moviesRepository:
-                          getIt<IMoviesRepository>() as MoviesRepository,
-                    ),
-                child: const MovieDetailsPage()),
+            routes[MovieDetailsPage.id]!(context),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return SlideTransition(
             position: animation.drive(
@@ -86,7 +80,7 @@ class Routes {
       );
     } else {
       return MaterialPageRoute(
-          builder: (context) => Routes.routes[settings.name]!(context));
+          builder: (context) => routes[settings.name]!(context));
     }
   }
 }

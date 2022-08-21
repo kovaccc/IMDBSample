@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/data/models/domain/movie.dart';
@@ -30,7 +29,7 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
     final nextPageKey = event.pageKey + 1;
     try {
       final popularMovies =
-          await moviesRepository.fetchSimplePopularMoviesPage(nextPageKey);
+          await moviesRepository.fetchPopularMoviesPage(nextPageKey);
       // try to get PageNumberError to know if above is last page since
       // total_pages and total_results from fetched data is not correct
       await moviesRepository.getRemoteMoviesByPage(nextPageKey + 1);

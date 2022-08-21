@@ -9,37 +9,37 @@ part 'db_movie.g.dart';
 @HiveType(typeId: Constants.movieTypeAdapterId)
 class DBMovie extends HiveObject implements Persistable<Movie> {
   @HiveField(0)
-  bool adult;
+  final bool adult;
   @HiveField(1)
-  String? backdropPath;
+  final String? backdropPath;
   @HiveField(2)
   HiveList genres;
   @HiveField(3)
   final int id;
   @HiveField(4)
-  String originalLanguage;
+  final String originalLanguage;
   @HiveField(5)
-  String originalTitle;
+  final String originalTitle;
   @HiveField(6)
-  String? overview;
+  final String? overview;
   @HiveField(7)
-  double? popularity;
+  final double? popularity;
   @HiveField(8)
-  String? posterPath;
+  final String? posterPath;
   @HiveField(9)
-  String releaseDate;
+  final String releaseDate;
   @HiveField(10)
-  String title;
+  final String title;
   @HiveField(11)
-  bool? video;
+  final bool? video;
   @HiveField(12)
-  double? voteAverage;
+  final double? voteAverage;
   @HiveField(13)
-  int? voteCount;
+  final int? voteCount;
   @HiveField(14)
   bool isFavourite;
   @HiveField(15)
-  int? page;
+  final int? page;
 
   DBMovie({
     required this.adult,
@@ -64,7 +64,7 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
   Movie asDomain() {
     return Movie(
         backdropPath: backdropPath,
-        genres: genres.map((genre) => (genre as DBGenre).asDomain()).toList(),
+        genres: genres.cast<DBGenre>().asDomain(),
         id: id,
         overview: overview,
         posterPath: posterPath,

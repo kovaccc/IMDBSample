@@ -27,7 +27,7 @@ class SplashPage extends StatelessWidget {
       child: Scaffold(
         body: Center(
           child: SvgPicture.asset(
-            IMDBIcons.imdbLogo,
+            ImdbIcons.imdbLogo,
             height: ImdbPaddings(context).screenWidth / 5,
             width: ImdbPaddings(context).screenWidth / 5,
           ),

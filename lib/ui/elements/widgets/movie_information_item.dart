@@ -46,8 +46,8 @@ class MovieInformationItem extends StatelessWidget {
               },
               child: SvgPicture.asset(
                 movie.isFavourite
-                    ? IMDBIcons.favouriteTrue
-                    : IMDBIcons.favouriteFalse,
+                    ? ImdbIcons.favouriteTrue
+                    : ImdbIcons.favouriteFalse,
               ),
             ),
           ],
@@ -57,7 +57,7 @@ class MovieInformationItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SvgPicture.asset(
-              IMDBIcons.star,
+              ImdbIcons.star,
             ),
             const SizedBox(width: 5),
             Text(S.of(context).evaluation(movie.voteAverage ?? 0),

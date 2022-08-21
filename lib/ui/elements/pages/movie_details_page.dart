@@ -54,7 +54,7 @@ class MovieDetailsPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: SvgPicture.asset(
                           alignment: Alignment.topLeft,
-                          IMDBIcons.backArrow,
+                          ImdbIcons.backArrow,
                           height: 16,
                           width: 16,
                         ),

@@ -16,7 +16,7 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<PopularMoviesResponse> getSimplePopularMovies(page,
+  Future<PopularMoviesResponse> getPopularMovies(page,
       [apiKey = Secrets.apiKey, language = Constants.languageUS]) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
