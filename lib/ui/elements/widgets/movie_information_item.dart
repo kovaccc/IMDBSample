@@ -39,7 +39,10 @@ class MovieInformationItem extends StatelessWidget {
                 ),
               ),
             ),
-            GestureDetector(
+            InkWell(
+              radius: 20,
+              highlightColor: ImdbColors.primaryOrange,
+              splashColor: ImdbColors.primaryPurple,
               onTap: () {
                 BlocProvider.of<MovieDetailsBloc>(context)
                     .add(MovieDetailsFavouriteUpdated(movie));

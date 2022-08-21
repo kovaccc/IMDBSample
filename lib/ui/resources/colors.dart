@@ -7,4 +7,5 @@ class ImdbColors {
   static const primaryOrange = Color(0xFFEC9B3E);
   static const primaryWhite = Color(0xFFE4ECEF);
   static const primaryBrown = Color.fromRGBO(236, 155, 62, 0.2);
+  static const primaryPurple = Color(0xFFB60533);
 }
