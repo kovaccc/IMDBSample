@@ -17,7 +17,7 @@ class _ApiClient implements ApiClient {
 
   @override
   Future<PopularMoviesResponse> getSimplePopularMovies(page,
-      [apiKey = Constants.apiKey, language = Constants.languageUS]) async {
+      [apiKey = Secrets.apiKey, language = Constants.languageUS]) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
@@ -37,7 +37,7 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<GenresResponse> getGenres([apiKey = Constants.apiKey]) async {
+  Future<GenresResponse> getGenres([apiKey = Secrets.apiKey]) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};

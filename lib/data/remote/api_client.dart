@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../config/flavor_config.dart';
+import '../../config/secrets.dart';
 import '../../di/injection.dart';
 
 part 'api_client.g.dart';
@@ -48,11 +49,11 @@ abstract class ApiClient {
 
   @GET("/3/movie/popular")
   Future<PopularMoviesResponse> getSimplePopularMovies(@Query("page") int page,
-      [@Query("api_key") String apiKey = Constants.apiKey,
+      [@Query("api_key") String apiKey = Secrets.apiKey,
       @Query("language") String language = Constants.languageUS]);
 
   @GET("/3/genre/movie/list")
   Future<GenresResponse> getGenres([
-    @Query("api_key") String apiKey = Constants.apiKey,
+    @Query("api_key") String apiKey = Secrets.apiKey,
   ]);
 }

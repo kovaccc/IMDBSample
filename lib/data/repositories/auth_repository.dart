@@ -1,4 +1,5 @@
 import 'package:imdb_sample/config/constants.dart';
+import 'package:imdb_sample/config/secrets.dart';
 import 'package:injectable/injectable.dart';
 import '../local/sources/auth_local_data_source.dart';
 
@@ -23,7 +24,7 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<void> login() async {
-    await _authLocalDataSource.saveJwtToken(Constants.bearerToken);
+    await _authLocalDataSource.saveJwtToken(Secrets.bearerToken);
   }
 
   @override

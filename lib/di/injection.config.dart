@@ -26,8 +26,8 @@ import '../data/repositories/genres_repository.dart' as _i16;
 import '../data/repositories/movies_repository.dart' as _i18;
 import 'database_module.dart' as _i19;
 
-const String _stage = 'stage';
 const String _development = 'development';
+const String _stage = 'stage';
 const String _production = 'production';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -42,10 +42,10 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       instanceName: 'DBMovie', preResolve: true);
   await gh.singletonAsync<_i3.Box<dynamic>>(() => databaseModule.authBox,
       instanceName: 'DBAuth', preResolve: true);
-  gh.singleton<_i6.FlavorConfig>(_i6.StageFlavorConfig(),
-      registerFor: {_stage});
   gh.singleton<_i6.FlavorConfig>(_i6.DevFlavorConfig(),
       registerFor: {_development});
+  gh.singleton<_i6.FlavorConfig>(_i6.StageFlavorConfig(),
+      registerFor: {_stage});
   gh.singleton<_i6.FlavorConfig>(_i6.ProdFlavorConfig(),
       registerFor: {_production});
   gh.singleton<_i7.GenreDao>(
