@@ -13,6 +13,7 @@ import 'package:imdb_sample/ui/elements/pages/movie_details_page.dart';
 
 import '../../di/injection.dart';
 import '../../ui/elements/pages/splash_page.dart';
+import '../blocs/main/main_bloc.dart';
 import '../blocs/popular_movies/popular_movies_bloc.dart';
 
 class Routes {
@@ -46,6 +47,10 @@ class Routes {
         BlocProvider(
           create: (context) => MovieDetailsBloc(
               moviesRepository: getIt<IMoviesRepository>() as MoviesRepository),
+        ),
+        BlocProvider(
+          create: (context) => MainBloc(
+              authRepository: getIt<IAuthRepository>() as AuthRepository),
         ),
       ], child: const BottomNavigationPage());
     },
