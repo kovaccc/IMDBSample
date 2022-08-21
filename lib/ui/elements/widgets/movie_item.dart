@@ -36,7 +36,7 @@ class MovieItem extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 16.0),
               child: MovieInformationItem(
                 movie: movie,
                 titleTextStyle: ImdbTextStyles.heading2SfWhiteBold,

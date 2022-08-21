@@ -13,6 +13,7 @@ import '../../../generated/l10n.dart';
 import '../../resources/colors.dart';
 import '../../resources/icons.dart';
 import '../../resources/paddings.dart';
+import '../widgets/dialogs.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   static const String id = "/movie_details_page";
@@ -22,71 +23,82 @@ class MovieDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final movieId = ModalRoute.of(context)!.settings.arguments as int;
-    return ValueListenableBuilder(
-      valueListenable: BlocProvider.of<MovieDetailsBloc>(context)
-          .getMovieListenable(movieId),
-      builder: (BuildContext context, Box<DBMovie> box, Widget? child) {
-        final movie = (box.get(movieId) as DBMovie).asDomain();
-        return Scaffold(
-          body: SafeArea(
-            child: Column(
-              children: [
-                Stack(
-                  children: [
-                    CachedNetworkImage(
-                      placeholderFadeInDuration: const Duration(seconds: 2),
-                      fit: BoxFit.fitWidth,
-                      height: ImdbPaddings(context).screenHeight * 0.40,
-                      width: double.infinity,
-                      imageUrl:
-                          "${Constants.movieImageBaseUrl}${movie.posterPath}",
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(
-                              color: ImdbColors.primaryOrange),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SvgPicture.asset(
-                          alignment: Alignment.topLeft,
-                          ImdbIcons.backArrow,
-                          height: 16,
-                          width: 16,
+    return BlocListener<MovieDetailsBloc, MovieDetailsState>(
+      listener: (context, state) {
+        if (state is MovieDetailsUpdateError) {
+          showErrorDialog(
+            context,
+            S.of(context).error,
+            S.of(context).update_favourite_failure,
+          );
+        }
+      },
+      child: ValueListenableBuilder(
+        valueListenable: BlocProvider.of<MovieDetailsBloc>(context)
+            .getMovieListenable(movieId),
+        builder: (BuildContext context, Box<DBMovie> box, Widget? child) {
+          final movie = (box.get(movieId) as DBMovie).asDomain();
+          return Scaffold(
+            body: SafeArea(
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      CachedNetworkImage(
+                        placeholderFadeInDuration: const Duration(seconds: 2),
+                        fit: BoxFit.fitWidth,
+                        height: ImdbPaddings(context).screenHeight * 0.40,
+                        width: double.infinity,
+                        imageUrl:
+                            "${Constants.movieImageBaseUrl}${movie.posterPath}",
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(
+                                color: ImdbColors.primaryOrange),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SvgPicture.asset(
+                            alignment: Alignment.topLeft,
+                            ImdbIcons.backArrow,
+                            height: 16,
+                            width: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                ImdbPaddings(context).mediumVerticalSizedBox(),
-                Padding(
-                  padding: ImdbPaddings.horizontal16Padding,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MovieInformationItem(
-                        movie: movie,
-                        titleTextStyle: ImdbTextStyles.heading1SfWhiteBold,
-                        genreTextStyle: ImdbTextStyles.paragraph2SfWhite,
-                      ),
-                      ImdbPaddings(context).mediumVerticalSizedBox(),
-                      Text(S.of(context).description,
-                          style: ImdbTextStyles.heading2SfWhiteBold),
-                      ImdbPaddings(context).extraSmallVerticalSizedBox(),
-                      Text(movie.overview ?? "",
-                          style: ImdbTextStyles.paragraph1SfWhiteLight)
                     ],
                   ),
-                )
-              ],
+                  ImdbPaddings(context).mediumVerticalSizedBox(),
+                  Padding(
+                    padding: ImdbPaddings.horizontal16Padding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MovieInformationItem(
+                          movie: movie,
+                          titleTextStyle: ImdbTextStyles.heading1SfWhiteBold,
+                          genreTextStyle: ImdbTextStyles.paragraph2SfWhite,
+                        ),
+                        ImdbPaddings(context).mediumVerticalSizedBox(),
+                        Text(S.of(context).description,
+                            style: ImdbTextStyles.heading2SfWhiteBold),
+                        ImdbPaddings(context).extraSmallVerticalSizedBox(),
+                        Text(movie.overview ?? "",
+                            style: ImdbTextStyles.paragraph1SfWhiteLight)
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

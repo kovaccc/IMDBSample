@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:imdb_sample/ui/blocs/splash/splash_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/splash_page.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/routes.dart';
 import 'config/flavor_config.dart';
-import 'data/repositories/auth_repository.dart';
-import 'data/repositories/genres_repository.dart';
 import 'di/injection.dart';
 import 'generated/l10n.dart';
 
@@ -42,17 +38,10 @@ class MyApp extends StatelessWidget {
       title: 'IMDBSample',
       debugShowCheckedModeBanner: false,
       locale: const Locale("en"),
-      // routes: Routes.routes,
       onGenerateRoute: (settings) {
         return Routes.onGenerateRoute(settings);
       },
-      home: BlocProvider<SplashBloc>(
-          create: (context) => SplashBloc(
-                authRepository: getIt<IAuthRepository>() as AuthRepository,
-                genresRepository:
-                    getIt<IGenresRepository>() as GenresRepository,
-              )..add(const SplashLoginChecking()),
-          child: const SplashPage()),
+      home: Routes.routes[SplashPage.id]!(context),
     );
   }
 }

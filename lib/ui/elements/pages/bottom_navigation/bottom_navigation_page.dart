@@ -8,7 +8,9 @@ import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import '../../../../generated/l10n.dart';
+import '../../../blocs/movie_details/movie_details_bloc.dart';
 import '../../widgets/bottom_bar_item.dart';
+import '../../widgets/dialogs.dart';
 import '../login_page.dart';
 
 class BottomNavigationPage extends StatefulWidget {
@@ -30,13 +32,28 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<MainBloc, MainState>(
-      listener: (context, state) {
-        if (state is MainLogoutSuccess) {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil(LoginPage.id, (route) => false);
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<MainBloc, MainState>(
+          listener: (context, state) {
+            if (state is MainLogoutSuccess) {
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(LoginPage.id, (route) => false);
+            }
+          },
+        ),
+        BlocListener<MovieDetailsBloc, MovieDetailsState>(
+          listener: (context, state) {
+            if (state is MovieDetailsUpdateError) {
+              showErrorDialog(
+                context,
+                S.of(context).error,
+                S.of(context).update_favourite_failure,
+              );
+            }
+          },
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           title: Row(
@@ -44,8 +61,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
             children: [
               GestureDetector(
                 onTap: () {
-              BlocProvider.of<MainBloc>(context)
-                  .add(const MainLogoutStarted());
+                  BlocProvider.of<MainBloc>(context)
+                      .add(const MainLogoutStarted());
                 },
                 child: Text(
                   S.of(context).logout,

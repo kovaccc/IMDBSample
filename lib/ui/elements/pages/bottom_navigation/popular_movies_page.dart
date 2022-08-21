@@ -34,7 +34,6 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      print("matej addPageRequestListener");
       BlocProvider.of<PopularMoviesBloc>(context)
           .add(PopularMoviesFetchStarted(pageKey));
     });
@@ -43,59 +42,44 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<PopularMoviesBloc, PopularMoviesState>(
-          listener: (context, state) {
-            if (state is PopularMoviesLoaded) {
-              _pagingController.appendPage(state.movies, state.currentPage);
-              ScaffoldMessenger.of(context).clearSnackBars();
-            } else if (state is PopularMoviesError) {
-              final Exception error = state.error;
-              if (error is PageNumberError) {
-                _pagingController.appendLastPage(state.movies);
-              } else if (state.movies.isEmpty) {
-                _pagingController.error = error;
-                showErrorDialog(
-                  context,
-                  S.of(context).error,
-                  ErrorHandler.resolveExceptionMessage(error),
-                );
-              } else {
-                _pagingController.appendPage(state.movies, state.currentPage);
-              }
+    return BlocListener<PopularMoviesBloc, PopularMoviesState>(
+      listener: (context, state) {
+        if (state is PopularMoviesLoaded) {
+          _pagingController.appendPage(state.movies, state.currentPage);
+          ScaffoldMessenger.of(context).clearSnackBars();
+        } else if (state is PopularMoviesError) {
+          final Exception error = state.error;
+          if (error is PageNumberError) {
+            _pagingController.appendLastPage(state.movies);
+          } else if (state.movies.isEmpty) {
+            _pagingController.error = error;
+            showErrorDialog(
+              context,
+              S.of(context).error,
+              ErrorHandler.resolveExceptionMessage(error),
+            );
+          } else {
+            _pagingController.appendPage(state.movies, state.currentPage);
+          }
 
-              if (error is SocketException) {
-                _snackBar = SnackBar(
-                  elevation: 5,
-                  duration: const Duration(hours: 5),
-                  backgroundColor: ImdbColors.primaryOrange,
-                  dismissDirection: DismissDirection.none,
-                  content: Text(S.of(context).network_connection_not_available),
-                  action: SnackBarAction(
-                    onPressed: () {},
-                    label: "",
-                  ),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(_snackBar);
-              } else {
-                ScaffoldMessenger.of(context).clearSnackBars();
-              }
-            }
-          },
-        ),
-        BlocListener<MovieDetailsBloc, MovieDetailsState>(
-          listener: (context, state) {
-            if (state is MovieDetailsUpdateError) {
-              showErrorDialog(
-                context,
-                S.of(context).error,
-                S.of(context).update_favourite_failure,
-              );
-            }
-          },
-        ),
-      ],
+          if (error is SocketException) {
+            _snackBar = SnackBar(
+              elevation: 5,
+              duration: const Duration(hours: 5),
+              backgroundColor: ImdbColors.primaryOrange,
+              dismissDirection: DismissDirection.none,
+              content: Text(S.of(context).network_connection_not_available),
+              action: SnackBarAction(
+                onPressed: () {},
+                label: "",
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(_snackBar);
+          } else {
+            ScaffoldMessenger.of(context).clearSnackBars();
+          }
+        }
+      },
       child: Scaffold(
         body: SafeArea(
           child: Padding(

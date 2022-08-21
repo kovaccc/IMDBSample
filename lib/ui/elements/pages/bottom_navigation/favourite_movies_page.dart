@@ -31,12 +31,10 @@ class FavouriteMoviesPage extends StatelessWidget {
                   valueListenable: BlocProvider.of<PopularMoviesBloc>(context)
                       .getPopularMoviesListenable(),
                   builder: (context, Box<DBMovie> box, widget) {
-                    print("movie is deleted jedan");
                     var favouriteMovies = (box.values
                             .where((element) => element.isFavourite == true)
                             .toList())
                         .asDomain();
-                    print("movie is deleted");
                     return ListView.separated(
                       shrinkWrap: true,
                       itemCount: favouriteMovies.length,
