@@ -84,7 +84,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
           children: _pages,
         ),
         bottomNavigationBar: BottomAppBar(
-          color: ImdbColors.primaryBlack,
+          color: ImdbColors.secondaryBlack,
           child: SizedBox(
             height: 60,
             child: Row(

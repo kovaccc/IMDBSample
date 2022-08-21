@@ -31,7 +31,7 @@ class BottomBarItem extends StatelessWidget {
               decoration: BoxDecoration(
                   color: isSelected
                       ? ImdbColors.primaryOrange
-                      : ImdbColors.primaryBlack),
+                      : ImdbColors.secondaryBlack),
             ),
           ),
           Expanded(
