@@ -48,6 +48,8 @@ class MovieInformationItem extends StatelessWidget {
                 movie.isFavourite
                     ? ImdbIcons.favouriteTrue
                     : ImdbIcons.favouriteFalse,
+                width: 14,
+                height: 18,
               ),
             ),
           ],
