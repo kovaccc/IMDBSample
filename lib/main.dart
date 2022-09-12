@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/ui/elements/pages/splash_page.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/routes.dart';
+import 'package:imdb_sample/util/observers.dart';
 import 'config/flavor_config.dart';
 import 'di/injection.dart';
 import 'generated/l10n.dart';
@@ -13,7 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await configureDependencies(Env.development);
-  runApp(const MyApp());
+  runApp(ProviderScope(
+      observers: <ProviderObserver>[Observers()], child: const MyApp()));
 }
 
 final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();

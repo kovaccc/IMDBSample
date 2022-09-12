@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_sample/data/repositories/auth_repository.dart';
 import 'package:imdb_sample/data/repositories/genres_repository.dart';
 import 'package:imdb_sample/data/repositories/movies_repository.dart';
-import 'package:imdb_sample/ui/blocs/login/login_bloc.dart';
 import 'package:imdb_sample/ui/blocs/movie_details/movie_details_bloc.dart';
 import 'package:imdb_sample/ui/blocs/splash/splash_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/bottom_navigation_page.dart';
@@ -29,13 +28,7 @@ class Routes {
           child: const SplashPage());
     },
     LoginPage.id: (BuildContext context) {
-      return BlocProvider<LoginBloc>(
-          create: (context) => LoginBloc(
-                authRepository: getIt<IAuthRepository>() as AuthRepository,
-                genresRepository:
-                    getIt<IGenresRepository>() as GenresRepository,
-              ),
-          child: LoginPage());
+      return LoginPage();
     },
     BottomNavigationPage.id: (BuildContext context) {
       return MultiBlocProvider(providers: [

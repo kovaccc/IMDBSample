@@ -2,12 +2,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/data/models/domain/movie.dart';
 import 'package:imdb_sample/data/models/persistence/db_movie.dart';
-import 'package:imdb_sample/ui/blocs/movie_details/movie_details_bloc.dart';
 import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/movie_details_page.dart';
 import 'package:imdb_sample/ui/elements/widgets/movie_item.dart';
+import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
@@ -16,16 +17,16 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../../generated/l10n.dart';
 import '../../widgets/dialogs.dart';
 
-class PopularMoviesPage extends StatefulWidget {
+class PopularMoviesPage extends ConsumerStatefulWidget {
   static const String id = "/popular_movies_page";
 
   const PopularMoviesPage({Key? key}) : super(key: key);
 
   @override
-  State<PopularMoviesPage> createState() => _PopularMoviesPageState();
+  createState() => _PopularMoviesPageState();
 }
 
-class _PopularMoviesPageState extends State<PopularMoviesPage> {
+class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
   final PagingController<int, Movie> _pagingController =
       PagingController(firstPageKey: 0);
 
@@ -98,9 +99,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
                     builderDelegate: PagedChildBuilderDelegate<Movie>(
                       itemBuilder: (context, item, index) =>
                           ValueListenableBuilder(
-                        valueListenable:
-                            BlocProvider.of<MovieDetailsBloc>(context)
-                                .getMovieListenable(item.id),
+                        valueListenable: ref.read(movieProvider(item.id)),
                         builder: (context, Box<DBMovie> box, widget) {
                           final movie =
                               (box.get(item.id) as DBMovie).asDomain();

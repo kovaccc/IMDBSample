@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/common/base/persistable.dart';
-import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/movie_details_page.dart';
-
+import 'package:imdb_sample/ui/providers/providers.dart';
 import '../../../../data/models/persistence/db_movie.dart';
 import '../../../../generated/l10n.dart';
 import '../../../resources/paddings.dart';
 import '../../../resources/text_styles.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../widgets/movie_item.dart';
 
-class FavouriteMoviesPage extends StatelessWidget {
+class FavouriteMoviesPage extends ConsumerWidget {
   const FavouriteMoviesPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -28,8 +27,7 @@ class FavouriteMoviesPage extends StatelessWidget {
               ImdbPaddings(context).smallVerticalSizedBox(),
               Expanded(
                 child: ValueListenableBuilder(
-                  valueListenable: BlocProvider.of<PopularMoviesBloc>(context)
-                      .getPopularMoviesListenable(),
+                  valueListenable: ref.read(favouriteMoviesProvider),
                   builder: (context, Box<DBMovie> box, widget) {
                     var favouriteMovies = (box.values
                             .where((element) => element.isFavourite == true)
