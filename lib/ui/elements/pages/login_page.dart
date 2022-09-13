@@ -19,7 +19,7 @@ class LoginPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<LoginState>(
-      loginProvider,
+      loginNotifierProvider,
       (LoginState? previousState, LoginState newState) {
         newState.maybeMap(
           orElse: () {},
@@ -43,7 +43,7 @@ class LoginPage extends ConsumerWidget {
             width: ImdbPaddings(context).screenHeight * 0.2,
             child: TextButton(
               onPressed: () {
-                ref.read(loginProvider.notifier).startLogin();
+                ref.read(loginNotifierProvider.notifier).startLogin();
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.transparent),

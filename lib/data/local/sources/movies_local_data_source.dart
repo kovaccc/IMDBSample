@@ -51,8 +51,8 @@ class MoviesLocalDataSource {
         .where((element) => genreIds.contains(element.id)));
   }
 
-  Future<Movie?> toggleFavourite(Movie movie) async {
-    final dbMovie = _movieDao.getMovie(movie.id);
+  Future<Movie?> toggleFavourite(int movieId) async {
+    final dbMovie = _movieDao.getMovie(movieId);
     if (dbMovie != null) {
       dbMovie.isFavourite = !dbMovie.isFavourite;
       await _movieDao.updateMovie(dbMovie);
