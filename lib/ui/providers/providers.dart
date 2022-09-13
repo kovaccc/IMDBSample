@@ -44,8 +44,8 @@ final splashNotifierProvider =
   },
 );
 
-final movieDetailsNotifierProvider = StateNotifierProvider.autoDispose
-    .family<MovieDetailsNotifier, MovieDetailsState, int>(
+final movieDetailsNotifierProvider =
+    StateNotifierProvider.family<MovieDetailsNotifier, MovieDetailsState, int>(
   (ref, movieId) {
     return MovieDetailsNotifier(
       moviesRepository: getIt<IMoviesRepository>() as MoviesRepository,

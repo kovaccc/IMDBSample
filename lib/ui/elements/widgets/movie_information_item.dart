@@ -24,6 +24,7 @@ class MovieInformationItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
