@@ -46,8 +46,8 @@ class MovieInformationItem extends ConsumerWidget {
               splashColor: ImdbColors.primaryPurple,
               onTap: () {
                 ref
-                    .read(movieDetailsNotifierProvider(movie.id).notifier)
-                    .updateMovieDetailsFavourite();
+                    .read(movieDetailsNotifierProvider.notifier)
+                    .updateMovieDetailsFavourite(movie.id);
               },
               child: SvgPicture.asset(
                 movie.isFavourite

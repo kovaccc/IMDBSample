@@ -4,13 +4,12 @@ import '../../../data/repositories/movies_repository.dart';
 
 class MovieDetailsNotifier extends StateNotifier<MovieDetailsState> {
   final MoviesRepository moviesRepository;
-  final int id;
 
-  MovieDetailsNotifier({required this.moviesRepository, required this.id})
+  MovieDetailsNotifier({required this.moviesRepository})
       : super(const MovieDetailsState.initial());
 
-  void updateMovieDetailsFavourite() async {
-    final updatedMovie = await moviesRepository.toggleFavourite(id);
+  void updateMovieDetailsFavourite(int movieId) async {
+    final updatedMovie = await moviesRepository.toggleFavourite(movieId);
     if (updatedMovie != null) {
       state = MovieDetailsState.updateSuccess(movie: updatedMovie);
     } else {

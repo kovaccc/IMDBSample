@@ -8,6 +8,7 @@ import 'package:imdb_sample/data/models/persistence/db_movie.dart';
 import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/movie_details_page.dart';
 import 'package:imdb_sample/ui/elements/widgets/movie_item.dart';
+import 'package:imdb_sample/ui/providers/movie_details/movie_details_state.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
@@ -43,6 +44,22 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<MovieDetailsState>(
+      movieDetailsNotifierProvider,
+      (MovieDetailsState? previousState, MovieDetailsState newState) {
+        newState.maybeMap(
+          orElse: () {},
+          updateError: (_) {
+            showErrorDialog(
+              context,
+              S.of(context).error,
+              S.of(context).update_favourite_failure,
+            );
+          },
+          updateSuccess: (_) {},
+        );
+      },
+    );
     return BlocListener<PopularMoviesBloc, PopularMoviesState>(
       listener: (context, state) {
         if (state is PopularMoviesLoaded) {
@@ -97,8 +114,8 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
                     scrollDirection: Axis.vertical,
                     pagingController: _pagingController,
                     builderDelegate: PagedChildBuilderDelegate<Movie>(
-                      itemBuilder: (context, item, index) =>
-                          ValueListenableBuilder(
+                        itemBuilder: (context, item, index) {
+                      return ValueListenableBuilder(
                         valueListenable: ref.read(movieProvider(item.id)),
                         builder: (context, Box<DBMovie> box, widget) {
                           final movie =
@@ -114,8 +131,8 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
                             ),
                           );
                         },
-                      ),
-                    ),
+                      );
+                    }),
                     separatorBuilder: (BuildContext context, int index) {
                       return ImdbPaddings(context).smallVerticalSizedBox();
                     },
