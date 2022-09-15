@@ -11,12 +11,12 @@ import 'package:imdb_sample/ui/elements/widgets/movie_item.dart';
 import 'package:imdb_sample/ui/providers/movie_details/movie_details_state.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
-import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import 'package:imdb_sample/util/error_handler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../../generated/l10n.dart';
+import '../../../resources/routes.dart';
 import '../../widgets/dialogs.dart';
 
 class PopularMoviesPage extends ConsumerStatefulWidget {

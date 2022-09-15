@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:imdb_sample/common/enums/filter_movies.dart';
 import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/favourite_movies_page.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/popular_movies_page.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
-import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import '../../../../data/repositories/movies_repository.dart';
 import '../../../../di/injection.dart';
 import '../../../../generated/l10n.dart';
 import '../../../providers/auth/auth_state.dart';
+import '../../../resources/routes.dart';
 import '../../widgets/bottom_bar_item.dart';
 
 class BottomNavigationPage extends ConsumerStatefulWidget {
@@ -103,7 +104,7 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
                     Beamer.of(context).update(
                       configuration: RouteInformation(
                           location:
-                              "$homePagePath/${S.current.queryTab(popularPage)}"),
+                              FilterMovies.popular.getQueryTabPath()),
                       rebuild: false,
                     );
                     setState(() {
@@ -121,7 +122,7 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
                     Beamer.of(context).update(
                       configuration: RouteInformation(
                           location:
-                              "$homePagePath/${S.current.queryTab(favouritePage)}"),
+                          FilterMovies.favourite.getQueryTabPath()),
                       rebuild: false,
                     );
                     setState(() {

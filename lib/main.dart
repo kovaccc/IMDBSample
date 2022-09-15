@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
-import 'package:imdb_sample/ui/resources/navigation/locations.dart';
+import 'package:imdb_sample/ui/resources/routes.dart';
 import 'package:imdb_sample/util/observers.dart';
 import 'config/flavor_config.dart';
 import 'di/injection.dart';
@@ -16,21 +16,14 @@ void main() async {
   await Hive.initFlutter();
   await configureDependencies(Env.development);
   runApp(ProviderScope(
-      observers: <ProviderObserver>[Observers()], child: MyApp()));
+      observers: <ProviderObserver>[Observers()], child: const MyApp()));
 }
 
 final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
-  final routerDelegate = BeamerDelegate(
-    initialPath: splashPagePath,
-    locationBuilder: BeamerLocationBuilder(
-      beamLocations: [AuthLocation(), MovieDetailsLocation()],
-    ),
-    notFoundRedirectNamed: loginPagePath,
-  );
 
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +41,6 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       key: navigator,
-      // TODO test navigator key when login changes
       theme: ThemeData(scaffoldBackgroundColor: ImdbColors.primaryBlack),
       supportedLocales: S.delegate.supportedLocales,
       title: 'IMDBSample',

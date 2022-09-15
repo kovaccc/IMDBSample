@@ -1,12 +1,10 @@
 import 'dart:io';
-import 'dart:js';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:imdb_sample/ui/elements/pages/login_page.dart';
-import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import '../../data/local/dao/auth_dao.dart';
 import '../../main.dart';
+import '../../ui/resources/routes.dart';
 import '../../util/error_handler.dart';
 
 class BaseRemoteDataSource {
@@ -26,7 +24,7 @@ class BaseRemoteDataSource {
             await _authDao.deleteJwtToken();
             WidgetsBinding.instance.addPostFrameCallback((_) {
               navigator.currentState?.pushNamedAndRemoveUntil(
-                  loginPage, (Route<dynamic> route) => false);
+                  loginPagePath, (Route<dynamic> route) => false);
             });
           } else {
             switch (error.type) {

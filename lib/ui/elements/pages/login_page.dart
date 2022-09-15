@@ -1,16 +1,14 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:imdb_sample/ui/elements/pages/bottom_navigation/bottom_navigation_page.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
-import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import '../../../generated/l10n.dart';
 import '../../providers/login/login_state.dart';
+import '../../resources/routes.dart';
 import '../widgets/loading_overlay.dart';
-import 'bottom_navigation/popular_movies_page.dart';
 
 class LoginPage extends ConsumerWidget {
 

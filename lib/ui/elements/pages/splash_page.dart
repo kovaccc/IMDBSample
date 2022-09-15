@@ -5,8 +5,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/providers/splash/splash_state.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
-import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
+
+import '../../resources/routes.dart';
 
 class SplashPage extends ConsumerWidget {
   const SplashPage({Key? key}) : super(key: key);
