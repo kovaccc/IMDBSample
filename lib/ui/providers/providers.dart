@@ -7,6 +7,8 @@ import 'package:imdb_sample/ui/providers/login/login_notifier.dart';
 import 'package:imdb_sample/ui/providers/login/login_state.dart';
 import 'package:imdb_sample/ui/providers/movie_details/movie_details_notifier.dart';
 import 'package:imdb_sample/ui/providers/movie_details/movie_details_state.dart';
+import 'package:imdb_sample/ui/providers/popular_movies/popular_movies_notifier.dart';
+import 'package:imdb_sample/ui/providers/popular_movies/popular_movies_state.dart';
 import 'package:imdb_sample/ui/providers/splash/splash_notifier.dart';
 import 'package:imdb_sample/ui/providers/splash/splash_state.dart';
 
@@ -41,6 +43,15 @@ final splashNotifierProvider =
       authRepository: getIt<IAuthRepository>() as AuthRepository,
       genresRepository: getIt<IGenresRepository>() as GenresRepository,
     )..startAuthChecking();
+  },
+);
+
+final popularMoviesNotifierProvider = StateNotifierProvider.autoDispose<
+    PopularMoviesNotifier, PopularMoviesState>(
+  (ref) {
+    return PopularMoviesNotifier(
+      moviesRepository: getIt<IMoviesRepository>() as MoviesRepository,
+    );
   },
 );
 

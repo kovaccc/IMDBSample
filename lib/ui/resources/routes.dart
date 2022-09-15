@@ -21,7 +21,6 @@ const favouriteMovieDetailsPath =
 const keyMovieId = "movieId";
 const queryTab = "tab";
 
-//TODO error code 401 with base_remote
 final routerDelegate = BeamerDelegate(
   initialPath: splashPagePath,
   locationBuilder: RoutesLocationBuilder(

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/common/enums/filter_movies.dart';
-import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/favourite_movies_page.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/popular_movies_page.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
@@ -32,12 +31,7 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
-    BlocProvider(
-      create: (context) => PopularMoviesBloc(
-        moviesRepository: getIt<IMoviesRepository>() as MoviesRepository,
-      ),
-      child: const PopularMoviesPage(),
-    ),
+    const PopularMoviesPage(),
     const FavouriteMoviesPage(),
   ];
 

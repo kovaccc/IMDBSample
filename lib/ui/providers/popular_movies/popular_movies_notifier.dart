@@ -1,39 +1,30 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/data/models/domain/movie.dart';
 import 'package:imdb_sample/data/repositories/movies_repository.dart';
+import 'package:imdb_sample/ui/providers/popular_movies/popular_movies_state.dart';
 import 'package:imdb_sample/util/error_handler.dart';
 
-import '../../../data/models/persistence/db_movie.dart';
-
-part 'popular_movies_event.dart';
-
-part 'popular_movies_state.dart';
-
-class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
+class PopularMoviesNotifier extends StateNotifier<PopularMoviesState> {
   final MoviesRepository moviesRepository;
 
-  PopularMoviesBloc({required this.moviesRepository})
-      : super(const PopularMoviesInitial(<Movie>[], 0, false)) {
-    on<PopularMoviesFetchStarted>(_onPopularMoviesFetchStarted);
-  }
+  PopularMoviesNotifier({required this.moviesRepository})
+      : super(const PopularMoviesState.initial(
+            movies: <Movie>[], currentPage: 0, isLastPage: false));
 
-  ValueListenable<Box<DBMovie>> getPopularMoviesListenable() {
-    return moviesRepository.getPopularMoviesListenable();
-  }
-
-  void _onPopularMoviesFetchStarted(
-      PopularMoviesFetchStarted event, Emitter<PopularMoviesState> emit) async {
-    final nextPageKey = event.pageKey + 1;
+  void fetchNextPopularMovies(int pageKey) async {
+    final nextPageKey = pageKey + 1;
     try {
       final popularMovies =
           await moviesRepository.fetchPopularMoviesPage(nextPageKey);
       // try to get PageNumberError to know if above is last page since
       // total_pages and total_results from fetched data is not correct
       await moviesRepository.getRemoteMoviesByPage(nextPageKey + 1);
-      emit(PopularMoviesLoaded(popularMovies, nextPageKey, false));
+      state = PopularMoviesState.loaded(
+          movies: popularMovies, currentPage: nextPageKey, isLastPage: false);
     } catch (error) {
       bool isLastPage = false;
       if (error is Exception) {
@@ -42,7 +33,11 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
         }
         final persistMovies =
             moviesRepository.getPersistPopularMoviesByPage(nextPageKey);
-        emit(PopularMoviesError(persistMovies, nextPageKey, isLastPage, error));
+        state = PopularMoviesState.error(
+            movies: persistMovies,
+            currentPage: nextPageKey,
+            isLastPage: isLastPage,
+            error: error);
       }
     }
   }
