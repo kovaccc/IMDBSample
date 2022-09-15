@@ -1,16 +1,14 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:imdb_sample/ui/elements/pages/bottom_navigation/bottom_navigation_page.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/providers/splash/splash_state.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
+import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
-import 'login_page.dart';
 
 class SplashPage extends ConsumerWidget {
-  static const String id = "/splash_page";
-
   const SplashPage({Key? key}) : super(key: key);
 
   @override
@@ -21,12 +19,10 @@ class SplashPage extends ConsumerWidget {
         newState.maybeMap(
           orElse: () {},
           loaded: (_) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                BottomNavigationPage.id, (route) => false);
+            context.beamToReplacementNamed(homePagePath);
           },
           error: (_) {
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil(LoginPage.id, (route) => false);
+            context.beamToReplacementNamed(loginPagePath);
           },
         );
       },

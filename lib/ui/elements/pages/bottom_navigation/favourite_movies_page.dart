@@ -1,8 +1,10 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/common/base/persistable.dart';
 import 'package:imdb_sample/ui/elements/pages/movie_details_page.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
+import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import '../../../../data/models/persistence/db_movie.dart';
 import '../../../../generated/l10n.dart';
 import '../../../resources/paddings.dart';
@@ -11,6 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../widgets/movie_item.dart';
 
 class FavouriteMoviesPage extends ConsumerWidget {
+
   const FavouriteMoviesPage({Key? key}) : super(key: key);
 
   @override
@@ -39,8 +42,8 @@ class FavouriteMoviesPage extends ConsumerWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
-                            Navigator.of(context).pushNamed(MovieDetailsPage.id,
-                                arguments: favouriteMovies[index].id);
+                            context.beamToNamed(
+                                "$homePagePath$favouritePagePath/${favouriteMovies[index].id.toString()}");
                           },
                           child: MovieItem(
                             movie: favouriteMovies[index],

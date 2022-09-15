@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
 // This is a library that provides messages for a en locale. All the
-// messages from the auth program should be duplicated here with the same
+// messages from the main program should be duplicated here with the same
 // function name.
 
 // Ignore issues from commonly used lints in this file.
@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(voteAverage) => "${voteAverage}/10 IMDb";
 
+  static String m1(movieListType) => "?tab=${movieListType}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "description": MessageLookupByLibrary.simpleMessage("Description"),
@@ -40,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "page_must_be_less_than": MessageLookupByLibrary.simpleMessage(
             "page must be less than or equal to 500"),
         "popular": MessageLookupByLibrary.simpleMessage("Popular"),
+        "queryTab": m1,
         "server_error": MessageLookupByLibrary.simpleMessage(
             "Something is wrong with the server, please contact system administrator!"),
         "unknown_error": MessageLookupByLibrary.simpleMessage("Unknown error"),

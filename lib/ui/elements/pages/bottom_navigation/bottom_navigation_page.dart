@@ -1,21 +1,27 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/favourite_movies_page.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/popular_movies_page.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
+import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
+import '../../../../data/repositories/movies_repository.dart';
+import '../../../../di/injection.dart';
 import '../../../../generated/l10n.dart';
 import '../../../providers/auth/auth_state.dart';
 import '../../widgets/bottom_bar_item.dart';
-import '../login_page.dart';
 
 class BottomNavigationPage extends ConsumerStatefulWidget {
-  static const id = "/bottom_navigation_page";
+  final int initialIndex;
 
-  const BottomNavigationPage({Key? key}) : super(key: key);
+  const BottomNavigationPage({Key? key, required this.initialIndex})
+      : super(key: key);
 
   @override
   createState() => _BottomNavigationPageState();
@@ -24,10 +30,21 @@ class BottomNavigationPage extends ConsumerStatefulWidget {
 class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
-    PopularMoviesPage(),
-    FavouriteMoviesPage(),
+  static final List<Widget> _pages = <Widget>[
+    BlocProvider(
+      create: (context) => PopularMoviesBloc(
+        moviesRepository: getIt<IMoviesRepository>() as MoviesRepository,
+      ),
+      child: const PopularMoviesPage(),
+    ),
+    const FavouriteMoviesPage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +52,11 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
       authNotifierProvider,
       (AuthState? previousState, AuthState newState) {
         newState.maybeMap(
-            orElse: () {},
-            signedOut: (_) {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil(LoginPage.id, (route) => false);
-            });
+          orElse: () {},
+          signedOut: (_) {
+            context.beamToReplacementNamed(loginPagePath);
+          },
+        );
       },
     );
     return Scaffold(
@@ -83,6 +100,12 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
                   label: S.of(context).movies,
                   leadingIconPath: ImdbIcons.bottomNavMovies,
                   onPressed: () {
+                    Beamer.of(context).update(
+                      configuration: RouteInformation(
+                          location:
+                              "$homePagePath/${S.current.queryTab(popularPage)}"),
+                      rebuild: false,
+                    );
                     setState(() {
                       _selectedIndex = 0;
                     });
@@ -95,6 +118,12 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
                   label: S.of(context).favourites,
                   leadingIconPath: ImdbIcons.bottomNavFavourites,
                   onPressed: () {
+                    Beamer.of(context).update(
+                      configuration: RouteInformation(
+                          location:
+                              "$homePagePath/${S.current.queryTab(favouritePage)}"),
+                      rebuild: false,
+                    );
                     setState(() {
                       _selectedIndex = 1;
                     });

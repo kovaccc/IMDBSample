@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -6,11 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/data/models/domain/movie.dart';
 import 'package:imdb_sample/data/models/persistence/db_movie.dart';
 import 'package:imdb_sample/ui/blocs/popular_movies/popular_movies_bloc.dart';
-import 'package:imdb_sample/ui/elements/pages/movie_details_page.dart';
 import 'package:imdb_sample/ui/elements/widgets/movie_item.dart';
 import 'package:imdb_sample/ui/providers/movie_details/movie_details_state.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
+import 'package:imdb_sample/ui/resources/navigation/locations.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import 'package:imdb_sample/util/error_handler.dart';
@@ -19,8 +20,6 @@ import '../../../../generated/l10n.dart';
 import '../../widgets/dialogs.dart';
 
 class PopularMoviesPage extends ConsumerStatefulWidget {
-  static const String id = "/popular_movies_page";
-
   const PopularMoviesPage({Key? key}) : super(key: key);
 
   @override
@@ -122,9 +121,8 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
                               (box.get(item.id) as DBMovie).asDomain();
                           return GestureDetector(
                             onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  MovieDetailsPage.id,
-                                  arguments: movie.id);
+                              context
+                                  .beamToNamed("$homePagePath$popularPagePath/${movie.id.toString()}");
                             },
                             child: MovieItem(
                               movie: movie,

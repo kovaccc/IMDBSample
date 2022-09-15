@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,13 +16,12 @@ import '../../resources/icons.dart';
 import '../../resources/paddings.dart';
 
 class MovieDetailsPage extends ConsumerWidget {
-  static const String id = "/movie_details_page";
+  final int movieId;
 
-  const MovieDetailsPage({Key? key}) : super(key: key);
+  const MovieDetailsPage({Key? key, required this.movieId}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final movieId = ModalRoute.of(context)!.settings.arguments as int;
 
     return ValueListenableBuilder(
       valueListenable: ref.read(movieProvider(movieId)),

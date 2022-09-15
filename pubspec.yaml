@@ -71,6 +71,9 @@ dependencies:
   # collections
   collection: ^1.16.0
 
+  # navigation
+  beamer: ^1.5.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
