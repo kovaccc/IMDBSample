@@ -44,7 +44,7 @@ final routerDelegate = BeamerDelegate(
                 ? 1
                 : 0;
         return BeamPage(
-            key: const ValueKey(homePagePath),
+            key: const ValueKey(homePagePath), // same key, you don't want rebuild when back button is clicked
             title: homePagePath,
             child: BottomNavigationPage(initialIndex: initialIndex));
       },
