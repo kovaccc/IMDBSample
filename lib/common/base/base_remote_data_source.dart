@@ -23,8 +23,7 @@ class BaseRemoteDataSource {
               error.response?.statusCode == 401) {
             await _authDao.deleteJwtToken();
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              navigator.currentState?.pushNamedAndRemoveUntil(
-                  loginPagePath, (Route<dynamic> route) => false);
+              routerDelegate.beamToReplacementNamed(loginPagePath);
             });
           } else {
             switch (error.type) {

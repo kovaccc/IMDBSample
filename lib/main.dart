@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      key: navigator,
       theme: ThemeData(scaffoldBackgroundColor: ImdbColors.primaryBlack),
       supportedLocales: S.delegate.supportedLocales,
       title: 'IMDBSample',
