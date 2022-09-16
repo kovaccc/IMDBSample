@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+import 'package:beamer/beamer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,6 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/ui/elements/widgets/movie_information_item.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
+import 'package:imdb_sample/ui/resources/routes.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 
 import '../../../config/constants.dart';
@@ -21,7 +25,6 @@ class MovieDetailsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return ValueListenableBuilder(
       valueListenable: ref.read(movieProvider(movieId)),
       builder: (BuildContext context, Box<DBMovie> box, Widget? child) {
@@ -47,7 +50,12 @@ class MovieDetailsPage extends ConsumerWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pop();
+                        if (kIsWeb) {
+                          context.beamBack(); // save route in history
+                        } else {
+                          context.beamToReplacementNamed(
+                              homePagePath); // don't want save route on mobile
+                        }
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),

@@ -1,6 +1,5 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/common/enums/filter_movies.dart';
@@ -10,8 +9,6 @@ import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
-import '../../../../data/repositories/movies_repository.dart';
-import '../../../../di/injection.dart';
 import '../../../../generated/l10n.dart';
 import '../../../providers/auth/auth_state.dart';
 import '../../../resources/routes.dart';
@@ -95,12 +92,8 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
                   label: S.of(context).movies,
                   leadingIconPath: ImdbIcons.bottomNavMovies,
                   onPressed: () {
-                    Beamer.of(context).update(
-                      configuration: RouteInformation(
-                          location:
-                              FilterMovies.popular.getQueryTabPath()),
-                      rebuild: false,
-                    );
+                    context.beamToReplacementNamed(
+                        FilterMovies.popular.getQueryTabPath());
                     setState(() {
                       _selectedIndex = 0;
                     });
@@ -113,12 +106,8 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
                   label: S.of(context).favourites,
                   leadingIconPath: ImdbIcons.bottomNavFavourites,
                   onPressed: () {
-                    Beamer.of(context).update(
-                      configuration: RouteInformation(
-                          location:
-                          FilterMovies.favourite.getQueryTabPath()),
-                      rebuild: false,
-                    );
+                    context.beamToReplacementNamed(
+                        FilterMovies.favourite.getQueryTabPath());
                     setState(() {
                       _selectedIndex = 1;
                     });

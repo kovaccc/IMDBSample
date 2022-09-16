@@ -5,7 +5,6 @@ import 'package:imdb_sample/ui/elements/pages/login_page.dart';
 import 'package:imdb_sample/ui/elements/pages/movie_details_page.dart';
 
 import '../../di/injection.dart';
-import '../../generated/l10n.dart';
 import '../../ui/elements/pages/splash_page.dart';
 import 'package:beamer/beamer.dart';
 import '../../../common/enums/filter_movies.dart';
@@ -44,9 +43,11 @@ final routerDelegate = BeamerDelegate(
                 ? 1
                 : 0;
         return BeamPage(
-            key: const ValueKey(homePagePath), // same key, you don't want rebuild when back button is clicked
-            title: homePagePath,
-            child: BottomNavigationPage(initialIndex: initialIndex));
+            key: ValueKey(homePagePath.substring(1)),
+            // same key, you don't want rebuild when back button is clicked
+            title: homePagePath.substring(1),
+            child: BottomNavigationPage(initialIndex: initialIndex),
+        );
       },
       popularMovieDetailsPath: (context, state, data) {
         return getMovieDetailsPage(FilterMovies.popular, state);
