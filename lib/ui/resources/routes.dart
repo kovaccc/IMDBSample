@@ -44,8 +44,7 @@ final routerDelegate = BeamerDelegate(
                 ? 1
                 : 0;
         return BeamPage(
-            key: ValueKey(
-                "$homePagePath${S.current.queryTab(state.queryParameters[queryTab] ?? "")}"),
+            key: const ValueKey(homePagePath),
             title: homePagePath,
             child: BottomNavigationPage(initialIndex: initialIndex));
       },
