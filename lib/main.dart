@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
+import 'package:imdb_sample/ui/resources/fonts.dart';
 import 'package:imdb_sample/ui/resources/routes.dart';
 import 'package:imdb_sample/util/observers.dart';
 import 'config/flavor_config.dart';
@@ -22,7 +23,6 @@ void main() async {
 final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
-
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -40,7 +40,9 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      theme: ThemeData(scaffoldBackgroundColor: ImdbColors.primaryBlack),
+      theme: ThemeData(
+          scaffoldBackgroundColor: ImdbColors.primaryBlack,
+          fontFamily: ImdbFonts.sfProDisplay),
       supportedLocales: S.delegate.supportedLocales,
       title: 'IMDBSample',
       debugShowCheckedModeBanner: false,

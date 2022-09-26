@@ -1,7 +1,3 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/data/models/domain/movie.dart';
 import 'package:imdb_sample/data/repositories/movies_repository.dart';
@@ -15,7 +11,7 @@ class PopularMoviesNotifier extends StateNotifier<PopularMoviesState> {
       : super(const PopularMoviesState.initial(
             movies: <Movie>[], currentPage: 0, isLastPage: false));
 
-  void fetchNextPopularMovies(int pageKey) async {
+  Future<void> fetchNextPopularMovies(int pageKey) async {
     final nextPageKey = pageKey + 1;
     try {
       final popularMovies =

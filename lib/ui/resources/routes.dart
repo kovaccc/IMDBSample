@@ -96,5 +96,6 @@ BeamPage getMovieDetailsPage(FilterMovies type, BeamState state) {
       );
       return true;
     },
+
   );
 }

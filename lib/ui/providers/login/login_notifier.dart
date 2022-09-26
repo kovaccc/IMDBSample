@@ -11,7 +11,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
   LoginNotifier({required this.authRepository, required this.genresRepository})
       : super(const LoginState.initial());
 
-  void startLogin() async {
+  Future<void> startLogin() async {
     state = const LoginState.loading();
 
     await Future.delayed(const Duration(milliseconds: 3000));
