@@ -9,6 +9,7 @@ import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
+import '../../../../config/keys.dart';
 import '../../../../generated/l10n.dart';
 import '../../../providers/auth/auth_state.dart';
 import '../../../resources/routes.dart';
@@ -80,6 +81,7 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
         children: _pages,
       ),
       bottomNavigationBar: BottomAppBar(
+        key: K.bottomNavigation,
         color: ImdbColors.secondaryBlack,
         child: SizedBox(
           height: 60,

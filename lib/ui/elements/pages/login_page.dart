@@ -5,6 +5,7 @@ import 'package:imdb_sample/ui/providers/providers.dart';
 import 'package:imdb_sample/ui/resources/colors.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
+import '../../../config/keys.dart';
 import '../../../generated/l10n.dart';
 import '../../providers/login/login_state.dart';
 import '../../resources/routes.dart';
@@ -41,6 +42,7 @@ class LoginPage extends ConsumerWidget {
             height: ImdbPaddings(context).screenHeight * 0.1,
             width: ImdbPaddings(context).screenHeight * 0.2,
             child: TextButton(
+              key: K.loginButton,
               onPressed: () {
                 ref.read(loginNotifierProvider.notifier).startLogin();
               },

@@ -7,6 +7,7 @@ import 'package:imdb_sample/ui/providers/splash/splash_state.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
 
+import '../../../config/keys.dart';
 import '../../resources/routes.dart';
 
 class SplashPage extends ConsumerWidget {
@@ -32,6 +33,7 @@ class SplashPage extends ConsumerWidget {
     return Scaffold(
       body: Center(
         child: SvgPicture.asset(
+          key: K.qSplashLogo,
           ImdbIcons.imdbLogo,
           height: ImdbPaddings(context).screenWidth / 5,
           width: ImdbPaddings(context).screenWidth / 5,

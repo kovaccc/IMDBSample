@@ -38,7 +38,7 @@ void main() {
       });
 
       stateNotifierTest<LoginNotifier, LoginState>(
-        'Emits [LoginState.loading, LoginState.loaded] when data is fetched successfully',
+        'Emits [LoginState.loading, LoginState.loaded] when user is logged in successfully',
         build: () => LoginNotifier(
             authRepository: authRepository, genresRepository: genresRepository),
         setUp: () async {},
