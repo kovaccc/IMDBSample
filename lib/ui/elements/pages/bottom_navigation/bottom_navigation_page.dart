@@ -104,6 +104,7 @@ class _BottomNavigationPageState extends ConsumerState<BottomNavigationPage> {
               ),
               Expanded(
                 child: BottomBarItem(
+                  key: K.favouriteMoviesTab,
                   isSelected: _selectedIndex == 1 ? true : false,
                   label: S.of(context).favourites,
                   leadingIconPath: ImdbIcons.bottomNavFavourites,

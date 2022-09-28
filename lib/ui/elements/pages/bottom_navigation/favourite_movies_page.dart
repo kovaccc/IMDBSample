@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imdb_sample/common/base/persistable.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
+import '../../../../config/keys.dart';
 import '../../../../data/models/persistence/db_movie.dart';
 import '../../../../generated/l10n.dart';
 import '../../../resources/paddings.dart';
@@ -18,6 +19,7 @@ class FavouriteMoviesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      key: K.favouriteMoviesPage,
       body: SafeArea(
         child: Padding(
           padding: ImdbPaddings.horizontal16Padding,
@@ -45,6 +47,7 @@ class FavouriteMoviesPage extends ConsumerWidget {
                                 "$homePagePath$favouritePagePath/${favouriteMovies[index].id.toString()}");
                           },
                           child: MovieItem(
+                            key: Key("${favouriteMovies[index].title}_${S.of(context).favourites}"),
                             movie: favouriteMovies[index],
                           ),
                         );

@@ -20,20 +20,20 @@ void main() {
     },
   );
 
-  Future<void> addDelay(int ms) async {
-    await Future<void>.delayed(Duration(milliseconds: ms));
-  }
-
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  testWidgets('click to button login should navigate to main screen',
-      (tester) async {
-    app.main();
-    await tester.pumpAndSettle();
-    await addDelay(
-        4000); // Patrol does not require this line because it will wait until timeout to find item
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(K.loginButton));
-    await tester.pumpAndSettle();
-    expect(find.byKey(K.bottomNavigation), findsOneWidget);
-  });
+  // Future<void> addDelay(int ms) async {
+  //   await Future<void>.delayed(Duration(milliseconds: ms));
+  // }
+  //
+  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // testWidgets('click to button login should navigate to main screen',
+  //     (tester) async {
+  //   app.main();
+  //   await tester.pumpAndSettle();
+  //   await addDelay(
+  //       4000); // Patrol does not require this line because it will wait until timeout to find item
+  //   await tester.pumpAndSettle();
+  //   await tester.tap(find.byKey(K.loginButton));
+  //   await tester.pumpAndSettle();
+  //   expect(find.byKey(K.bottomNavigation), findsOneWidget);
+  // });
 }

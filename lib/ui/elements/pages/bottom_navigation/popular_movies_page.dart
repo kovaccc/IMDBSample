@@ -14,6 +14,7 @@ import 'package:imdb_sample/ui/resources/paddings.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 import 'package:imdb_sample/util/error_handler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import '../../../../config/keys.dart';
 import '../../../../generated/l10n.dart';
 import '../../../resources/routes.dart';
 import '../../widgets/dialogs.dart';
@@ -104,6 +105,7 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
       },
     );
     return Scaffold(
+      key: K.popularMoviesPage,
       body: SafeArea(
         child: Padding(
           padding: ImdbPaddings.horizontal16Padding,
@@ -115,6 +117,7 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
               ImdbPaddings(context).smallVerticalSizedBox(),
               Expanded(
                 child: PagedListView<int, Movie>.separated(
+                  key: K.popularMoviesPagedListView,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   pagingController: _pagingController,
@@ -130,6 +133,7 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
                                 "$homePagePath$popularPagePath/${movie.id.toString()}");
                           },
                           child: MovieItem(
+                            key: Key("${movie.title}_${S.of(context).popular}"),
                             movie: movie,
                           ),
                         );
