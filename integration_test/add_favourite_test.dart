@@ -27,6 +27,17 @@ void main() {
       await $(Key("Prey_${S.current.popular}")).$(InkWell).tap();
       await $(K.favouriteMoviesTab).tap();
       expect($($(Key("Prey_${S.current.favourites}"))).visible, true);
+
+      // you can always use tester in combination from widget_tester file provided by Flutter if PatrolTester does not have
+      // some functionality
+      // await $.tester.tap(find
+      //         .descendant(
+      //           of: find.byKey(Key("Prey_${S.current.popular}")),
+      //           matching: find.byType(InkWell),
+      //         )
+      //         .first);
+      // await $.tester.pumpAndSettle();
+      // expect($(Key("Prey_${S.current.favourites}")), findsNothing);
     },
   );
 
