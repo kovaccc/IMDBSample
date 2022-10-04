@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
-
 import 'package:beamer/beamer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +6,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:imdb_sample/ui/elements/widgets/movie_information_item.dart';
 import 'package:imdb_sample/ui/providers/providers.dart';
-import 'package:imdb_sample/ui/resources/routes.dart';
 import 'package:imdb_sample/ui/resources/text_styles.dart';
 
 import '../../../config/constants.dart';
+import '../../../config/keys.dart';
 import '../../../data/models/persistence/db_movie.dart';
 import '../../../generated/l10n.dart';
 import '../../resources/colors.dart';
@@ -31,6 +29,7 @@ class MovieDetailsPage extends ConsumerWidget {
         final movie = (box.get(movieId) as DBMovie).asDomain();
         return Scaffold(
           body: SafeArea(
+            key: K.movieDetailsPage,
             child: Column(
               children: [
                 Stack(
@@ -50,12 +49,7 @@ class MovieDetailsPage extends ConsumerWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        if (kIsWeb) {
-                          context.beamBack(); // save route in history
-                        } else {
-                          context.beamToReplacementNamed(
-                              homePagePath); // don't want save route on mobile
-                        }
+                        context.beamBack();
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),

@@ -12,4 +12,5 @@ class Keys {
   static const favouriteMoviesPage = Key("favouriteMoviesPage");
   static const favouriteMoviesTab = Key("favouriteMoviesTab");
   static const popularMoviesPagedListView = Key("popularMoviesPagedListView");
+  static const movieDetailsPage = Key("movieDetailsPage");
 }

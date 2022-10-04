@@ -43,10 +43,10 @@ final routerDelegate = BeamerDelegate(
                 ? 1
                 : 0;
         return BeamPage(
-            key: ValueKey(homePagePath.substring(1)),
-            // same key, you don't want rebuild when back button is clicked
-            title: homePagePath.substring(1),
-            child: BottomNavigationPage(initialIndex: initialIndex),
+          key: ValueKey(homePagePath.substring(1)),
+          // same key, you don't want rebuild when back button is clicked
+          title: homePagePath.substring(1),
+          child: BottomNavigationPage(initialIndex: initialIndex),
         );
       },
       popularMovieDetailsPath: (context, state, data) {
@@ -88,6 +88,7 @@ BeamPage getMovieDetailsPage(FilterMovies type, BeamState state) {
     title: movie?.title,
     child: MovieDetailsPage(movieId: int.tryParse(movieId ?? "") ?? 0),
     onPopPage: (context, delegate, _, page) {
+      context.beamBack();
       delegate.update(
         configuration: RouteInformation(
           location: type.getQueryTabPath(),
@@ -96,6 +97,5 @@ BeamPage getMovieDetailsPage(FilterMovies type, BeamState state) {
       );
       return true;
     },
-
   );
 }

@@ -13,6 +13,30 @@ void main() {
       expect($(K.qSplashLogo), findsOneWidget);
     },
   );
+
+  patrolTest(
+    'verify there is icon on splash screen',
+    ($) async {
+      await $.pumpWidgetAndSettle(const ProviderScope(child: MyApp()));
+      expect($(K.qSplashLogo), findsOneWidget);
+    },
+  );
+
+  patrolTest(
+    'throws exception when text is not visible on splash screen',
+    ($) async {
+      await $.pumpWidgetAndSettle(const ProviderScope(child: MyApp()));
+
+      await expectLater(
+        () => $('non-visible text').waitUntilVisible(),
+        throwsA(isA<WaitUntilVisibleTimeoutException>()),
+      );
+    },
+    config: const PatrolTestConfig(
+      visibleTimeout: Duration(milliseconds: 300),
+    ),
+  );
+
   testWidgets(
     'verify there is icon on splash screen',
     (tester) async {

@@ -7,7 +7,6 @@ import 'package:imdb_sample/main.dart' as app;
 import 'config.dart';
 
 void main() {
-
   patrolTest(
     'click to button login should navigate to main screen',
     config: patrolConfig,
@@ -28,10 +27,9 @@ void main() {
   // testWidgets('click to button login should navigate to main screen',
   //     (tester) async {
   //   app.main();
-  //   await tester.pumpAndSettle();
-  //   await addDelay(
-  //       4000); // Patrol does not require this line because it will wait until timeout to find item
-  //   await tester.pumpAndSettle();
+  //   await tester.pumpAndSettle(const Duration(
+  //       milliseconds:
+  //           5000)); // Patrol does not require this line because it will wait until timeout to find item
   //   await tester.tap(find.byKey(K.loginButton));
   //   await tester.pumpAndSettle();
   //   expect(find.byKey(K.bottomNavigation), findsOneWidget);

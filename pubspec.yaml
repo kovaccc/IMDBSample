@@ -74,14 +74,11 @@ dependencies:
   # navigation
   beamer: ^1.5.3
 
-  patrol: ^0.6.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  integration_test:
-    sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -97,6 +94,9 @@ dev_dependencies:
 
   mockito: ^5.1.0
   state_notifier_test: ^0.0.5
+  patrol: ^0.6.10
+  integration_test:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
