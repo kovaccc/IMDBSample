@@ -17,22 +17,22 @@ void main() {
     authRepository = AuthRepository(mockAuthLocalDataSource);
   });
 
+  void setupIsLoggedIn() {
+    when(mockAuthLocalDataSource.getJwtToken()).thenAnswer((_) {
+      return Constants.keyJwtToken;
+    });
+  }
+
+  void setupIsNotLoggedIn() {
+    when(mockAuthLocalDataSource.getJwtToken()).thenAnswer((_) {
+      return "";
+    });
+  }
+
   // Group tests by methods from FavoriteRepository
   group(
     'check user logged in tests',
     () {
-      void setupIsLoggedIn() {
-        when(mockAuthLocalDataSource.getJwtToken()).thenAnswer((_) {
-          return Constants.keyJwtToken;
-        });
-      }
-
-      void setupIsNotLoggedIn() {
-        when(mockAuthLocalDataSource.getJwtToken()).thenAnswer((_) {
-          return "";
-        });
-      }
-
       test('should return true when AuthLocalDataSource returns jwt token',
           () async {
         setupIsLoggedIn();

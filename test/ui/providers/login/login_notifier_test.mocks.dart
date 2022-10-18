@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
+import 'package:imdb_sample/data/models/domain/genre.dart' as _i5;
 import 'package:imdb_sample/data/repositories/auth_repository.dart' as _i2;
 import 'package:imdb_sample/data/repositories/genres_repository.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
@@ -52,8 +53,8 @@ class MockGenresRepository extends _i1.Mock implements _i4.GenresRepository {
   }
 
   @override
-  _i3.Future<void> refreshGenres() => (super.noSuchMethod(
-      Invocation.method(#refreshGenres, []),
-      returnValue: _i3.Future<void>.value(),
-      returnValueForMissingStub: _i3.Future<void>.value()) as _i3.Future<void>);
+  _i3.Future<List<_i5.Genre>> refreshGenres() =>
+      (super.noSuchMethod(Invocation.method(#refreshGenres, []),
+              returnValue: _i3.Future<List<_i5.Genre>>.value(<_i5.Genre>[]))
+          as _i3.Future<List<_i5.Genre>>);
 }
