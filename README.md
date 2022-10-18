@@ -37,7 +37,7 @@ class GenresRepository implements IGenresRepository {
 }
 ```
 - Write a test for the class and check if the results are correct by using the top-level expect function
-- If you are writing tests for classes that fetch data live web services or databases you should "mock" these dependencies to make execution of these tests faster and avoid unexpected results. 
+- If you are writing tests for classes that fetch data from live web services or databases you should "mock" these dependencies to make execution of these tests faster and avoid unexpected results. 
 ```sh
 @GenerateMocks([GenresLocalDataSource, GenresRemoteDataSource])
 void main() {
