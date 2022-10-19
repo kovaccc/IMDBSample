@@ -80,3 +80,66 @@ void main() {
 ```sh
 flutter test test/data/repositories/genres_repository_test.dart
 ```
+
+### Patrol
+It is Flutter-first UI testing framework. It consists of the patrol package (https://pub.dev/packages/patrol), which provides a powerful API for testers and developers to use, and patrol_cli (https://pub.dev/packages/patrol_cli), the command-line tool that assists in test development and execution. Integration testing with the built-in integration_test package is quite difficult to implement and not all features are included, especially accessing features of the platform such as clicking on notifications, granting permissions and similar.
+
+To add this package and start using it run the following command:
+```sh
+$ flutter pub add patrol --dev
+```
+### Widget testing
+To test widget classes you need additional tools provided by flutter_test package:
+- The WidgetTester allows building and interacting with widgets in a test environment
+- Instead of test() use testWidgets() function which creates a new WidgetTester for each test
+- The Finder classes allow searching for widgets in the test environment
+- Matcher constants help verifying if a Finder locates a widget in the test environment
+
+Procedure is similar to creating test for non-widget classes with some differences:
+- When you create widget best way is to define unique key for it
+```sh
+        child: SvgPicture.asset(
+          key: K.qSplashLogo,
+          ImdbIcons.imdbLogo,
+          height: ImdbPaddings(context).screenWidth / 5,
+          width: ImdbPaddings(context).screenWidth / 5,
+        ),
+```
+- Consider having a file where all keys are defined 
+```sh
+typedef K = Keys;
+
+class Keys {
+  const Keys();
+
+  static const loginButton = Key("loginButton");
+  static const qSplashLogo = Key("qSplashLogo");
+}
+```
+- Use testWidgets function and parameter WidgetTester to build and render widget with pumpWidget method
+- Use pump to schedule a frame and trigger rebuild of the widget 
+- Use pumpAndSettle() which repeatedly calls pump() to wait for all animations to complete. It should be called after actions with standard animations like pumpWidget(), every tap() method, entering text in form fields etc.
+- Use find() to create Finder and then you can get widget by key, type, text etc.
+- To verify that widget appeared on the screen use Matcher constants (e.g. findsOneWidget)
+```sh
+  testWidgets(
+    'verify there is icon on splash screen',
+    (tester) async {
+      await tester.pumpWidget(const ProviderScope(child: MyApp()));
+      await tester.pumpAndSettle();
+      expect(find.byKey(K.qSplashLogo), findsOneWidget);
+    },
+  );
+```
+- If you want to use Patrol for Widget testing instead of using testWidgets() you need to use patrolTest() function to get PatrolTester by convention named $ in callback
+- Patrol framework has one method for doing both pumpWidget() and pumpAndSettle()
+```sh
+  patrolTest(
+    'verify there is icon on splash screen',
+    ($) async {
+      await $.pumpWidgetAndSettle(const ProviderScope(child: MyApp()));
+      expect($(K.qSplashLogo), findsOneWidget);
+    },
+  );
+```
+- Widget testing is done in same way like Unit testing
