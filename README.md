@@ -171,10 +171,26 @@ $ patrol bootstrap
 ```
 - This command will add necessary packages, create needed file test_driver/integration_test.dart and its content, and add additional default test
 
-- To run integration test using following command:
+- To run integration test use following command:
 ```sh
 patrol drive -t integration_test/details_back_pressed_test.dart 
 ```
+- Patrol is intended to use for iOS and Android native platforms, if you want to run tests on web you will need to follow steps from Flutter official documentation (https://docs.flutter.dev/cookbook/testing/integration/introduction under "5b. Web" section) and use testWidgets() instead Patrol
+- When you installing ChromeDriver install version that is compatible with your Chrome Browser otherwise framework will throw SessionNotCreatedException
+- Steps to run it on Web are next:
+    - Launch chromedriver
+    ```sh
+        {path_to_chrome_driver_file} --port=4444
+    ```
+    
+    - Run test
+     ```sh
+        flutter drive \
+        --driver=test_driver/integration_test.dart \
+        --target=integration_test/login_test.dart \
+  -d chrome
+    ```
+
 - Next integration test is example that shows one of the flows in application (Button tapping, scrolling PagedListView)
 - First part of flow is done with PatrolTester and second part with WidgetTester 
 - From example it can be seen that writing test with patrol is much more straightforward than writing it with standard test methods provided by Flutter SDK 
@@ -286,3 +302,70 @@ await $(K.loginButton).tap(visibleTimeout: Duration(seconds: 10));
   );
 ```
 - One note: with scrollUntilVisible() from WidgetTester it is not possible to scroll PagedListView and potentialy other widgets and with Patrol scrollUntilExists() there is no similar issues. Also there could be issues with finding items when running tests on Web, at least it was noticed at Chrome browser
+
+```sh
+    await tester.scrollUntilVisible(
+      find.byKey(Key("Prey_${S.current.popular}")),
+      500.0,
+      scrollable: find.byType(PagedListView<int, Movie>), // _CastError -> does not work
+    );
+```
+
+- On next image there is a list of available features that can be tested with Patrol NativeAutomator
+
+<img width="1135" alt="image" src="https://user-images.githubusercontent.com/75457058/196810054-f59ad714-5ba3-4368-b3b6-1b9a92f0ca3c.png">
+
+- Bluetooth does not have API method in Patrol for Android but can be tested by manually selecting it in quick settings 
+- Extra check is added for Android version because settings could look different on other versions and manually adjusting the code is needed
+
+```sh
+     patrolTest(
+    'taps around',
+    config: patrolConfig,
+    nativeAutomation: true,
+    ($) async {
+      if (Platform.isAndroid) {
+        var androidInfo = await DeviceInfoPlugin().androidInfo;
+        var release = androidInfo.version.release;
+        if (release == "12") {
+          // enable and disable bluetooth
+          await $.native.openQuickSettings();
+          await $.native.tap(Selector(text: 'Bluetooth'));
+          await $.native.tap(Selector(text: 'Off'));
+          await Future.delayed(const Duration(seconds: 2));
+          await $.native.tap(Selector(text: 'On'));
+          await $.native.tap(Selector(text: 'Done'));
+          await $.native.pressBack();
+          await $.native.pressBack();
+        }
+      }
+    }
+```
+
+- Unfortunately, same code is not working for enabling/disabling Airplane mode and Location since it is not finding targeted text
+- There is API-s for this features available for iOS but Control Center is not enabled on simulator just on real device 
+
+```sh
+ if(Platform.isIOS) {
+        await $.native.enableBluetooth();
+        await Future.delayed(const Duration(seconds: 2));
+        await $.native.disableBluetooth();
+        await $.native.enableAirplaneMode();
+        await Future.delayed(const Duration(seconds: 2));
+        await $.native.enableAirplaneMode();
+      }
+```
+
+- With Patrol is also possible to test push notifications. When accessing notification with method tapOnNotificationByIndex() index is starting from bottom to top
+```sh
+     await $.native.openNotifications();
+      final notifications = await $.native.getNotifications();
+      $.log('Found ${notifications.length} notifications');
+      notifications.forEach($.log);
+      // from bottom to top
+      await $.native.tapOnNotificationByIndex(2);
+```
+
+- There is a lot more great features that can be used when writing integration tests like permission handling, select accuracy if permission prompt is location, interacting with WebView and much more. More examples can be found at Patrol official github repository https://github.com/leancodepl/patrol/tree/master/packages/patrol/example/integration_test 
+
+- For more information and guides about this package you can check official documentation https://patrol.leancode.co/ 
