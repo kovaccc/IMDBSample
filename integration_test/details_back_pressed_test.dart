@@ -30,9 +30,9 @@ void main() {
       await $(K.popularMoviesPage).waitUntilVisible();
 
       // click on one of the movies to open details
-      await $.scrollUntilExists(finder: $(Key("Prey_${S.current.popular}")));
-      expect($(Key("Prey_${S.current.popular}")).visible, true);
-      await $(Key("Prey_${S.current.popular}")).tap();
+      await $.scrollUntilExists(finder: $(Key("Togo_${S.current.popular}")));
+      expect($(Key("Togo_${S.current.popular}")).visible, true);
+      await $(Key("Togo_${S.current.popular}")).tap();
       expect($(K.movieDetailsPage), findsOneWidget);
       if(Platform.isAndroid) {
         await $.native.pressBack();

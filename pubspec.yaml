@@ -73,6 +73,7 @@ dependencies:
 
   # navigation
   beamer: ^1.5.3
+  device_info_plus: ^7.0.0
 
 
 dev_dependencies:

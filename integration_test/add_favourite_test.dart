@@ -12,7 +12,7 @@ import 'config.dart';
 
 void main() {
   patrolTest(
-    'when toggle favourite for item with title "Prey" in popular movies list it should appear in favourites list',
+    'when toggle favourite for item with title "Togo" in popular movies list it should appear in favourites list',
     config: patrolConfig,
     nativeAutomation: true, // run on native device
     ($) async {
@@ -22,11 +22,11 @@ void main() {
       await $(K.loginButton).tap();
       await $(K.popularMoviesPage).waitUntilVisible();
 
-      await $.scrollUntilExists(finder: $(Key("Prey_${S.current.popular}")));
-      expect($(Key("Prey_${S.current.popular}")).visible, true);
-      await $(Key("Prey_${S.current.popular}")).$(InkWell).tap();
+      await $.scrollUntilExists(finder: $(Key("Togo_${S.current.popular}")));
+      expect($(Key("Togo_${S.current.popular}")).visible, true);
+      await $(Key("Togo_${S.current.popular}")).$(InkWell).tap();
       await $(K.favouriteMoviesTab).tap();
-      expect($($(Key("Prey_${S.current.favourites}"))).visible, true);
+      expect($($(Key("Togo_${S.current.favourites}"))).visible, true);
 
       // you can always use tester in combination from widget_tester file provided by Flutter if PatrolTester does not have
       // some functionality
