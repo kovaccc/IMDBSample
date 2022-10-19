@@ -171,6 +171,10 @@ $ patrol bootstrap
 ```
 - This command will add necessary packages, create needed file test_driver/integration_test.dart and its content, and add additional default test
 
+- To run integration test using following command:
+```sh
+patrol drive -t integration_test/details_back_pressed_test.dart 
+```
 - Next integration test is example that shows one of the flows in application (Button tapping, scrolling PagedListView)
 - First part of flow is done with PatrolTester and second part with WidgetTester 
 - From example it can be seen that writing test with patrol is much more straightforward than writing it with standard test methods provided by Flutter SDK 
@@ -252,3 +256,33 @@ const patrolConfig = PatrolTestConfig(
 ```sh
 await $(K.loginButton).tap(visibleTimeout: Duration(seconds: 10));
 ```
+
+- Patrol also supports native capabilites for iOS and Android, and enables interaction with the OS where Flutter app is running on
+- For native interactions it is using Native Automator available as $.native 
+- Be careful to add condition if native feature is only available on one Platform like in next code
+```sh
+ patrolTest(
+    'when pressing native back button in android it should pop to BottomNavigationPage',
+    config: patrolConfig,
+    nativeAutomation: true, // run on native device
+    ($) async {
+      app.main();
+      // first login and enter popular movies page
+      await $(K.loginButton).waitUntilVisible();
+      await $(K.loginButton).tap();
+      await $(K.popularMoviesPage).waitUntilVisible();
+
+      // click on one of the movies to open details
+      await $.scrollUntilExists(finder: $(Key("Prey_${S.current.popular}")));
+      expect($(Key("Prey_${S.current.popular}")).visible, true);
+      await $(Key("Prey_${S.current.popular}")).tap();
+      expect($(K.movieDetailsPage), findsOneWidget);
+      if(Platform.isAndroid) {
+        await $.native.pressBack();
+        await $(K.bottomNavigation).waitUntilVisible();
+        expect($(K.bottomNavigation), findsOneWidget);
+      }
+    },
+  );
+```
+- One note: with scrollUntilVisible() from WidgetTester it is not possible to scroll PagedListView and potentialy other widgets and with Patrol scrollUntilExists() there is no similar issues. Also there could be issues with finding items when running tests on Web, at least it was noticed at Chrome browser
