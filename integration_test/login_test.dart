@@ -13,16 +13,12 @@ void main() {
     nativeAutomation: true, // run on native device
     ($) async {
       app.main();
-      await $(K.loginButton).waitUntilVisible();
+      // await $(K.loginButton).waitUntilVisible(); This line is not needed
       await $(K.loginButton).tap();
       expect($(K.bottomNavigation), findsOneWidget);
     },
   );
 
-  // Future<void> addDelay(int ms) async {
-  //   await Future<void>.delayed(Duration(milliseconds: ms));
-  // }
-  //
   // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   // testWidgets('click to button login should navigate to main screen',
   //     (tester) async {

@@ -1,9 +1,10 @@
 import 'package:imdb_sample/data/local/sources/genres_local_data_source.dart';
+import 'package:imdb_sample/data/models/domain/genre.dart';
 import 'package:imdb_sample/data/remote/sources/genres_remote_data_source.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class IGenresRepository {
-  Future<void> refreshGenres();
+  Future<List<Genre>> refreshGenres();
 }
 
 @Singleton(as: IGenresRepository)
@@ -14,8 +15,8 @@ class GenresRepository implements IGenresRepository {
   GenresRepository(this._genresLocalDataSource, this._genresRemoteDataSource);
 
   @override
-  Future<void> refreshGenres() async {
+  Future<List<Genre>> refreshGenres() async {
     final genresResponse = await _genresRemoteDataSource.getGenres();
-    await _genresLocalDataSource.saveGenres(genresResponse.genres);
+    return await _genresLocalDataSource.saveGenres(genresResponse.genres);
   }
 }

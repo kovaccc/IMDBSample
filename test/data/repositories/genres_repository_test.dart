@@ -42,7 +42,6 @@ void main() {
         .thenThrow(DioError(requestOptions: RequestOptions(path: '')));
   }
 
-  // Group tests by methods from RecipeRepository
   group('refresh genres tests', () {
     test(
       'should call genresRemoteDataSource.getGenres',
