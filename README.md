@@ -37,7 +37,7 @@ class GenresRepository implements IGenresRepository {
 }
 ```
 - Write a test for the class and check if the results are correct by using the top-level expect function
-- If you are writing tests for classes that fetch data from live web services or databases you should "mock" these dependencies to make execution of these tests faster and avoid unexpected results. 
+- If you are writing tests for classes that fetch data live web services or databases you should "mock" these dependencies to make execution of these tests faster and avoid unexpected results. 
 ```sh
 @GenerateMocks([GenresLocalDataSource, GenresRemoteDataSource])
 void main() {
@@ -81,13 +81,7 @@ void main() {
 flutter test test/data/repositories/genres_repository_test.dart
 ```
 
-### Patrol
-It is Flutter-first UI testing framework. It consists of the patrol package (https://pub.dev/packages/patrol), which provides a powerful API for testers and developers to use, and patrol_cli (https://pub.dev/packages/patrol_cli), the command-line tool that assists in test development and execution. Integration testing with the built-in integration_test package is quite difficult to implement and not all features are included, especially accessing features of the platform such as clicking on notifications, granting permissions and similar.
 
-To add this package and start using it run the following command:
-```sh
-$ flutter pub add patrol --dev
-```
 ### Widget testing
 To test widget classes you need additional tools provided by flutter_test package:
 - The WidgetTester allows building and interacting with widgets in a test environment
@@ -131,8 +125,23 @@ class Keys {
     },
   );
 ```
-- If you want to use Patrol for Widget testing instead of using testWidgets() you need to use patrolTest() function to get PatrolTester by convention named $ in callback
+- Widget test is runned with the same command like Unit testing
+
+### Integration testing
+Unit and widget tests are helpful for testing individual classes, functions, or widgets. Tasks that test how these components work together are performed with integration tests. There is a new framework for integration testing created by LeanCode which will be described in next chapter.
+
+#### Patrol
+It is Flutter-first UI testing framework. It consists of the patrol package (https://pub.dev/packages/patrol), which provides a powerful API for testers and developers to use, and patrol_cli (https://pub.dev/packages/patrol_cli), the command-line tool that assists in test development and execution. Integration testing with the built-in integration_test package is quite difficult to implement and not all features are included, especially accessing features of the platform such as clicking on notifications, granting permissions and similar.
+
+To add this package and start using it run the following command:
+```sh
+$ flutter pub add patrol --dev
+```
+
+- If you want to use Patrol for Widget testing instead of using testWidgets() you need to use patrolTest() function to get more powerful PatrolTester by convention named $ in callback
 - Patrol framework has one method for doing both pumpWidget() and pumpAndSettle()
+- Custom finders enable accessing widgets with $ by key (recommended), type or text that widgets contain
+- Running this test is in the same way as normal widget test
 ```sh
   patrolTest(
     'verify there is icon on splash screen',
@@ -142,4 +151,104 @@ class Keys {
     },
   );
 ```
-- Widget testing is runned with same command like Unit testing
+
+- In order to be able to use command-line tool patrol_cli in terminal follow next steps:
+  - activate patrol_cli  
+    ```sh
+    dart pub global activate patrol_cli
+    ```
+  - add appropriate directories to PATH
+    ```sh
+    export PATH="$PATH":"$HOME/.pub-cache/bin"
+    export ANDROID_HOME=/Users/mkovacevic/Library/Android/sdk
+    export PATH=$ANDROID_HOME/platform-tools:$PATH
+    export PATH=$ANDROID_HOME/tools:$PATH
+    ```
+    
+- To setup Patrol for integration tests run following command:
+```sh
+$ patrol bootstrap
+```
+- This command will add necessary packages, create needed file test_driver/integration_test.dart and its content, and add additional default test
+
+- Next integration test is example that shows one of the flows in application (Button tapping, scrolling PagedListView)
+- First part of flow is done with PatrolTester and second part with WidgetTester 
+- From example it can be seen that writing test with patrol is much more straightforward than writing it with standard test methods provided by Flutter SDK 
+- Accessing nested InkWell widget is much easier with Patrol and pumpAndSettle() is not needed after every interaction with UI what is the case with WidgetTester
+
+```sh
+patrolTest(
+    'when toggle favourite for item with title "Prey" in popular movies list it should appear in favourites list',
+    config: patrolConfig,
+    nativeAutomation: true, // run on native device
+    ($) async {
+      app.main();
+      // first login and enter popular movies page
+      await $(K.loginButton).waitUntilVisible();
+      await $(K.loginButton).tap();
+      await $(K.popularMoviesPage).waitUntilVisible();
+
+      await $.scrollUntilExists(finder: $(Key("Prey_${S.current.popular}")));
+      expect($(Key("Prey_${S.current.popular}")).visible, true);
+      await $(Key("Prey_${S.current.popular}")).$(InkWell).tap();
+      await $(K.favouriteMoviesTab).tap();
+      expect($($(Key("Prey_${S.current.favourites}"))).visible, true);
+
+      // you can always use PatrolTester in combination with WidgetTester provided by Flutter if 
+      // some functionality
+      // await $.tester.tap(find
+      //         .descendant(
+      //           of: find.byKey(Key("Prey_${S.current.popular}")),
+      //           matching: find.byType(InkWell),
+      //         )
+      //         .first);
+      // await $.tester.pumpAndSettle();
+      // expect($(Key("Prey_${S.current.favourites}")), findsNothing);
+    },
+  );
+```
+
+- Next example shows how await keyword has different behaviour with patrol and widget tester
+```sh
+void main() {
+  patrolTest(
+    'click to button login should navigate to main screen',
+    config: patrolConfig,
+    nativeAutomation: true, // run on native device
+    ($) async {
+      app.main();
+      // await $(K.loginButton).waitUntilVisible(); This line is not needed
+      await $(K.loginButton).tap();
+      expect($(K.bottomNavigation), findsOneWidget);
+    },
+  );
+
+  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // testWidgets('click to button login should navigate to main screen',
+  //     (tester) async {
+  //   app.main();
+  //   await tester.pumpAndSettle(const Duration(
+  //       milliseconds:
+  //           5000)); // Patrol does not require this line because it will wait until timeout to find item
+  //   await tester.tap(find.byKey(K.loginButton));
+  //   await tester.pumpAndSettle();
+  //   expect(find.byKey(K.bottomNavigation), findsOneWidget);
+  // });
+}
+```
+- testWidgets will immediately attempt to click loginButton and if it is not visible on the screen it will throw exception, that is why delay is needed in pumpAndSettle() method
+- patrolTest doesn't need delays it is all handled by await keyword. It attempts to find loginButton on the screen and if it is not visible immediately it keeps trying until it finds it or throws an exception if it reaches timeout 
+- Timeout can be set globally in configurations
+```sh
+const patrolConfig = PatrolTestConfig(
+    appName: 'IMDBSample',
+    packageName: 'com.matej.imdb_sample.imdb_sample',
+    bundleId: 'com.matej.imdb_sample.imdb_sample',
+    visibleTimeout: Duration(seconds: 10),
+    settleTimeout: Duration(seconds: 10),
+    existsTimeout: Duration(seconds: 10));
+```
+- Timeout can also be set at same place where you call method on widget
+```sh
+await $(K.loginButton).tap(visibleTimeout: Duration(seconds: 10));
+```
