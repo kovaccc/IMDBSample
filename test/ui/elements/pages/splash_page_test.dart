@@ -15,14 +15,6 @@ void main() {
   );
 
   patrolTest(
-    'verify there is icon on splash screen',
-    ($) async {
-      await $.pumpWidgetAndSettle(const ProviderScope(child: MyApp()));
-      expect($(K.qSplashLogo), findsOneWidget);
-    },
-  );
-
-  patrolTest(
     'throws exception when text is not visible on splash screen',
     ($) async {
       await $.pumpWidgetAndSettle(const ProviderScope(child: MyApp()));
