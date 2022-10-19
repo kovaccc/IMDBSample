@@ -44,7 +44,7 @@ void main() {
   // Future<void> addDelay(int ms) async {
   //   await Future<void>.delayed(Duration(milliseconds: ms));
   // }
-
+  //
   // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   // testWidgets(
   //     'when toggle favourite for item with title "Prey" in popular movies list it should appear in favourites list',
@@ -67,13 +67,13 @@ void main() {
   //     500.0,
   //     scrollable: find.byType(PagedListView<int, Movie>), // _CastError -> does not work
   //   );
-    // await tester.tap(find
-    //     .descendant(
-    //       of: find.byKey(Key("Prey_${S.current.popular}")),
-    //       matching: find.byType(InkWell),
-    //     )
-    //     .first);
-    // await tester.tap(find.byKey(K.favouriteMoviesTab));
-    // expect(find.byKey(Key("Prey_${S.current.favourites}")), findsOneWidget);
+  //   await tester.tap(find
+  //       .descendant(
+  //         of: find.byKey(Key("Prey_${S.current.popular}")),
+  //         matching: find.byType(InkWell),
+  //       )
+  //       .first);
+  //   await tester.tap(find.byKey(K.favouriteMoviesTab));
+  //   expect(find.byKey(Key("Prey_${S.current.favourites}")), findsOneWidget);
   // });
 }
