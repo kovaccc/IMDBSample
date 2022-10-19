@@ -142,4 +142,4 @@ class Keys {
     },
   );
 ```
-- Widget testing is done in same way like Unit testing
+- Widget testing is runned with same command like Unit testing
