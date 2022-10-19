@@ -37,4 +37,21 @@ class PopularMoviesNotifier extends StateNotifier<PopularMoviesState> {
       }
     }
   }
+
+  Future<void> fetchFirstPage() async {
+    try {
+      final popularMovies = await moviesRepository.fetchPopularMoviesPage(1);
+      state = PopularMoviesState.loaded(
+          movies: popularMovies, currentPage: 1, isLastPage: false);
+    } catch (error) {
+      if (error is Exception) {
+        final persistMovies = moviesRepository.getPersistPopularMoviesByPage(1);
+        state = PopularMoviesState.error(
+            movies: persistMovies,
+            currentPage: 2,
+            isLastPage: false,
+            error: error);
+      }
+    }
+  }
 }

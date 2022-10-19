@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
+import 'package:imdb_sample/data/repositories/movies_repository.dart';
+import 'package:imdb_sample/di/injection.dart';
 import 'package:patrol/patrol.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,7 +18,6 @@ import 'config.dart';
 import 'config.dart';
 
 void main() {
-  // Neither with patrol or integration test from SDK tap on list item won't work on web (key can't be found)
   patrolTest(
     'when pressing native back button in android it should pop to BottomNavigationPage',
     config: patrolConfig,
@@ -31,16 +34,45 @@ void main() {
       expect($(Key("Prey_${S.current.popular}")).visible, true);
       await $(Key("Prey_${S.current.popular}")).tap();
       expect($(K.movieDetailsPage), findsOneWidget);
-      await $.native.pressBack();
-      await $(K.bottomNavigation).waitUntilVisible();
-      expect($(K.bottomNavigation), findsOneWidget);
+      if(Platform.isAndroid) {
+        await $.native.pressBack();
+        await $(K.bottomNavigation).waitUntilVisible();
+        expect($(K.bottomNavigation), findsOneWidget);
+      }
     },
   );
+
   //
+  // // Neither with patrol or integration test from SDK tap on list item won't work on web (key can't be found)
+  // patrolTest(
+  //   'when pressing native back button in favourite tab on web it should pop to BottomNavigationPage',
+  //   config: patrolConfig,
+  //   nativeAutomation: true, // run on native device
+  //       ($) async {
+  //     app.main();
+  //     // first login and enter popular movies page
+  //     await $(K.loginButton).waitUntilVisible();
+  //     await $(K.loginButton).tap();
+  //     await $(K.popularMoviesPage).waitUntilVisible();
+  //
+  //     await $(K.favouriteMoviesTab).tap();
+  //
+  //     // click on one of the movies to open details
+  //     await $.scrollUntilExists(finder: $(Key("Prey_${S.current.popular}")));
+  //     expect($(Key("Prey_${S.current.popular}")).visible, true);
+  //     await $(Key("Prey_${S.current.popular}")).tap();
+  //     expect($(K.movieDetailsPage), findsOneWidget);
+  //     await $.native.pressBack();
+  //     await $(K.bottomNavigation).waitUntilVisible();
+  //     expect($(K.bottomNavigation), findsOneWidget);
+  //   },
+  // );
+
+
   // Future<void> addDelay(int ms) async {
   //   await Future<void>.delayed(Duration(milliseconds: ms));
   // }
-
+  //
   // final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   //
   // testWidgets(
@@ -52,7 +84,12 @@ void main() {
   //   await tester.pumpAndSettle(const Duration(milliseconds: 4000));
   //   expect(find.byKey(K.bottomNavigation), findsOneWidget);
   //   await tester.pumpAndSettle();
-  //   await tester.ensureVisible(find.byKey(Key("Avatar_${S.current.popular}")));
+  //   await tester.scrollUntilVisible(
+  //     find.byKey(Key("Avatar_${S.current.popular}")),
+  //     500,
+  //     scrollable: find.byKey(K.popularMoviesListView), // ListView is not a subtype of Scrollable error
+  //   );
+  //   await tester.pumpAndSettle();
   //   await tester.tap(find.byKey(Key("Avatar_${S.current.popular}")));
   //   await tester.pumpAndSettle(const Duration(milliseconds: 2000));
   //   expect(find.byKey(K.movieDetailsPage), findsOneWidget);

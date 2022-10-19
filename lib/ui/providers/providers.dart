@@ -46,14 +46,25 @@ final splashNotifierProvider =
   },
 );
 
+// final popularMoviesNotifierProvider = StateNotifierProvider.autoDispose<
+//     PopularMoviesNotifier, PopularMoviesState>(
+//   (ref) {
+//     return PopularMoviesNotifier(
+//       moviesRepository: getIt<IMoviesRepository>() as MoviesRepository,
+//     );
+//   },
+// );
+
 final popularMoviesNotifierProvider = StateNotifierProvider.autoDispose<
     PopularMoviesNotifier, PopularMoviesState>(
   (ref) {
     return PopularMoviesNotifier(
       moviesRepository: getIt<IMoviesRepository>() as MoviesRepository,
-    );
+    )..fetchFirstPage();
   },
 );
+
+
 
 final movieDetailsNotifierProvider =
     StateNotifierProvider.autoDispose<MovieDetailsNotifier, MovieDetailsState>(
