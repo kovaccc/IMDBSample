@@ -214,8 +214,7 @@ patrolTest(
       await $(K.favouriteMoviesTab).tap();
       expect($($(Key("Prey_${S.current.favourites}"))).visible, true);
 
-      // you can always use PatrolTester in combination with WidgetTester provided by Flutter if 
-      // some functionality
+      // you can always use PatrolTester in combination with WidgetTester provided by Flutter SDK
       // await $.tester.tap(find
       //         .descendant(
       //           of: find.byKey(Key("Prey_${S.current.popular}")),
