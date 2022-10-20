@@ -18,7 +18,7 @@ dev_dependencies:
 ```
 - Create a test file in test folder located at the root of your Flutter application or package, and it should always end with _test.dart
 
-<img width="350" alt="image" src="https://user-images.githubusercontent.com/75457058/196558398-6728b31f-e859-42be-9e18-968478c3c250.png">
+<img width="370" alt="image" src="https://user-images.githubusercontent.com/75457058/196960162-ffd75c6a-6e01-40de-bdf0-72d747b49dd0.png">
 
 - Create a class to test
 ```sh
