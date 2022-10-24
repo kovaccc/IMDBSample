@@ -9,7 +9,7 @@ class GenresLocalDataSource {
 
   GenresLocalDataSource(this._genreDao);
 
-  Future<void> saveGenres(List<Genre> genres) async {
+  Future<List<Genre>> saveGenres(List<Genre> genres) async {
     for (var genre in genres) {
       final dbGenre = _genreDao.getGenre(genre.id);
       if (dbGenre == null) {
@@ -19,6 +19,7 @@ class GenresLocalDataSource {
         await _genreDao.updateGenre(dbGenre);
       }
     }
+    return getGenres();
   }
 
   List<Genre> getGenres() {

@@ -31,6 +31,10 @@ class MovieDao {
         .toList();
   }
 
+  List<DBMovie> getAllMovies() {
+    return movieBox.values.toList();
+  }
+
   DBMovie? getMovie(int id) {
     return movieBox.get(id);
   }

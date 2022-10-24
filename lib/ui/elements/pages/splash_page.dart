@@ -1,36 +1,42 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:imdb_sample/ui/elements/pages/bottom_navigation/bottom_navigation_page.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:imdb_sample/ui/providers/providers.dart';
+import 'package:imdb_sample/ui/providers/splash/splash_state.dart';
 import 'package:imdb_sample/ui/resources/icons.dart';
 import 'package:imdb_sample/ui/resources/paddings.dart';
-import '../../blocs/splash/splash_bloc.dart';
-import 'login_page.dart';
 
-class SplashPage extends StatelessWidget {
-  static const String id = "/splash_page";
+import '../../../config/keys.dart';
+import '../../resources/routes.dart';
 
+class SplashPage extends ConsumerWidget {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocListener<SplashBloc, SplashState>(
-      listener: (context, state) {
-        if (state is SplashLoginSuccess) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              BottomNavigationPage.id, (route) => false);
-        } else {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil(LoginPage.id, (route) => false);
-        }
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<SplashState>(
+      splashNotifierProvider,
+      (SplashState? previousState, SplashState newState) {
+        newState.maybeMap(
+          orElse: () {},
+          loaded: (_) {
+            context.beamToReplacementNamed(homePagePath);
+          },
+          error: (_) {
+            context.beamToReplacementNamed(loginPagePath);
+          },
+        );
       },
-      child: Scaffold(
-        body: Center(
-          child: SvgPicture.asset(
-            ImdbIcons.imdbLogo,
-            height: ImdbPaddings(context).screenWidth / 5,
-            width: ImdbPaddings(context).screenWidth / 5,
-          ),
+    );
+
+    return Scaffold(
+      body: Center(
+        child: SvgPicture.asset(
+          key: K.qSplashLogo,
+          ImdbIcons.imdbLogo,
+          height: ImdbPaddings(context).screenWidth / 5,
+          width: ImdbPaddings(context).screenWidth / 5,
         ),
       ),
     );

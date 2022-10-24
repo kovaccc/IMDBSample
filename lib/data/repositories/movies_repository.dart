@@ -15,7 +15,7 @@ abstract class IMoviesRepository {
 
   Future<PopularMoviesResponse> getRemoteMoviesByPage(int page);
 
-  Future<Movie?> toggleFavourite(Movie movie);
+  Future<Movie?> toggleFavourite(int movieId);
 
   ValueListenable<Box<DBMovie>> getMovieListenable(int id);
 
@@ -48,8 +48,8 @@ class MoviesRepository implements IMoviesRepository {
   }
 
   @override
-  Future<Movie?> toggleFavourite(Movie movie) async {
-    return await _moviesLocalDataSource.toggleFavourite(movie);
+  Future<Movie?> toggleFavourite(int movieId) async {
+    return await _moviesLocalDataSource.toggleFavourite(movieId);
   }
 
   @override

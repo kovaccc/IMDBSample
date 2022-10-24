@@ -150,6 +150,16 @@ class S {
     );
   }
 
+  /// `?tab={movieListType}`
+  String queryTab(Object movieListType) {
+    return Intl.message(
+      '?tab=$movieListType',
+      name: 'queryTab',
+      desc: '',
+      args: [movieListType],
+    );
+  }
+
   /// `page must be less than or equal to 500`
   String get page_must_be_less_than {
     return Intl.message(

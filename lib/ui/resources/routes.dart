@@ -1,86 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_sample/data/repositories/auth_repository.dart';
-import 'package:imdb_sample/data/repositories/genres_repository.dart';
-import 'package:imdb_sample/data/repositories/movies_repository.dart';
-import 'package:imdb_sample/ui/blocs/login/login_bloc.dart';
-import 'package:imdb_sample/ui/blocs/movie_details/movie_details_bloc.dart';
-import 'package:imdb_sample/ui/blocs/splash/splash_bloc.dart';
 import 'package:imdb_sample/ui/elements/pages/bottom_navigation/bottom_navigation_page.dart';
 import 'package:imdb_sample/ui/elements/pages/login_page.dart';
 import 'package:imdb_sample/ui/elements/pages/movie_details_page.dart';
 
 import '../../di/injection.dart';
 import '../../ui/elements/pages/splash_page.dart';
-import '../blocs/main/main_bloc.dart';
-import '../blocs/popular_movies/popular_movies_bloc.dart';
+import 'package:beamer/beamer.dart';
+import '../../../common/enums/filter_movies.dart';
+import '../../../data/local/dao/movie_dao.dart';
 
-class Routes {
-  Routes._();
+const homePagePath = "/home";
+const favouritePagePath = "/favourite_movies";
+const popularPagePath = "/popular_movies";
+const loginPagePath = "/login";
+const splashPagePath = "/splash";
+const popularMovieDetailsPath = "$homePagePath$popularPagePath/:$keyMovieId";
+const favouriteMovieDetailsPath =
+    "$homePagePath$favouritePagePath/:$keyMovieId";
+const keyMovieId = "movieId";
+const queryTab = "tab";
 
-  static final routes = <String, WidgetBuilder>{
-    SplashPage.id: (BuildContext context) {
-      return BlocProvider<SplashBloc>(
-          create: (context) => SplashBloc(
-                authRepository: getIt<IAuthRepository>() as AuthRepository,
-                genresRepository:
-                    getIt<IGenresRepository>() as GenresRepository,
-              )..add(const SplashLoginChecking()),
-          child: const SplashPage());
+final routerDelegate = BeamerDelegate(
+  initialPath: splashPagePath,
+  locationBuilder: RoutesLocationBuilder(
+    routes: {
+      splashPagePath: (context, state, data) {
+        return BeamPage(
+            key: ValueKey(splashPagePath.substring(1)),
+            title: splashPagePath.substring(1),
+            child: const SplashPage());
+      },
+      loginPagePath: (context, state, data) {
+        return BeamPage(
+            key: ValueKey(loginPagePath.substring(1)),
+            title: loginPagePath.substring(1),
+            child: LoginPage());
+      },
+      homePagePath: (context, state, data) {
+        final initialIndex =
+            state.queryParameters[queryTab] == FilterMovies.favourite.getTitle()
+                ? 1
+                : 0;
+        return BeamPage(
+          key: ValueKey(homePagePath.substring(1)),
+          // same key, you don't want rebuild when back button is clicked
+          title: homePagePath.substring(1),
+          child: BottomNavigationPage(initialIndex: initialIndex),
+        );
+      },
+      popularMovieDetailsPath: (context, state, data) {
+        return getMovieDetailsPage(FilterMovies.popular, state);
+      },
+      favouriteMovieDetailsPath: (context, state, data) {
+        return getMovieDetailsPage(FilterMovies.favourite, state);
+      }
     },
-    LoginPage.id: (BuildContext context) {
-      return BlocProvider<LoginBloc>(
-          create: (context) => LoginBloc(
-                authRepository: getIt<IAuthRepository>() as AuthRepository,
-                genresRepository:
-                    getIt<IGenresRepository>() as GenresRepository,
-              ),
-          child: LoginPage());
-    },
-    BottomNavigationPage.id: (BuildContext context) {
-      return MultiBlocProvider(providers: [
-        BlocProvider<PopularMoviesBloc>(
-          create: (context) => PopularMoviesBloc(
-              moviesRepository: getIt<IMoviesRepository>() as MoviesRepository),
-        ),
-        BlocProvider<MovieDetailsBloc>(
-          create: (context) => MovieDetailsBloc(
-              moviesRepository: getIt<IMoviesRepository>() as MoviesRepository),
-        ),
-        BlocProvider<MainBloc>(
-          create: (context) => MainBloc(
-              authRepository: getIt<IAuthRepository>() as AuthRepository),
-        ),
-      ], child: const BottomNavigationPage());
-    },
-    MovieDetailsPage.id: (BuildContext context) {
-      return BlocProvider<MovieDetailsBloc>(
-          create: (context) => MovieDetailsBloc(
-                moviesRepository:
-                    getIt<IMoviesRepository>() as MoviesRepository,
-              ),
-          child: const MovieDetailsPage());
-    },
-  };
+  ),
+  guards: <BeamGuard>[
+    BeamGuard(
+      pathPatterns: [loginPagePath, splashPagePath],
+      guardNonMatching: true,
+      check: (context, location) {
+        final authRepository = getIt<IAuthRepository>() as AuthRepository;
+        return authRepository.isUserLoggedIn();
+      },
+      beamToNamed: (origin, target) => loginPagePath,
+    ),
+    BeamGuard(
+      pathPatterns: [loginPagePath],
+      check: (context, location) {
+        final authRepository = getIt<IAuthRepository>() as AuthRepository;
+        return authRepository.isUserLoggedIn() != true;
+      },
+      beamToNamed: (origin, target) => homePagePath,
+    ),
+  ],
+);
 
-  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
-    if (settings.name == MovieDetailsPage.id) {
-      return PageRouteBuilder(
-        settings: settings,
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            routes[MovieDetailsPage.id]!(context),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return SlideTransition(
-            position: animation.drive(
-                Tween(begin: const Offset(3.0, 2.0), end: Offset.zero)
-                    .chain(CurveTween(curve: Curves.bounceInOut))),
-            child: child,
-          );
-        },
+BeamPage getMovieDetailsPage(FilterMovies type, BeamState state) {
+  final movieId = state.pathParameters[keyMovieId];
+  final movieDao = getIt<MovieDao>();
+  final movie = movieDao.getMovie(int.tryParse(movieId ?? "") ?? -1);
+
+  return BeamPage(
+    key: ValueKey('${type.getTitle()}-movies-$movieId'),
+    title: movie?.title,
+    child: MovieDetailsPage(movieId: int.tryParse(movieId ?? "") ?? 0),
+    onPopPage: (context, delegate, _, page) {
+      context.beamBack();
+      delegate.update(
+        configuration: RouteInformation(
+          location: type.getQueryTabPath(),
+        ),
+        rebuild: false,
       );
-    } else {
-      return MaterialPageRoute(
-          builder: (context) => routes[settings.name]!(context));
-    }
-  }
+      return true;
+    },
+  );
 }
