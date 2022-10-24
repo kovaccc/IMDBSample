@@ -15,7 +15,7 @@ import 'config.dart';
 
 void main() {
   patrolTest(
-    'when toggle favourite for one of the movies in popular movies list one movie item should appear in favourites list',
+    'when toggle favourite for one of the movies in popular movies list, one movie item should appear in favourites list',
     config: patrolConfig,
     nativeAutomation: true, // run on native device
     ($) async {

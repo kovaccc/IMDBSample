@@ -66,7 +66,7 @@ void main() {
         // enable and disable Airplane mode with API
         await $.native.enableAirplaneMode();
         await Future.delayed(const Duration(seconds: 2));
-        await $.native.enableAirplaneMode();
+        await $.native.disableAirplaneMode();
       }
 
       if (Platform.isIOS) {
