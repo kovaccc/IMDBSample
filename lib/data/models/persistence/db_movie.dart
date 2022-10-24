@@ -40,6 +40,8 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
   bool isFavourite;
   @HiveField(15)
   final int? page;
+  @HiveField(16)
+  final int? localId;
 
   DBMovie({
     required this.adult,
@@ -58,6 +60,7 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
     required this.voteCount,
     required this.isFavourite,
     required this.page,
+    required this.localId,
   });
 
   @override
@@ -70,6 +73,7 @@ class DBMovie extends HiveObject implements Persistable<Movie> {
         posterPath: posterPath,
         title: title,
         voteAverage: voteAverage,
-        isFavourite: isFavourite);
+        isFavourite: isFavourite,
+        localId: localId ?? -1);
   }
 }

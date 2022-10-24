@@ -9,6 +9,7 @@ class Movie {
   final String title;
   final double? voteAverage;
   final bool isFavourite;
+  final int localId;
 
   Movie({
     required this.backdropPath,
@@ -19,5 +20,6 @@ class Movie {
     required this.title,
     required this.voteAverage,
     required this.isFavourite,
+    required this.localId,
   });
 }

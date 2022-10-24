@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:imdb_sample/config/keys.dart';
 import 'package:imdb_sample/data/models/domain/movie.dart';
+import 'package:imdb_sample/data/repositories/auth_repository.dart';
+import 'package:imdb_sample/di/injection.dart';
 import 'package:imdb_sample/generated/l10n.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:integration_test/integration_test.dart';
@@ -12,21 +14,28 @@ import 'config.dart';
 
 void main() {
   patrolTest(
-    'when toggle favourite for item with title "Togo" in popular movies list it should appear in favourites list',
+    'when toggle favourite for movie with localId=10 in popular movies list it should appear in favourites list',
     config: patrolConfig,
     nativeAutomation: true, // run on native device
     ($) async {
-      app.main();
-      // first login and enter popular movies page
-      await $(K.loginButton).waitUntilVisible();
-      await $(K.loginButton).tap();
+      const movieLocalId = 10;
+      await app.main();
+      await $.pumpAndSettle();
+      final authRepo = getIt<IAuthRepository>() as AuthRepository;
+      if (!authRepo.isUserLoggedIn()) {
+        // first need to login
+        await $(K.loginButton).waitUntilVisible();
+        await $(K.loginButton).tap();
+      }
       await $(K.popularMoviesPage).waitUntilVisible();
 
-      await $.scrollUntilExists(finder: $(Key("Togo_${S.current.popular}")));
-      expect($(Key("Togo_${S.current.popular}")).visible, true);
-      await $(Key("Togo_${S.current.popular}")).$(InkWell).tap();
+      await $.scrollUntilExists(
+          finder: $(Key("${movieLocalId}_${S.current.popular}")));
+      expect($(Key("${movieLocalId}_${S.current.popular}")).visible, true);
+      await $(Key("${movieLocalId}_${S.current.popular}")).$(InkWell).tap();
       await $(K.favouriteMoviesTab).tap();
-      expect($($(Key("Togo_${S.current.favourites}"))).visible, true);
+      expect(
+          $($(Key("${movieLocalId}_${S.current.favourites}"))).visible, true);
 
       // you can always use tester in combination from widget_tester file provided by Flutter if PatrolTester does not have
       // some functionality

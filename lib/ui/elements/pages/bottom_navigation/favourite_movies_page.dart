@@ -13,7 +13,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../widgets/movie_item.dart';
 
 class FavouriteMoviesPage extends ConsumerWidget {
-
   const FavouriteMoviesPage({Key? key}) : super(key: key);
 
   @override
@@ -47,7 +46,8 @@ class FavouriteMoviesPage extends ConsumerWidget {
                                 "$homePagePath$favouritePagePath/${favouriteMovies[index].id.toString()}");
                           },
                           child: MovieItem(
-                            key: Key("${favouriteMovies[index].title}_${S.of(context).favourites}"),
+                            key: Key(
+                                "${favouriteMovies[index].localId}_${S.of(context).favourites}"),
                             movie: favouriteMovies[index],
                           ),
                         );

@@ -144,17 +144,23 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
                     return ValueListenableBuilder(
                       valueListenable: ref.read(movieProvider(item.id)),
                       builder: (context, Box<DBMovie> box, widget) {
-                        final movie = (box.get(item.id) as DBMovie).asDomain();
-                        return GestureDetector(
-                          onTap: () {
-                            context.beamToNamed(
-                                "$homePagePath$popularPagePath/${movie.id.toString()}");
-                          },
-                          child: MovieItem(
-                            key: Key("${movie.title}_${S.of(context).popular}"),
-                            movie: movie,
-                          ),
-                        );
+                        final dbMovie = box.get(item.id);
+                        if (dbMovie != null) {
+                          final movie = dbMovie.asDomain();
+                          return GestureDetector(
+                            onTap: () {
+                              context.beamToNamed(
+                                  "$homePagePath$popularPagePath/${movie.id.toString()}");
+                            },
+                            child: MovieItem(
+                              key: Key(
+                                  "${movie.localId}_${S.of(context).popular}"),
+                              movie: movie,
+                            ),
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
                       },
                     );
                   }),

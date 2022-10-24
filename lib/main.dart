@@ -12,7 +12,7 @@ import 'config/flavor_config.dart';
 import 'di/injection.dart';
 import 'generated/l10n.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await configureDependencies(Env.development);

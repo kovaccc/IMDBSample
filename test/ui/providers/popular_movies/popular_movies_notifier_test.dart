@@ -33,7 +33,7 @@ void main() {
         "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
         title: "Sonic",
         voteAverage: 9.5,
-        isFavourite: true),
+        isFavourite: true, localId: 1),
     Movie(
         backdropPath:
         "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
@@ -44,7 +44,7 @@ void main() {
         "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
         title: "Anabelle",
         voteAverage: 9.8,
-        isFavourite: true)
+        isFavourite: true, localId: 2)
   ];
 
   final popularMoviesResponse = PopularMoviesResponse(

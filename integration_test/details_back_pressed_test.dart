@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:imdb_sample/data/repositories/auth_repository.dart';
 import 'package:imdb_sample/data/repositories/movies_repository.dart';
 import 'package:imdb_sample/di/injection.dart';
 import 'package:patrol/patrol.dart';
@@ -23,18 +24,24 @@ void main() {
     config: patrolConfig,
     nativeAutomation: true, // run on native device
     ($) async {
+      const movieLocalId = 10;
       app.main();
-      // first login and enter popular movies page
-      await $(K.loginButton).waitUntilVisible();
-      await $(K.loginButton).tap();
+      await $.pumpAndSettle();
+      final authRepo = getIt<IAuthRepository>() as AuthRepository;
+      if (!authRepo.isUserLoggedIn()) {
+        // first login
+        await $(K.loginButton).waitUntilVisible();
+        await $(K.loginButton).tap();
+      }
       await $(K.popularMoviesPage).waitUntilVisible();
 
       // click on one of the movies to open details
-      await $.scrollUntilExists(finder: $(Key("Togo_${S.current.popular}")));
-      expect($(Key("Togo_${S.current.popular}")).visible, true);
-      await $(Key("Togo_${S.current.popular}")).tap();
+      await $.scrollUntilExists(
+          finder: $(Key("${movieLocalId}_${S.current.popular}")));
+      expect($(Key("${movieLocalId}_${S.current.popular}")).visible, true);
+      await $(Key("${movieLocalId}_${S.current.popular}")).tap();
       expect($(K.movieDetailsPage), findsOneWidget);
-      if(Platform.isAndroid) {
+      if (Platform.isAndroid) {
         await $.native.pressBack();
         await $(K.bottomNavigation).waitUntilVisible();
         expect($(K.bottomNavigation), findsOneWidget);
@@ -67,7 +74,6 @@ void main() {
   //     expect($(K.bottomNavigation), findsOneWidget);
   //   },
   // );
-
 
   // Future<void> addDelay(int ms) async {
   //   await Future<void>.delayed(Duration(milliseconds: ms));
