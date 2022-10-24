@@ -47,7 +47,7 @@ class FavouriteMoviesPage extends ConsumerWidget {
                           },
                           child: MovieItem(
                             key: Key(
-                                "${favouriteMovies[index].localId}_${S.of(context).favourites}"),
+                                "${index}_${S.of(context).favourites}"),
                             movie: favouriteMovies[index],
                           ),
                         );

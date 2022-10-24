@@ -154,7 +154,7 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
                             },
                             child: MovieItem(
                               key: Key(
-                                  "${movie.localId}_${S.of(context).popular}"),
+                                  "${index}_${S.of(context).popular}"),
                               movie: movie,
                             ),
                           );

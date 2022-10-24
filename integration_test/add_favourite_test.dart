@@ -5,6 +5,7 @@ import 'package:imdb_sample/data/models/domain/movie.dart';
 import 'package:imdb_sample/data/repositories/auth_repository.dart';
 import 'package:imdb_sample/di/injection.dart';
 import 'package:imdb_sample/generated/l10n.dart';
+import 'package:imdb_sample/ui/elements/widgets/movie_item.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:patrol/patrol.dart';
@@ -14,11 +15,11 @@ import 'config.dart';
 
 void main() {
   patrolTest(
-    'when toggle favourite for movie with localId=10 in popular movies list it should appear in favourites list',
+    'when toggle favourite for one of the movies in popular movies list one movie item should appear in favourites list',
     config: patrolConfig,
     nativeAutomation: true, // run on native device
     ($) async {
-      const movieLocalId = 10;
+      const index = 10;
       await app.main();
       await $.pumpAndSettle();
       final authRepo = getIt<IAuthRepository>() as AuthRepository;
@@ -30,23 +31,23 @@ void main() {
       await $(K.popularMoviesPage).waitUntilVisible();
 
       await $.scrollUntilExists(
-          finder: $(Key("${movieLocalId}_${S.current.popular}")));
-      expect($(Key("${movieLocalId}_${S.current.popular}")).visible, true);
-      await $(Key("${movieLocalId}_${S.current.popular}")).$(InkWell).tap();
+          finder: $(Key("${index}_${S.current.popular}")));
+      expect($(Key("${index}_${S.current.popular}")).visible, true);
+      await $(Key("${index}_${S.current.popular}")).$(InkWell).tap();
       await $(K.favouriteMoviesTab).tap();
-      expect(
-          $($(Key("${movieLocalId}_${S.current.favourites}"))).visible, true);
+      expect($(Key("${0}_${S.current.favourites}")),
+          findsOneWidget); // finds added item on first index
 
       // you can always use tester in combination from widget_tester file provided by Flutter if PatrolTester does not have
       // some functionality
       // await $.tester.tap(find
       //         .descendant(
-      //           of: find.byKey(Key("Prey_${S.current.popular}")),
+      //           of: find.byKey(Key("${0}_${S.current.favourites}")),
       //           matching: find.byType(InkWell),
       //         )
       //         .first);
       // await $.tester.pumpAndSettle();
-      // expect($(Key("Prey_${S.current.favourites}")), findsNothing);
+      // expect($(Key("${index}_${S.current.favourites}")), findsNothing);
     },
   );
 
@@ -56,33 +57,41 @@ void main() {
   //
   // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   // testWidgets(
-  //     'when toggle favourite for item with title "Prey" in popular movies list it should appear in favourites list',
+  //     'when toggle favourite for item with index=2 in popular movies list it should appear in favourites list',
   //     (tester) async {
-  //   app.main();
+  //   const index = 2;
+  //
+  //   await app.main();
   //   // first login and enter popular movies page
   //   await tester.pumpAndSettle();
   //   await addDelay(
   //       4000); // Patrol does not require this line because it will wait until timeout to find item
   //   await tester.pumpAndSettle();
-  //   await tester.tap(find.byKey(K.loginButton));
-  //   await tester.pumpAndSettle();
+  //   final authRepo = getIt<IAuthRepository>() as AuthRepository;
+  //   if (!authRepo.isUserLoggedIn()) {
+  //     await tester.tap(find.byKey(K.loginButton));
+  //     await tester.pumpAndSettle();
+  //   }
+  //
   //   await addDelay(4000);
   //   expect(find.byKey(K.popularMoviesPage).first.evaluate().isNotEmpty, true);
   //   await tester.pumpAndSettle();
   //   expect(find.byType(PagedListView<int, Movie>), findsOneWidget);
   //   // Scroll until the item to be found appears.
-  //   await tester.scrollUntilVisible(
-  //     find.byKey(Key("Prey_${S.current.popular}")),
-  //     500.0,
-  //     scrollable: find.byType(PagedListView<int, Movie>), // _CastError -> does not work
-  //   );
+  // await tester.scrollUntilVisible(
+  //   find.byKey(Key("${index}_${S.current.popular}")),
+  //   500.0,
+  //   scrollable:
+  //       find.byType(PagedListView<int, Movie>), // _CastError -> does not work
+  // );
   //   await tester.tap(find
   //       .descendant(
-  //         of: find.byKey(Key("Prey_${S.current.popular}")),
+  //         of: find.byKey(Key("${index}_${S.current.popular}")),
   //         matching: find.byType(InkWell),
   //       )
   //       .first);
   //   await tester.tap(find.byKey(K.favouriteMoviesTab));
-  //   expect(find.byKey(Key("Prey_${S.current.favourites}")), findsOneWidget);
+  //   expect(find.byKey(Key("${index}_${S.current.favourites}")),
+  //       findsOneWidget);
   // });
 }

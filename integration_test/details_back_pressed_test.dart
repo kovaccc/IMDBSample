@@ -24,8 +24,8 @@ void main() {
     config: patrolConfig,
     nativeAutomation: true, // run on native device
     ($) async {
-      const movieLocalId = 10;
-      app.main();
+      const index = 10;
+      await app.main();
       await $.pumpAndSettle();
       final authRepo = getIt<IAuthRepository>() as AuthRepository;
       if (!authRepo.isUserLoggedIn()) {
@@ -37,9 +37,9 @@ void main() {
 
       // click on one of the movies to open details
       await $.scrollUntilExists(
-          finder: $(Key("${movieLocalId}_${S.current.popular}")));
-      expect($(Key("${movieLocalId}_${S.current.popular}")).visible, true);
-      await $(Key("${movieLocalId}_${S.current.popular}")).tap();
+          finder: $(Key("${index}_${S.current.popular}")));
+      expect($(Key("${index}_${S.current.popular}")).visible, true);
+      await $(Key("${index}_${S.current.popular}")).tap();
       expect($(K.movieDetailsPage), findsOneWidget);
       if (Platform.isAndroid) {
         await $.native.pressBack();

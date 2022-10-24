@@ -39,10 +39,7 @@ class MoviesLocalDataSource {
           voteAverage: movie.voteAverage,
           voteCount: movie.voteCount,
           isFavourite: existingMovie?.isFavourite ?? false,
-          page: page,
-          localId: existingMovie != null
-              ? existingMovie.localId
-              : _movieDao.getAllMovies().length + 1);
+          page: page);
       _addMovieGenres(dbMovie, movie.genreIds);
       await _movieDao.insertMovie(dbMovie);
     }

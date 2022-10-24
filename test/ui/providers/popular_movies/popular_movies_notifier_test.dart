@@ -25,26 +25,26 @@ void main() {
   final movieList = [
     Movie(
         backdropPath:
-        "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
+            "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
         genres: [Genre(id: 0, name: "Action")],
         id: 2010,
         overview: "Overview",
         posterPath:
-        "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
+            "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
         title: "Sonic",
         voteAverage: 9.5,
-        isFavourite: true, localId: 1),
+        isFavourite: true),
     Movie(
         backdropPath:
-        "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
+            "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
         genres: [Genre(id: 2, name: "Horror")],
         id: 2019,
         overview: "Overview",
         posterPath:
-        "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
+            "https://cdn.britannica.com/86/192386-050-D7F3126D/Muhammad-Ali-American.jpg",
         title: "Anabelle",
         voteAverage: 9.8,
-        isFavourite: true, localId: 2)
+        isFavourite: true)
   ];
 
   final popularMoviesResponse = PopularMoviesResponse(
@@ -70,15 +70,14 @@ void main() {
 
         when(mockMoviesRepository.getRemoteMoviesByPage(2))
             .thenAnswer((invocation) async {
-          return Future<PopularMoviesResponse>(() =>
-              Future.value(popularMoviesResponse));
+          return Future<PopularMoviesResponse>(
+              () => Future.value(popularMoviesResponse));
         });
       },
       actions: (PopularMoviesNotifier stateNotifier) async {
         await stateNotifier.fetchNextPopularMovies(0);
       },
-      expect: () =>
-      [
+      expect: () => [
         PopularMoviesState.loaded(
             movies: movieList, currentPage: 1, isLastPage: false),
       ],
@@ -107,8 +106,7 @@ void main() {
       actions: (PopularMoviesNotifier stateNotifier) async {
         await stateNotifier.fetchNextPopularMovies(0);
       },
-      expect: () =>
-      [
+      expect: () => [
         PopularMoviesState.error(
             movies: movieList,
             currentPage: 1,
