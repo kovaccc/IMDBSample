@@ -15,23 +15,23 @@ import 'config.dart';
 
 void main() {
   patrolTest(
-    'when toggle favourite for one of the movies in popular movies list, one movie item should appear in favourites list',
     config: patrolConfig,
+    'when toggle favourite for one of the movies in popular movies list, one movie item should appear in favourites list',
     nativeAutomation: true, // run on native device
-    ($) async {
+    (PatrolTester $) async {
       const index = 10;
       await app.main();
       await $.pumpAndSettle();
       final authRepo = getIt<IAuthRepository>() as AuthRepository;
       if (!authRepo.isUserLoggedIn()) {
-        // first need to login
         await $(K.loginButton).waitUntilVisible();
         await $(K.loginButton).tap();
       }
       await $(K.popularMoviesPage).waitUntilVisible();
-
-      await $.scrollUntilExists(
-          finder: $(Key("${index}_${S.current.popular}")));
+      await $(Key("${index}_${S.current.popular}"))
+          .scrollTo(scrollable: $(K.popularMoviesPagedListView).$(Scrollable));
+      // await $.scrollUntilExists(
+      //     finder: $(Key("${index}_${S.current.popular}")));
       expect($(Key("${index}_${S.current.popular}")).visible, true);
       await $(Key("${index}_${S.current.popular}")).$(InkWell).tap();
       await $(K.favouriteMoviesTab).tap();
@@ -40,14 +40,14 @@ void main() {
 
       // you can always use tester in combination from widget_tester file provided by Flutter if PatrolTester does not have
       // some functionality
-      // await $.tester.tap(find
-      //         .descendant(
-      //           of: find.byKey(Key("${0}_${S.current.favourites}")),
-      //           matching: find.byType(InkWell),
-      //         )
-      //         .first);
-      // await $.tester.pumpAndSettle();
-      // expect($(Key("${index}_${S.current.favourites}")), findsNothing);
+      await $.tester.tap(find
+              .descendant(
+                of: find.byKey(Key("${0}_${S.current.favourites}")),
+                matching: find.byType(InkWell),
+              )
+              .first);
+      await $.tester.pumpAndSettle();
+      expect($(Key("${index}_${S.current.favourites}")), findsNothing);
     },
   );
 

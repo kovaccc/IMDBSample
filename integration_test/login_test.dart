@@ -12,13 +12,12 @@ void main() {
   patrolTest(
     'clicking button login should navigate to main screen',
     config: patrolConfig,
-    nativeAutomation: true, // run on native device
+    nativeAutomation: true,
     ($) async {
       await app.main();
       await $.pumpAndSettle();
       final authRepo = getIt<IAuthRepository>() as AuthRepository;
       if (!authRepo.isUserLoggedIn()) {
-        // await $(K.loginButton).waitUntilVisible(); This line is not needed
         await $(K.loginButton).tap();
         expect($(K.bottomNavigation), findsOneWidget);
       }
@@ -32,8 +31,11 @@ void main() {
   //   await tester.pumpAndSettle(const Duration(
   //       milliseconds:
   //           5000)); // Patrol does not require this line because it will wait until timeout to find item
-  //   await tester.tap(find.byKey(K.loginButton));
-  //   await tester.pumpAndSettle();
-  //   expect(find.byKey(K.bottomNavigation), findsOneWidget);
+  //   final authRepo = getIt<IAuthRepository>() as AuthRepository;
+  //   if (!authRepo.isUserLoggedIn()) {
+  //     await tester.tap(find.byKey(K.loginButton));
+  //     await tester.pumpAndSettle();
+  //     expect(find.byKey(K.bottomNavigation), findsOneWidget);
+  //   }
   // });
 }
