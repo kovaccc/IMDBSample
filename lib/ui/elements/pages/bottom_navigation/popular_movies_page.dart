@@ -104,7 +104,6 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
         );
       },
     );
-    final movies = ref.watch(popularMoviesNotifierProvider).movies;
     return Scaffold(
       key: K.popularMoviesPage,
       body: SafeArea(
@@ -117,23 +116,6 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
                   style: ImdbTextStyles.title1SfWhiteBold),
               ImdbPaddings(context).smallVerticalSizedBox(),
               Expanded(
-                // child: ListView.builder(
-                //   key: K.popularMoviesListView,
-                //   itemCount: movies.length,
-                //   itemBuilder: (context, index) {
-                //     return GestureDetector(
-                //       onTap: () {
-                //         context.beamToNamed(
-                //             "$homePagePath$popularPagePath/${movies[index].id.toString()}");
-                //       },
-                //       child: MovieItem(
-                //         key: Key(
-                //             "${movies[index].title}_${S.of(context).popular}"),
-                //         movie: movies[index],
-                //       ),
-                //     );
-                //   },
-                // ),
                 child: PagedListView<int, Movie>.separated(
                   key: K.popularMoviesPagedListView,
                   shrinkWrap: true,
@@ -153,8 +135,7 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage> {
                                   "$homePagePath$popularPagePath/${movie.id.toString()}");
                             },
                             child: MovieItem(
-                              key: Key(
-                                  "${index}_${S.of(context).popular}"),
+                              key: Key("${index}_${S.of(context).popular}"),
                               movie: movie,
                             ),
                           );

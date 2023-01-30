@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
 
@@ -15,7 +16,7 @@ void main() {
       if (Platform.isAndroid) {
         var androidInfo = await DeviceInfoPlugin().androidInfo;
         var release = androidInfo.version.release;
-        if (release == "12") {
+        if (release == "13") {
           // button left to home
           await $.native.pressRecentApps();
           await $.native.pressDoubleRecentApps();
@@ -75,8 +76,6 @@ void main() {
 
       await $.native.openNotifications();
       final notifications = await $.native.getNotifications();
-      $.log('Found ${notifications.length} notifications');
-      notifications.forEach($.log);
       // from bottom to top on Android
       await $.native.tapOnNotificationByIndex(0);
 
